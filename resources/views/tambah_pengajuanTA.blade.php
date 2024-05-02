@@ -16,6 +16,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-edit"></i> Tambah Pengajuan Tugas Akhir </a>
+        </div>
     </nav>
 
     <!--container-->
