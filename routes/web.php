@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Routing web dashboard dosen
+Route::get('/dashboard', 'App\Http\Controllers\DashboardDosenController@index');

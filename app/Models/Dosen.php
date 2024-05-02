@@ -32,4 +32,8 @@ class Dosen extends Model
     {
         return $this->hasMany(StatusMahasiswa::class, 'id_dospem', 'id_dospem');
     }
+    public function pengajuan()
+    {
+        return $this->hasMany(Pengajuan::class, 'id_dospem', 'id_dospem');
+    }
 }
