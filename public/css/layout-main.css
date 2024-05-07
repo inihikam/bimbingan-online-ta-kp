@@ -307,7 +307,7 @@ th {
 .table-dosbing,
 .table-logbook {
     max-height: 450px;
-    /* overflow-y: auto; */
+    overflow-y: auto;
 }
 
 /* Pagination */
