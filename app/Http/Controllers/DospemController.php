@@ -15,7 +15,7 @@ class DospemController extends Controller
         // Menampilkan data dosen pembimbing dari tabel dosen pembimbing
         $dospem = Dosen::all();
 
-        return view('dospem.index', $dospem);
+        return view('daftar_dosen', $dospem);
     }
 
     /**

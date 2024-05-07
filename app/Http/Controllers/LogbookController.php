@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AuthController extends Controller
+class LogbookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +12,7 @@ class AuthController extends Controller
     public function index()
     {
         //
+        return view('logbook_bimbinganTA');
     }
 
     /**

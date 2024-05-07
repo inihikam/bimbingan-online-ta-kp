@@ -15,7 +15,7 @@ class PengajuanController extends Controller
         // Mengambil semua data dosen pembimbing dari tabel dosen pembimbing untuk ditampilkan pada form
         $dospem = Dosen::all();
 
-        return view('pengajuan.index', $dospem);
+        return view('tambah_pengajuanTA', $dospem);
     }
 
     /**
@@ -40,6 +40,7 @@ class PengajuanController extends Controller
     public function show(string $id)
     {
         //
+
     }
 
     /**

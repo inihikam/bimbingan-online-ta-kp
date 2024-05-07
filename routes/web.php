@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('daftar_dosen');
+    return view('login');
 });
 
 // Routing web dashboard dosen
 Route::get('/dashboard', 'App\Http\Controllers\DashboardDosenController@index');
+
+Route::get('/daftar', [App\Http\Controllers\DospemController::class, 'index'])->name('daftar');
+Route::get('/logbook', [App\Http\Controllers\LogbookController::class, 'index'])->name('logbook');
+Route::get('/pengajuan', [App\Http\Controllers\PengajuanController::class, 'index'])->name('pengajuan');
