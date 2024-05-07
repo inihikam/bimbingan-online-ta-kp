@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\SidebarMahasiswaController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('daftar_dosen');
+    return view('login');
 });
+
+Route::get('/mahasiswa', [SidebarMahasiswaController::class, 'index']);
+Route::get('/pengajuanTA', [SidebarMahasiswaController::class, 'pengajuan_ta']);
+Route::get('/logbookTA', [SidebarMahasiswaController::class, 'logbook_ta']);
+Route::get('/sidangTA', [SidebarMahasiswaController::class, 'pengajuan_sidang_ta']);
+Route::get('/tentang', [SidebarMahasiswaController::class, 'tentang']);
