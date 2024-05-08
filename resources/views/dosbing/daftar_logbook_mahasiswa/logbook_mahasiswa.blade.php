@@ -12,48 +12,42 @@
             <thead class="table-header">
                 <th class="align-middle">No.</th>
                 <th class="align-middle">Tanggal</th>
+                <th class="align-middle">Nama Mahasiswa</th>
                 <th class="align-middle">Uraian Bimbingan</th>
                 <th class="align-middle">Bab Terakhir</th>
-                <th class="align-middle">Aksi</th>
-                <th class="align-middle">Keterangan</th>
+                <th class="align-middle">Choose</th>
             </thead>
             <tr>
                 <td class="centered-column">1</td>
                 <td class="centered-column">30 April 2024</td>
+                <td>MUHAMMAD RIZAL PRATAMA</td>
                 <td class="content-column">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
                 <td class="centered-column">Bab I</td>
                 <td class="centered-column">
                     <button type="info" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dialogDetailLogbook"><i class="fa-regular fa-circle-check"></i></button>
                     <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#dialogEditLogbook"><i class="fa-regular fa-circle-xmark"></i></button>
-                </td>
-                <td class="centered-column">
-                    Revisi
                 </td>
             </tr>
             <tr>
                 <td class="centered-column">2</td>
                 <td class="centered-column">03 Mei 2024</td>
+                <td>CLARA EDREA EVELYNA SONY PUTRI</td>
                 <td class="content-column">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
                 <td class="centered-column">Bab I</td>
                 <td class="centered-column">
                     <button type="info" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dialogDetailLogbook"><i class="fa-regular fa-circle-check"></i></button>
                     <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#dialogEditLogbook"><i class="fa-regular fa-circle-xmark"></i></button>
                 </td>
-                <td class="centered-column">
-                    Success
-                </td>
             </tr>
             <tr>
                 <td class="centered-column">3</td>
                 <td class="centered-column">07 Mei 2024</td>
+                <td>MUHAMMAD MAULANA HIKAM</td>
                 <td class="content-column">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</td>
                 <td class="centered-column">Bab II</td>
                 <td class="centered-column">
                     <button type="info" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#dialogDetailLogbook"><i class="fa-regular fa-circle-check"></i></button>
                     <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#dialogEditLogbook"><i class="fa-regular fa-circle-xmark"></i></button>
-                </td>
-                <td class="centered-column">
-                    Revisi
                 </td>
             </tr>
         </table>
