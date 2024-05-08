@@ -1,4 +1,5 @@
 @extends('mahasiswa.layouts.main')
+@section('title','Tentang')
 @section('content')
 <div class="text-center">
     <h1>
