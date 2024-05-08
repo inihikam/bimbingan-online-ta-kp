@@ -32,7 +32,7 @@
       </ol>
       <div class="row">
         <div class="col-xl-3 col-md-6">
-          <div class="card bg-dark text-white mb-4">
+          <div class="card text-white mb-4" id="card-view">
             <div class="card-body"><b>Mahasiswa Bimbingan</b></div>
             <div class="card-footer d-flex align-items-center justify-content-between">
               <a class="small text-white stretched-link" href="/daftarMahasiswaBimbingan">See Details</a>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-md-6">
-          <div class="card bg-dark text-white mb-4">
+          <div class="card text-white mb-4" id="card-view">
             <div class="card-body"><b>Logbook Mahasiswa</b></div>
             <div class="card-footer d-flex align-items-center justify-content-between">
               <a class="small text-white stretched-link" href="/daftarLogbookMahasiswa">See Details</a>
@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-md-6">
-          <div class="card bg-dark text-white mb-4">
+          <div class="card text-white mb-4" id="card-view">
             <div class="card-body"><b>Mahasiswa Sidang</b></div>
             <div class="card-footer d-flex align-items-center justify-content-between">
               <a class="small text-white stretched-link" href="/daftarMahasiswaSidang">See Details</a>
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="col-xl-3 col-md-6">
-          <div class="card bg-dark text-white mb-4">
+          <div class="card text-white mb-4" id="card-view">
             <div class="card-body"><b>Charts</b></div>
             <div class="card-footer d-flex align-items-center justify-content-between">
               <a class="small text-white stretched-link" href="charts.php">See Details</a>
