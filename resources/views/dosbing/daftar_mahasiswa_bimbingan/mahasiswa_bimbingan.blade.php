@@ -5,7 +5,7 @@
 <h4 class="mb-4">Daftar Mahasiswa Bimbingan</h4>
     <p class="mb-2">Berikut ini adalah daftar mahasiswa bimbingan</p>
     <blockquote class="blockquote-primary">
-        <p class="mb-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-chevron-circle-right"></i></button> untuk melihat detail mahasiswa bimbingan</p>
+        <p class="mb-3 px-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-info-circle"></i></i></button> untuk melihat detail mahasiswa bimbingan</p>
     </blockquote>
     <div class="input-group justify-content-end mb-3">
         <input type="text" class="form-control" placeholder="Cari Mahasiswa">
@@ -25,21 +25,21 @@
                 <td class="centered-column">A11.2021.13329</td>
                 <td>MUHAMMAD RIZAL PRATAMA</td>
                 <td class="centered-column">3.88</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pilihDosbingModal"><i class="fas fa-chevron-circle-right"></i></button></td>
+                <td class="centered-column"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pilihDosbingModal"><i class="fas fa-info-circle"></i></button></td>
             </tr>
             <tr>
                 <td class="centered-column">2</td>
                 <td class="centered-column">A11.2021.13374</td>
                 <td>CLARA EDREA EVELYNA SONY PUTRI</td>
                 <td class="centered-column">3.94</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-chevron-circle-right"></i></button></td>
+                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-info-circle"></i></i></button></td>
             </tr>
             <tr>
                 <td class="centered-column">3</td>
                 <td class="centered-column">A11.2021.13550</td>
                 <td>MUHAMMAD MAULANA HIKAM</td>
                 <td class="centered-column">3.90</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-chevron-circle-right"></i></button></td>
+                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-info-circle"></i></button></td>
             </tr>
         </table>
     </div>
@@ -51,9 +51,23 @@
             <li class="page-item"><a class="page-link active" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">40</a></li>
             <li class="page-item">
                 <a class="page-link" href="#"><i class="fas fa-regular fa-chevron-right"></i></a>
             </li>
         </ul>
     </nav>
+    <footer class="py-4 bg-light mt-auto">
+    <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+        <div class="text-muted">Copyright &copy; Bimbingan Online</div>
+        <div>
+          <a href="#" class="text-secondary">Privacy Policy</a>
+          &middot;
+          <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 @endsection
