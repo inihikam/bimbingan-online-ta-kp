@@ -15,7 +15,7 @@
                 <th class="align-middle">Nama Mahasiswa</th>
                 <th class="align-middle">Uraian Bimbingan</th>
                 <th class="align-middle">Bab Terakhir</th>
-                <th class="align-middle">Choose</th>
+                <th class="align-middle">Status</th>
             </thead>
             <tr>
                 <td class="centered-column">1</td>
