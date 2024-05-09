@@ -8,8 +8,8 @@
         <p class="mb-3 px-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-info-circle"></i></i></button> untuk melihat detail mahasiswa bimbingan</p>
     </blockquote>
     <div class="input-group justify-content-end mb-3">
-        <input type="text" class="form-control" placeholder="Cari Mahasiswa">
-        <div class="input-group-append"><button class="btn btn-primary"><i class="fas fa-search"></i></button></div>
+        <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+        <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
     </div>
     <div class="table-container table-dosbing">
         <table class="table table-bordered mb-1">
@@ -18,26 +18,26 @@
                 <th>NIM</th>
                 <th>Nama Mahasiswa</th>
                 <th>IPK</th>
-                <th>Info</th>
+                <th>Detail</th>
             </thead>
             <tr>
                 <td class="centered-column">1</td>
                 <td class="centered-column">A11.2021.13329</td>
-                <td>MUHAMMAD RIZAL PRATAMA</td>
+                <td class="centered-column">MUHAMMAD RIZAL PRATAMA</td>
                 <td class="centered-column">3.88</td>
                 <td class="centered-column"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pilihDosbingModal"><i class="fas fa-info-circle"></i></button></td>
             </tr>
             <tr>
                 <td class="centered-column">2</td>
                 <td class="centered-column">A11.2021.13374</td>
-                <td>CLARA EDREA EVELYNA SONY PUTRI</td>
+                <td class="centered-column">CLARA EDREA EVELYNA SONY PUTRI</td>
                 <td class="centered-column">3.94</td>
                 <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-info-circle"></i></i></button></td>
             </tr>
             <tr>
                 <td class="centered-column">3</td>
                 <td class="centered-column">A11.2021.13550</td>
-                <td>MUHAMMAD MAULANA HIKAM</td>
+                <td class="centered-column">MUHAMMAD MAULANA HIKAM</td>
                 <td class="centered-column">3.90</td>
                 <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-info-circle"></i></button></td>
             </tr>

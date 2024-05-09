@@ -62,7 +62,7 @@
           <div class="card text-white mb-4" id="card-view">
             <div class="card-body"><b>Charts</b></div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-              <a class="small text-white stretched-link" href="charts.php">See Details</a>
+              <a class="small text-white stretched-link" href="#">See Details</a>
               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
           </div>
