@@ -18,6 +18,10 @@ class SidebarDosbingController extends Controller
         return view('dosbing.daftar_mahasiswa_bimbingan.mahasiswa_bimbingan');
     }
 
+    public function detail_mahasiswa_bimbingan() {
+        return view('dosbing.daftar_mahasiswa_bimbingan.detail_mahasiswa_bimbingan');
+    }
+
     public function daftar_mahasiswa_sidang() {
         return view('dosbing.daftar_mahasiswa_sidang.mahasiswa_sidang');
     }

@@ -25,21 +25,33 @@
                 <td class="centered-column">A11.2021.13329</td>
                 <td class="centered-column">MUHAMMAD RIZAL PRATAMA</td>
                 <td class="centered-column">3.88</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pilihDosbingModal"><i class="fas fa-info-circle"></i></button></td>
+                <td class="centered-column">
+                    <a href="/detailMahasiswaBimbingan" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
             </tr>
             <tr>
                 <td class="centered-column">2</td>
                 <td class="centered-column">A11.2021.13374</td>
                 <td class="centered-column">CLARA EDREA EVELYNA SONY PUTRI</td>
                 <td class="centered-column">3.94</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-info-circle"></i></i></button></td>
+                <td class="centered-column">
+                    <a href="/detailMahasiswaBimbingan" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
             </tr>
             <tr>
                 <td class="centered-column">3</td>
                 <td class="centered-column">A11.2021.13550</td>
                 <td class="centered-column">MUHAMMAD MAULANA HIKAM</td>
                 <td class="centered-column">3.90</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-info-circle"></i></button></td>
+                <td class="centered-column">
+                    <a href="/detailMahasiswaBimbingan" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
             </tr>
         </table>
     </div>
@@ -58,7 +70,8 @@
             </li>
         </ul>
     </nav>
-    <footer class="py-4 bg-light mt-auto">
+</div>
+<footer class="py-4 bg-light mt-auto">
     <div class="container-fluid px-4">
       <div class="d-flex align-items-center justify-content-between small">
         <div class="text-muted">Copyright &copy; Bimbingan Online</div>

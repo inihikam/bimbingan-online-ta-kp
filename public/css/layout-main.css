@@ -441,3 +441,32 @@ input.form-control:focus {
 #card-view {
     background-color: #114D91;
 }
+
+.image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 20px;
+  }
+  
+ .form {
+    flex: 1;
+    margin: 20px;
+  }
+  
+ .form-group {
+    margin-bottom: 20px;
+  }
+  
+ .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  label {
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }

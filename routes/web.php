@@ -31,5 +31,6 @@ Route::get('/tentang', [SidebarMahasiswaController::class, 'tentang']);
 Route::get('/dosbing', [SidebarDosbingController::class, 'index']);
 Route::get('/daftarLogbookMahasiswa', [SidebarDosbingController::class, 'daftar_logbook_mahasiswa']);
 Route::get('/daftarMahasiswaBimbingan', [SidebarDosbingController::class, 'daftar_mahasiswa_bimbingan']);
+Route::get('/detailMahasiswaBimbingan', [SidebarDosbingController::class, 'detail_mahasiswa_bimbingan']);
 Route::get('/daftarMahasiswaSidang', [SidebarDosbingController::class, 'daftar_mahasiswa_sidang']);
 Route::get('/about', [SidebarDosbingController::class, 'about']);
