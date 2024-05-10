@@ -1,4 +1,5 @@
-<div class="modal fade" id="dialogDetailLogbook" tabindex="-1" aria-labelledby="dialogDetailLogbookLabel" aria-hidden="true">
+<div class="modal fade" id="dialogDetailLogbook" tabindex="-1" aria-labelledby="dialogDetailLogbookLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,28 +8,29 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                    <h4 class="mb-4">Bimbingan Tugas Akhir Ke-1</h4>
+                    <h4 class="mb-4">Bimbingan Tugas Akhir</h4>
                     <table class="table table-bordered mb-5">
                         <tbody>
                             <tr>
                                 <td>Tanggal</td>
-                                <td>30 April 2024</td>
+                                <td class="date"></td>
                             </tr>
                             <tr>
                                 <td>Uraian Bimbingan</td>
-                                <td>Membahas Coding</td>
+                                <td class="uraian"></td>
                             </tr>
                             <tr>
                                 <td>Bab Terakhir Bimbingan</td>
-                                <td>Bab I</td>
+                                <td class="bab"></td>
                             </tr>
                             <tr>
                                 <td>Status</td>
-                                <td>ACC</td>
+                                <td class="status"></td>
                             </tr>
                             <tr>
                                 <td>Dokumen</td>
-                                <td><a href="https://github.com/eiffelputri" target="_blank">https://github.com/eiffelputri</a></td>
+                                <td><a id="linkDokumen" class="dokumen" href="https://github.com/eiffelputri"
+                                        target="_blank"></a></td>
                             </tr>
                         </tbody>
                     </table>

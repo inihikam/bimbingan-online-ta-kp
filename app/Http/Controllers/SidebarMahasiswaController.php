@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Mahasiswa;
+use App\Models\LogbookBimbingan;
+use App\Models\StatusMahasiswa;
 
 class SidebarMahasiswaController extends Controller
 {
@@ -11,7 +14,15 @@ class SidebarMahasiswaController extends Controller
      */
     public function index()
     {
-        return view('mahasiswa.dashboard');
+        // Mengambil nama mahasiswa dan logbook dari tabel logbook yang berelasi dengan tabel mahasiswa
+
+        // Mengambil data dari tabel mahasiswa tetapi berdasarkan user yang login karena user tidak ada nama dan tabel user berelasi dengan tabel mahasiswa
+        $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
+        $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
+        // Lalu mengambil logbook dari mahasiswa di session sekarang
+        $logbook = LogbookBimbingan::where('id_mhs', $status->id_mhs)->get();
+
+        return view('mahasiswa.dashboard', compact('mahasiswa', 'logbook', 'status'));
     }
 
     public function pengajuan_ta()
@@ -27,12 +38,12 @@ class SidebarMahasiswaController extends Controller
     public function pengajuan_sidang_ta()
     {
         return view('mahasiswa.pengajuan_sidang_ta.jadwal_sidang_ta');
-    } 
+    }
 
     public function tentang()
     {
         return view('mahasiswa.tentang');
-    }  
+    }
 
     /**
      * Show the form for creating a new resource.

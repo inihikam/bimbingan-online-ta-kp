@@ -18,9 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'roles',
     ];
 
     /**
@@ -41,4 +41,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'email', 'email');
+    }
+    public function dospem()
+    {
+        return $this->belongsTo(Dosen::class, 'email', 'email');
+    }
 }

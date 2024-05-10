@@ -2,7 +2,8 @@
     <h4 class="mb-4">Pemilihan Dosen Pembimbing</h4>
     <p class="mb-2">Berikut ini adalah daftar dosen pembimbing yang tersedia</p>
     <blockquote class="blockquote-primary">
-        <p class="mb-3">Klik tombol panah <button type="button" class="btn btn-warning"><i class="fas fa-chevron-circle-right"></i></button> untuk memilih dosen pembimbing</p>
+        <p class="mb-3">Klik tombol panah <button type="button" class="btn btn-warning"><i
+                    class="fas fa-chevron-circle-right"></i></button> untuk memilih dosen pembimbing</p>
     </blockquote>
     <div class="input-group justify-content-end mb-3">
         <input type="text" class="form-control" placeholder="Cari Dosen">
@@ -17,27 +18,18 @@
                 <th>Sisa Kuota</th>
                 <th>Aksi</th>
             </thead>
-            <tr>
-                <td class="centered-column">1</td>
-                <td class="centered-column">0606107401</td>
-                <td>YANI PARTI ASTUTI, S.SI, M.Kom</td>
-                <td class="centered-column">3</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pilihDosbingModal"><i class="fas fa-chevron-circle-right"></i></button></td>
-            </tr>
-            <tr>
-                <td class="centered-column">2</td>
-                <td class="centered-column">0618038701</td>
-                <td>ADHITYA NUGRAHA, S.Kom, M.CS</td>
-                <td class="centered-column">3</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-chevron-circle-right"></i></button></td>
-            </tr>
-            <tr>
-                <td class="centered-column">3</td>
-                <td class="centered-column">0625078504</td>
-                <td>ARDYTHA LUTHFIARTA, M.Kom</td>
-                <td class="centered-column">3</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning"><i class="fas fa-chevron-circle-right"></i></button></td>
-            </tr>
+            @foreach ($dosens as $dos)
+                <tr>
+                    <td class="centered-column">{{ $loop->iteration }}</td>
+                    <td class="centered-column">{{ $dos->npp }}</td>
+                    <td>{{ $dos->nama }}</td>
+                    <td class="centered-column">{{ $dos->sisa_kuota }}</td>
+                    <td class="centered-column">
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                            data-bs-target="#pilihDosbingModal"><i class="fas fa-chevron-circle-right"></i></button>
+                    </td>
+                </tr>
+            @endforeach
         </table>
     </div>
     <nav aria-label="pageNavigationDosbing">
@@ -58,16 +50,16 @@
     <div class="table-container">
         <table class="table table-bordered">
             <thead class="table-header">
-                <th>No</th>
                 <th>NIDN</th>
                 <th>Nama Dosen</th>
                 <th>Aksi</th>
             </thead>
-            <tr>
-                <td class="centered-column">1</td>
-                <td class="centered-column">0618038701</td>
-                <td>ADHITYA NUGRAHA, S.Kom, M.CS</td>
-                <td class="centered-column"><button type="button" class="btn btn-danger"><i class="fas fa-trash" data-bs-toggle="modal" data-bs-target="#hapusDosbingModal"></i></button></td>
+            <tr id="dosen-dipilih">
+                <td class="centered-column" id="npp"></td>
+                <td id="nama"></td>
+                <td class="centered-column"><button type="button" class="btn btn-danger" id="hapusDosenBtn"><i
+                            class="fas fa-trash" data-bs-toggle="modal"
+                            data-bs-target="#hapusDosbingModal"></i></button></td>
             </tr>
         </table>
     </div>
@@ -81,9 +73,11 @@
 </div>
 
 <!-- Modal Pilih Dosbing -->
-<div class="modal fade" id="pilihDosbingModal" tabindex="-1" aria-labelledby="pilihDosbingModalLabel" aria-hidden="true">
+<div class="modal fade" id="pilihDosbingModal" tabindex="-1" aria-labelledby="pilihDosbingModalLabel"
+    aria-hidden="true" data-npp="" data-nama="">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+            <form action="" method="post"></form>
             <div class="modal-header">
                 <h5 class="modal-title" id="pilihDosbingModalLabel">Pilih Dosen Pembimbing</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -100,7 +94,8 @@
 </div>
 
 <!-- Modal Hapus Dosbing -->
-<div class="modal fade" id="hapusDosbingModal" tabindex="-1" aria-labelledby="hapusDosbingModalLabel" aria-hidden="true">
+<div class="modal fade" id="hapusDosbingModal" tabindex="-1" aria-labelledby="hapusDosbingModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">

@@ -10,19 +10,19 @@
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="/mahasiswa" class="sidebar-link">
+                <a href="{{ route('mahasiswa-dashboard') }}" class="sidebar-link">
                     <i class="lni lni-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/pengajuanTA" class="sidebar-link">
+                <a href="{{ route('mahasiswa-pengajuan') }}" class="sidebar-link">
                     <i class="lni lni-pencil-alt"></i>
                     <span>Pengajuan TA</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/logbookTA" class="sidebar-link">
+                <a href="{{ route('mahasiswa-logbook') }}" class="sidebar-link">
                     <i class="lni lni-notepad"></i>
                     <span>Logbook Bimbingan TA</span>
                 </a>
@@ -41,7 +41,7 @@
             </a>
         </div>
         <div class="sidebar-footer">
-            <a href="#" class="sidebar-link">
+            <a href="{{ route('logout') }}" class="sidebar-link">
                 <i class="lni lni-exit"></i>
                 <span>Logout</span>
             </a>
