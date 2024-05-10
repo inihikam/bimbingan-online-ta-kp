@@ -35,32 +35,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Mengatur tampilan dosbing yang dipilih
-        $('#pilihDosbingModal .btn-primary').click(function() {
-            var npp = $('#pilihDosbingModal').attr('data-npp');
-            var nama = $('#pilihDosbingModal').attr('data-nama');
-            $('#dosen-dipilih #npp').text(npp);
-            $('#dosen-dipilih #nama').text(nama);
-            $('#pilihDosbingModal').modal('hide');
-        });
-
-        // Navigasi ke halaman form pengajuan
-        $('#simpanForm').click(function() {
-            window.location.href = '/form-pengajuan-ta'; // Ubah URL sesuai dengan URL halaman form pengajuan
-        });
-
-        // Menyimpan data ke database
-        $('#ajukanForm').click(function() {
-            var formData = {
-                // Ambil data formulir pengajuan
-            };
-            var selectedDosbing = {
-                npp: $('#dosen-dipilih #npp').text(),
-                nama: $('#dosen-dipilih #nama').text()
-            };
-            // Kirim formData dan selectedDosbing ke backend untuk disimpan ke database
-        });
-    </script>
 @endsection
