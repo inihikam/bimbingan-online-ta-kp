@@ -35,6 +35,12 @@
             </li>
         </ul>
         <div class="sidebar-footer">
+            <a href="/profile" class="sidebar-link">
+                <i class="lni lni-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <div class="sidebar-footer">
             <a href="/tentang" class="sidebar-link">
                 <i class="lni lni-code-alt"></i>
                 <span>Tentang</span>

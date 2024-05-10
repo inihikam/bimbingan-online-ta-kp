@@ -41,7 +41,7 @@
         <div class="col-md-4 py-5">
             <h1><i class="fas fa-bell"></i> Notifikasi</h1>
             <p>Dosen Pembimbing telah menerima topikmu! Silahkan ke halaman Logbook untuk mengisi catatan bimbingan.</p>
-            <button type="submit" class="btn btn-primary"><i class="fas fa-chevron-right"></i>Menuju ke Halaman</button>
+            <a href="{{ url('/logbookTA') }}" class="btn btn-primary"><i class="fas fa-chevron-right"></i> Menuju ke Halaman Logbook</a>
         </div>
     </div>
 </main>

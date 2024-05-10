@@ -26,6 +26,8 @@ Route::get('/pengajuanTA', [SidebarMahasiswaController::class, 'pengajuan_ta']);
 Route::get('/logbookTA', [SidebarMahasiswaController::class, 'logbook_ta']);
 Route::get('/sidangTA', [SidebarMahasiswaController::class, 'pengajuan_sidang_ta']);
 Route::get('/tentang', [SidebarMahasiswaController::class, 'tentang']);
+Route::get('/profile', [SidebarMahasiswaController::class, 'profile']);
+
 
 // AKSES DOSEN PEMBIMBING
 Route::get('/dosbing', [SidebarDosbingController::class, 'index']);
