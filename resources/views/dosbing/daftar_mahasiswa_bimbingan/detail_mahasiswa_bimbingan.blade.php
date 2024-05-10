@@ -33,7 +33,7 @@
       </div>
       <div class="form-group">
         <label for="bidang-kajian">Bidang Kajian</label>
-        <input type="text" id="bidang-kajian" value="SC" class="form-control" disabled>
+        <input type="text" id="bidang-kajian" value="Sistem Cerdas" class="form-control" disabled>
       </div>
       <div class="form-group">
         <label for="keyword">Keyword</label>
@@ -54,7 +54,7 @@
     </form>
   </div>
 </div>
-<footer class="py-4 bg-light mt-auto">
+<footer class="py-4 mt-auto">
     <div class="container-fluid px-4">
       <div class="d-flex align-items-center justify-content-between small">
         <div class="text-muted">Copyright &copy; Bimbingan Online</div>

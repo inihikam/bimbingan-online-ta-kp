@@ -37,7 +37,7 @@
         <div class="sidebar-footer">
             <a href="/about" class="sidebar-link">
             <i class="lni lni-cog"></i>
-                <span>About</span>
+                <span>About Us</span>
             </a>
         </div>
         <div class="sidebar-footer">

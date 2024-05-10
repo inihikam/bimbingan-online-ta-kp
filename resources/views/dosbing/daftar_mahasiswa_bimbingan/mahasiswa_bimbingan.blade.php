@@ -5,7 +5,7 @@
 <h4 class="mb-4">Daftar Mahasiswa Bimbingan</h4>
     <p class="mb-2">Berikut ini adalah daftar mahasiswa bimbingan</p>
     <blockquote class="blockquote-primary">
-        <p class="mb-3 px-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-info-circle"></i></i></button> untuk melihat detail mahasiswa bimbingan</p>
+        <p class="mb-3 px-3">Tekan tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-info-circle"></i></i></button> untuk melihat detail mahasiswa bimbingan</p>
     </blockquote>
     <div class="input-group justify-content-end mb-3">
         <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
@@ -82,7 +82,7 @@
         </ul>
     </nav>
 </div>
-<footer class="py-4 bg-light mt-auto">
+<footer class="py-4 mt-auto">
     <div class="container-fluid px-4">
       <div class="d-flex align-items-center justify-content-between small">
         <div class="text-muted">Copyright &copy; Bimbingan Online</div>
@@ -93,5 +93,5 @@
         </div>
       </div>
     </div>
-  </footer>
+</footer>
 @endsection
