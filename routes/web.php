@@ -1,7 +1,17 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DetailLogbookController;
+use App\Http\Controllers\DospemController;
+use App\Http\Controllers\LogbookController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\SidebarMahasiswaController;
+use App\Http\Middleware\CheckRole;
+use App\Models\LogbookBimbingan;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +24,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
+Route::get('/', [LoginController::class, 'index'])->name('login');
+
+Route::post('/login', [LoginController::class, 'login'])->name('post-login');
+
+Route::middleware([CheckRole::class . ':mahasiswa'])->group(function () {
+
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::get('/home', [SidebarMahasiswaController::class, 'index'])->name('mahasiswa-dashboard');
+    Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('mahasiswa-pengajuan');
+    Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('mahasiswa-pengajuan');
+    Route::get('/logbook', [LogbookController::class, 'index'])->name('mahasiswa-logbook');
+    Route::get('/logbook/{id}', [DetailLogbookController::class, 'show'])->name('mahasiswa-logbook-detail');
+    Route::post('/logbook/{id}', [DetailLogbookController::class, 'update'])->name('mahasiswa-logbook-update');
+    Route::post('/logbook', [LogbookController::class, 'store'])->name('mahasiswa-logbook-create');
 });
-
-// Routing web dashboard dosen
-Route::get('/dashboard', 'App\Http\Controllers\DashboardDosenController@index');
-
-Route::get('/daftar', [App\Http\Controllers\DospemController::class, 'index'])->name('daftar');
-Route::get('/logbook', [App\Http\Controllers\LogbookController::class, 'index'])->name('logbook');
-Route::get('/pengajuan', [App\Http\Controllers\PengajuanController::class, 'index'])->name('pengajuan');

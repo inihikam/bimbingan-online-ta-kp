@@ -12,12 +12,15 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        // Mengambil semua data dosen pembimbing dari tabel dosen pembimbing untuk ditampilkan pada form
-        $dospem = Dosen::all();
-
-        return view('tambah_pengajuanTA', $dospem);
+        // Mengambil semua data dosen pembimbing dari tabel dosen pembimbing untuk ditampilkan
+        $dosens = Dosen::paginate(10);
+        return view('mahasiswa.pengajuan_ta.pengajuan_ta', compact('dosens'));
     }
 
+    public function pengajuan()
+    {
+        // Mengambil semua data dosen pembimbing dari tabel dosen pembimbing untuk ditampilkan
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -38,15 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'mhs',
-        ],
-        'mhs' => [
-            'driver' => 'session',
-            'provider' => 'mhs',
-        ],
-        'dospem' => [
-            'driver' => 'session',
-            'provider' => 'dospem',
+            'provider' => 'users',
         ],
     ],
 
@@ -68,17 +60,9 @@ return [
     */
 
     'providers' => [
-        // 'users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\Models\User::class,
-        // ],
-        'mhs' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Mahasiswa::class,
-        ],
-        'dospem' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Dosen::class,
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

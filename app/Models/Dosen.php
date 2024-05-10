@@ -13,6 +13,7 @@ class Dosen extends Model
 
     protected $fillable = [
         'id_dospem',
+        'nama',
         'npp',
         'bidang_kajian',
         'kuota_mhs_ta',
@@ -35,5 +36,9 @@ class Dosen extends Model
     public function pengajuan()
     {
         return $this->hasMany(Pengajuan::class, 'id_dospem', 'id_dospem');
+    }
+    public function user()
+    {
+        return $this->hasOne(Dosen::class, 'email', 'email');
     }
 }

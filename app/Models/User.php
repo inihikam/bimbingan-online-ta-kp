@@ -44,10 +44,10 @@ class User extends Authenticatable
 
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'email', 'email_mhs');
+        return $this->belongsTo(Mahasiswa::class, 'email', 'email');
     }
     public function dospem()
     {
-        return $this->belongsTo(Dosen::class, 'email', 'email_dosen');
+        return $this->belongsTo(Dosen::class, 'email', 'email');
     }
 }

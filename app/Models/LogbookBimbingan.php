@@ -19,13 +19,14 @@ class LogbookBimbingan extends Model
         'bab_terakhir_bimbingan',
         'status_logbook',
         'checklist',
+        'dokumen'
     ];
 
+    protected $primaryKey = 'id_logbook';
     public function mahasiswa()
     {
         return $this->belongsTo(StatusMahasiswa::class, 'id_mhs', 'id_mhs');
     }
-
     public function dosen()
     {
         return $this->belongsTo(Dosen::class, 'id_dospem', 'id_dospem');
