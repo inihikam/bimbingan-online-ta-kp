@@ -21,11 +21,11 @@
     </div>
     <p class="mb-2">Berikut ini adalah daftar mahasiswa sidang</p>
     <blockquote class="blockquote-primary">
-        <p class="mb-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-chevron-circle-right"></i></button> untuk melihat detail mahasiswa Sidang</p>
+        <p class="mb-3 px-3">Tekan tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-info-circle"></i></i></button> untuk melihat detail mahasiswa sidang</p>
     </blockquote>
     <div class="input-group justify-content-end mb-3">
-        <input type="text" class="form-control" placeholder="Cari Mahasiswa">
-        <div class="input-group-append"><button class="btn btn-primary"><i class="fas fa-search"></i></button></div>
+        <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+        <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
     </div>
     <div class="table-container table-dosbing">
         <table class="table table-bordered mb-1">
@@ -34,19 +34,23 @@
                 <th>NIM</th>
                 <th>Nama Mahasiswa</th>
                 <th>IPK</th>
-                <th>Info</th>
-                <th>Status Sidang</th>
-                <th>Aksi</th>
+                <th>Detail</th>
+                <th>Keterangan</th>
+                <th>Status</th>
             </thead>
             <tr>
                 <td class="centered-column">1</td>
                 <td class="centered-column">A11.2021.13446</td>
                 <td>MUH BAGUS SAPUTRO</td>
                 <td class="centered-column">3.78</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pilihDosbingModal"><i class="fas fa-chevron-circle-right"></i></button></td>
+                <td class="centered-column">
+                    <a href="/detailMahasiswaSidang" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
                 <td class="centered-column">Siap Sidang</td>
                 <td class="centered-column">
-                    <button type="button" class="btn btn-success" onclick="startSidang(1)"><i class="fas fa-play"></i> Mulai Sidang</button>
+                  <button type="button" class="btn btn-success" onclick="startSidang(1)"><i class="fa-regular fa-circle-play"></i> Mulai Sidang</button>
                 </td>
             </tr>
             <tr>
@@ -54,10 +58,44 @@
                 <td class="centered-column">A11.2021.13329</td>
                 <td>MUHAMMAD RIZAL PRATAMA</td>
                 <td class="centered-column">3.88</td>
-                <td class="centered-column"><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#pilihDosbingModal"><i class="fas fa-chevron-circle-right"></i></button></td>
-                <td class="centered-column">Belum Siap Sidang (Logbook belum lengkap)</td>
                 <td class="centered-column">
-                    <!-- Tidak menampilkan tombol "Mulai Sidang" jika status sidang "Belum Siap Sidang" -->
+                    <a href="/detailMahasiswaSidang" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
+                <td class="centered-column">Logbook Belum Lengkap</td>
+                <td class="centered-column">
+                  <button type="button" class="btn btn-secondary" onclick="startSidang(1)" disabled><i class="fa-regular fa-circle-play"></i> Mulai Sidang</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="centered-column">3</td>
+                <td class="centered-column">A11.2021.13374</td>
+                <td>CLARA EDREA EVELYNA SONY PUTRI</td>
+                <td class="centered-column">3.94</td>
+                <td class="centered-column">
+                    <a href="/detailMahasiswaSidang" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
+                <td class="centered-column">Siap Sidang</td>
+                <td class="centered-column">
+                    <button type="button" class="btn btn-success" onclick="startSidang(1)"><i class="fa-regular fa-circle-play"></i> Mulai Sidang</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="centered-column">4</td>
+                <td class="centered-column">A11.2021.13550</td>
+                <td>MUHAMMAD MAULANA HIKAM</td>
+                <td class="centered-column">3.90</td>
+                <td class="centered-column">
+                    <a href="/detailMahasiswaSidang" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
+                <td class="centered-column">Logbook Belum Lengkap</td>
+                <td class="centered-column">
+                  <button type="button" class="btn btn-secondary" onclick="startSidang(1)" disabled><i class="fa-regular fa-circle-play"></i> Mulai Sidang</button>
                 </td>
             </tr>
         </table>
@@ -70,6 +108,8 @@
             <li class="page-item"><a class="page-link active" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">2</a></li>
             <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
             <li class="page-item">
                 <a class="page-link" href="#"><i class="fas fa-regular fa-chevron-right"></i></a>
             </li>

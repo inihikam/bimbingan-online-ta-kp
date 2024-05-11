@@ -10,7 +10,7 @@
     <div class="table-container table-logbook">
         <table class="table table-bordered">
             <thead class="table-header">
-                <th class="align-middle">No.</th>
+                <th class="align-middle">No</th>
                 <th class="align-middle">Tanggal</th>
                 <th class="align-middle">Nama Mahasiswa</th>
                 <th class="align-middle">Uraian Bimbingan</th>

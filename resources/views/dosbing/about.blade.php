@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-md-6" style="padding-top:30px; padding-right: 50px">
                     <h2>Always Here to Assist Online</h2>
-                    <p>Bimbingan online memfasilitasi mahasiswa dalam setiap tahap pengembangan perangkat lunak yaitu analisis kebutuhan, perancangan, implementasi, pengujian, dan pemeliharaan. Mentor memberikan panduan melalui diskusi online dan pertemuan video, membantu dalam merumuskan kebutuhan, merancang struktur sistem, menulis kode, merencanakan pengujian, dan memperbaiki bug. Dengan bimbingan langsung, mahasiswa dapat mengatasi tantangan teknis, memahami praktik terbaik, dan memastikan kualitas dan fungsionalitas proyek yang mereka kembangkan. Ini memungkinkan pembelajaran yang efektif dan pengembangan keterampilan yang diperlukan untuk kesuksesan dalam dunia pengembangan perangkat lunak.</p>
+                    <p>Bimbingan online memfasilitasi mahasiswa dalam setiap tahap pengembangan perangkat lunak yaitu analisis kebutuhan, perancangan, implementasi, pengujian, dan pemeliharaan. Dosen pembimbing memberikan panduan melalui diskusi online dan pertemuan video, membantu dalam merumuskan kebutuhan, merancang struktur sistem, menulis kode, merencanakan pengujian, dan memperbaiki bug. Dengan bimbingan langsung, mahasiswa dapat mengatasi tantangan teknis, memahami praktik terbaik, dan memastikan kualitas dan fungsionalitas proyek yang mereka kembangkan. Ini memungkinkan pembelajaran yang efektif dan pengembangan keterampilan yang diperlukan untuk kesuksesan dalam dunia pengembangan perangkat lunak.</p>
                 </div>
             </div>
         </div>
