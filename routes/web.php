@@ -28,6 +28,20 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
+<<<<<<< HEAD
+Route::get('/', function () {
+    return view('login');
+});
+// AKSES MAHASISWA
+Route::get('/mahasiswa', [SidebarMahasiswaController::class, 'index']);
+Route::get('/pengajuanTA', [SidebarMahasiswaController::class, 'pengajuan_ta']);
+Route::get('/logbookTA', [SidebarMahasiswaController::class, 'logbook_ta']);
+Route::get('/sidangTA', [SidebarMahasiswaController::class, 'pengajuan_sidang_ta']);
+Route::get('/tentang', [SidebarMahasiswaController::class, 'tentang']);
+Route::get('/profile', [SidebarMahasiswaController::class, 'profile']);
+
+=======
+>>>>>>> 7de543ad91a5038f77b61b1e56aeb36000aab283
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 

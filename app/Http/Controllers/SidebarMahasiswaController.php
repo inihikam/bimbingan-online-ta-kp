@@ -40,6 +40,10 @@ class SidebarMahasiswaController extends Controller
         return view('mahasiswa.pengajuan_sidang_ta.jadwal_sidang_ta');
     }
 
+    public function profile()
+    {
+        return view('mahasiswa.profile');
+    }
     public function tentang()
     {
         return view('mahasiswa.tentang');

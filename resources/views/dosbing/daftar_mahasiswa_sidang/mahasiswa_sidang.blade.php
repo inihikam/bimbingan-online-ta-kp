@@ -19,9 +19,13 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <p class="mb-2">Berikut ini adalah daftar mahasiswa sidang</p>
+=======
+    <p class="mb-2">Berikut ini adalah daftar mahasiswa Sidang</p>
+>>>>>>> 883ef70f0e1957bf4f14118cf76650fdb985fdd5
     <blockquote class="blockquote-primary">
-        <p class="mb-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-chevron-circle-right"></i></button> untuk melihat detail mahasiswa bimbingan</p>
+        <p class="mb-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-chevron-circle-right"></i></button> untuk melihat detail mahasiswa Sidang</p>
     </blockquote>
     <div class="input-group justify-content-end mb-3">
         <input type="text" class="form-control" placeholder="Cari Mahasiswa">

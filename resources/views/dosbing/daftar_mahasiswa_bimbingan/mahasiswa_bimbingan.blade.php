@@ -53,6 +53,17 @@
                     </a>
                 </td>
             </tr>
+            <tr>
+                <td class="centered-column">4</td>
+                <td class="centered-column">A11.2021.13446</td>
+                <td class="centered-column">MUH BAGUS SAPUTRO</td>
+                <td class="centered-column">3.78</td>
+                <td class="centered-column">
+                    <a href="/detailMahasiswaBimbingan" class="btn btn-warning">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
+            </tr>
         </table>
     </div>
     <nav aria-label="pageNavigationDosbing">
