@@ -1,9 +1,8 @@
 @extends('dosbing.layouts.main')
-@section('title', 'Mahasiswa Bimbingan')
+@section('title', 'Mahasiswa Sidang')
 @section('content')
 <div class="container">
 <h4 class="mb-4">Daftar Mahasiswa Sidang</h4>
-    <!-- Tambahkan modal untuk pemberitahuan -->
     <div class="modal fade" id="sidangModal" tabindex="-1" aria-labelledby="sidangModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -20,8 +19,7 @@
             </div>
         </div>
     </div>
-    <!-- Akhir modal pemberitahuan -->
-    <p class="mb-2">Berikut ini adalah daftar mahasiswa bimbingan</p>
+    <p class="mb-2">Berikut ini adalah daftar mahasiswa sidang</p>
     <blockquote class="blockquote-primary">
         <p class="mb-3">Klik tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-chevron-circle-right"></i></button> untuk melihat detail mahasiswa bimbingan</p>
     </blockquote>
@@ -78,7 +76,6 @@
         </ul>
     </nav>
 </div>
-<<<<<<< HEAD
 <footer class="py-4 mt-auto">
     <div class="container-fluid px-4">
       <div class="d-flex align-items-center justify-content-between small">
@@ -92,7 +89,3 @@
     </div>
 </footer>
 @endsection
-=======
-
-@endsection
->>>>>>> 639ffc797be32236aff22fd909cc418efefb3271

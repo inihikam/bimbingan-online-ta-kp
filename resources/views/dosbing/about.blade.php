@@ -11,7 +11,6 @@
 </style>
 <div class="container-fluid">
     <div class="container">
-        <!-- Konten halaman di sini -->
         <div class="row">
             <div class="col-md-6 ms-5 py-5">
                 <h2>Bimbingan Online Ready to Help</h2>
@@ -21,7 +20,6 @@
                 <img src="https://img.freepik.com/free-vector/ui-ux-team-concept-illustration_114360-14912.jpg?w=900&t=st=1715261974~exp=1715262574~hmac=2c274ca6d997e4634dd94040960443ac5b67956347830ac58e98dfc3c8ea94ad" alt="Image Content" class="img-fluid">
             </div>
         </div>
-        <!-- Content Service  -->
         <div class="container text-center py-2">
             <div class="text-center">
                 <h3>Our Goals</h3>
@@ -54,7 +52,6 @@
                 </div>
             </div>
         </div>
-        <!-- Content Product -->
         <div class="container py-2 mb-2">
             <div class="row">
                 <div class="col-md-6">
@@ -66,7 +63,6 @@
                 </div>
             </div>
         </div>
-        <!-- Content Activity -->
         <div class="container text-center mb-2">
             <div class="text-center py-3">
                 <h3>Latest News</h3>
@@ -105,7 +101,6 @@
                 </div>
             </div>
         </div>
-        <!-- Content Download -->
         <div class="container">
             <div class="row">
                 <div class="col-md-6 px-3 py-2 ms-3">
