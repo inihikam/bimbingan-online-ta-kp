@@ -4,11 +4,19 @@
     <div class="container">
         <h4 class="mb-4">Bimbingan TA</h4>
 
-        <p class="mb-2 d-flex justify-content-between align-items-center">
+        @php
+            if ($status->id_dospem == 0) {
+                echo '<div class="alert alert-warning" role="alert">
+                    Anda belum memiliki dosen pembimbing. Silahkan melakukan pengajuan TA terlebih dahulu.
+                </div>';
+            } else {
+                echo '<p class="mb-2 d-flex justify-content-between align-items-center">
             Berikut merupakan daftar progres bimbingan yang sudah dilakukan oleh mahasiswa dengan dosen pembimbing
             <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dialogTambahLogbook"> <i
                     class="fas fa-plus"></i>Tambah</button>
-        </p>
+        </p>';
+            }
+        @endphp
         <div class="table-container table-logbook">
             <table class="table table-bordered">
                 <thead class="table-header">
@@ -19,9 +27,6 @@
                     <th class="align-middle">Status</th>
                     <th class="align-middle">Aksi</th>
                 </thead>
-                @php
-                    $selected = 0;
-                @endphp
                 @foreach ($logbook as $lb)
                     <tr>
                         <td class="centered-column">{{ $loop->iteration }}</td>
@@ -51,7 +56,8 @@
                 @endforeach
             </table>
         </div>
-        <nav aria-label="pageNavigationLogbook">
+        {{ $logbook->links() }}
+        {{-- <nav aria-label="pageNavigationLogbook">
             <ul class="pagination justify-content-end">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -63,7 +69,7 @@
                     <a class="page-link" href="#">Next</a>
                 </li>
             </ul>
-        </nav>
+        </nav> --}}
     </div>
 
     <!--Dialog Tambah Logbook-->

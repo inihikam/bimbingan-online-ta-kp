@@ -19,7 +19,8 @@ class Pengajuan extends Model
         'keyword',
         'deskripsi',
         'catatan',
-        'id_dosen'
+        'id_dosen',
+        'status',
     ];
 
     public function dosen()

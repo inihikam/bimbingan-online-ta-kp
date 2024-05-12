@@ -19,7 +19,7 @@ class LogbookController extends Controller
         $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
         $logbook = LogbookBimbingan::where('id_mhs', $status->id_mhs)->paginate(10);
 
-        return view('mahasiswa.logbook_ta.logbook_ta', compact('logbook'));
+        return view('mahasiswa.logbook_ta.logbook_ta', compact('logbook', 'status'));
     }
 
     /**

@@ -10,46 +10,48 @@
                     <blockquote class="blockquote-primary">
                         <p class="mb-3">Form dengan tanda asterik (<span class="required">*</span>) wajib diisi.</p>
                     </blockquote>
-                    <form method="POST" action="{{ route('mahasiswa-logbook-update', ['id' => $lb]) }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input type="hidden" name="id_logbook" id="logbook_id" value="">
-                        <div class="form-group row mb-3">
-                            <label for="inputCatatan" class="col-sm-2 col-form-label">Uraian Bimbingan <span
-                                    class="required">*</span></label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" name="uraian_bimbingan" id="inputCatatan" rows="3"
-                                    placeholder="Masukkan Uraian Bimbingan"></textarea>
+                    @isset($lb)
+                        <form method="POST" action="{{ route('mahasiswa-logbook-update', ['id' => $lb]) }}"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="id_logbook" id="logbook_id" value="">
+                            <div class="form-group row mb-3">
+                                <label for="inputCatatan" class="col-sm-2 col-form-label">Uraian Bimbingan <span
+                                        class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="uraian_bimbingan" id="inputCatatan" rows="3"
+                                        placeholder="Masukkan Uraian Bimbingan"></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label for="inputBidang" class="col-sm-2 col-form-label">Bab Terakhir Bimbingan <span
-                                    class="required">*</span></label>
-                            <div class="col-sm-3">
-                                <select class="form-select" name="bab_terakhir_bimbingan" id="inputBidang"
-                                    aria-label="Bidang Kajian">
-                                    <option disabled selected hidden>Pilih Bab</option>
-                                    <option value="1">Bab I</option>
-                                    <option value="2">Bab II</option>
-                                    <option value="3">Bab III</option>
-                                    <option value="4">Bab IV</option>
-                                    <option value="5">Bab V</option>
-                                </select>
+                            <div class="form-group row mb-3">
+                                <label for="inputBidang" class="col-sm-2 col-form-label">Bab Terakhir Bimbingan <span
+                                        class="required">*</span></label>
+                                <div class="col-sm-3">
+                                    <select class="form-select" name="bab_terakhir_bimbingan" id="inputBidang"
+                                        aria-label="Bidang Kajian">
+                                        <option disabled selected hidden>Pilih Bab</option>
+                                        <option value="1">Bab I</option>
+                                        <option value="2">Bab II</option>
+                                        <option value="3">Bab III</option>
+                                        <option value="4">Bab IV</option>
+                                        <option value="5">Bab V</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label for="inputDok" class="col-sm-2 col-form-label">Dokumen<span
-                                    class="required">*</span></label>
-                            <div class="col-sm-10">
-                                <input type="topik" name="dokumen" class="form-control" id="inputDok"
-                                    placeholder="Masukkan Link Dokumen">
+                            <div class="form-group row mb-3">
+                                <label for="inputDok" class="col-sm-2 col-form-label">Dokumen<span
+                                        class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="topik" name="dokumen" class="form-control" id="inputDok"
+                                        placeholder="Masukkan Link Dokumen">
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </form>
+                    @endisset
                 </div>
             </div>
         </div>

@@ -24,6 +24,13 @@ class CheckRole
         if (in_array($user->roles, $roles)) {
             return $next($request);
         }
-        return $next($request);
+
+        if ($user->roles == 'mahasiswa') {
+            return redirect()->route('mahasiswa-dashboard');
+        } elseif ($user->roles == 'dosen') {
+            return redirect()->route('dosen-dashboard');
+        }
+
+        return redirect()->route('login');
     }
 }

@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
+        if (auth()->check()) {
             $user = auth()->user();
             if ($user->roles == 'mahasiswa') {
                 return redirect()->route('mahasiswa-dashboard');
@@ -23,7 +23,6 @@ class LoginController extends Controller
         }
         return view('login');
     }
-
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -40,7 +39,7 @@ class LoginController extends Controller
         return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         auth()->logout();
         return redirect()->route('login');
