@@ -11,7 +11,7 @@
     </style>
 
     <div class="container">
-        <img src="https://via.placeholder.com/200x200" alt="Image" class="image mt-5">
+        <img src="https://via.placeholder.com/200x200" alt="Profile" class="image mt-5">
         <div class="form">
             <h2 class="mb-4">Detail Mahasiswa</h2>
             <form action="{{ route('update-mahasiswa-bimbingan', ['id' => $pengajuan->id]) }}" method="POST">
@@ -58,17 +58,16 @@
                 @endif
             </form>
         </div>
-    </div>
-    <footer class="py-4 bg-light mt-auto">
-        <div class="container-fluid px-4">
-            <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright &copy; Bimbingan Online</div>
-                <div>
-                    <a href="#" class="text-secondary">Privacy Policy</a>
-                    &middot;
-                    <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+        <footer class="py-4 mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Bimbingan Online</div>
+                    <div>
+                        <a href="#" class="text-secondary">Privacy Policy</a>
+                        &middot;
+                        <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 @endsection

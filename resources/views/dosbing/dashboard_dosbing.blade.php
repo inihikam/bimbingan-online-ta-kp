@@ -128,8 +128,18 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card text-white mb-4" id="card-view">
+                <div class="card-body"><b>Tentang Kami</b></div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a class="small text-white stretched-link" href="/about">See Details</a>
+                    <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                </div>
+            </div>
+            </footer>
+        </div>
     </main>
-    <footer class="py-4 bg-light mt-auto">
+    <footer class="py-4 mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
                 <div class="text-muted">Copyright &copy; Bimbingan Online</div>
@@ -141,7 +151,4 @@
             </div>
         </div>
     </footer>
-    </div>
-    </div>
-
 @endsection

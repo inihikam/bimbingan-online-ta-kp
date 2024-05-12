@@ -30,15 +30,12 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-
 Route::get('/', [LoginController::class, 'index'])->name('login');
 
 Route::post('/login', [LoginController::class, 'login'])->name('post-login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware([CheckRole::class . ':mahasiswa'])->group(function () {
-
-
     Route::get('/home', [SidebarMahasiswaController::class, 'index'])->name('mahasiswa-dashboard');
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('mahasiswa-pengajuan');
     Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('mahasiswa-pengajuan');
@@ -49,7 +46,6 @@ Route::middleware([CheckRole::class . ':mahasiswa'])->group(function () {
 });
 
 Route::middleware([CheckRole::class . ':dosen'])->group(function () {
-
     Route::get('/dosbing', [SidebarDosbingController::class, 'index'])->name('dosen-dashboard');
     Route::get('/logbookBimbingan', [DospemBimbinganController::class, 'index'])->name('dosbing-logbook');
     Route::post('/accLogbook', [DospemBimbinganController::class, 'update'])->name('update-dosbing-logbook');
@@ -58,5 +54,6 @@ Route::middleware([CheckRole::class . ':dosen'])->group(function () {
     Route::post('/updatePengajuan/{id}', [MahasiswaBimbinganController::class, 'update'])->name('update-mahasiswa-bimbingan');
     Route::get('/detailMahasiswaBimbingan', [SidebarDosbingController::class, 'detail_mahasiswa_bimbingan']);
     Route::get('/daftarMahasiswaSidang', [SidebarDosbingController::class, 'daftar_mahasiswa_sidang']);
+    Route::get('/detailMahasiswaSidang', [SidebarDosbingController::class, 'detail_mahasiswa_sidang']);
     Route::get('/about', [SidebarDosbingController::class, 'about']);
 });

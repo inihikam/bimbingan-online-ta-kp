@@ -3,7 +3,6 @@
 @section('content')
     <div class="container">
         <h4 class="mb-4">Daftar Logbook Mahasiswa Bimbingan</h4>
-
         <p class="mb-3 d-flex justify-content-between align-items-center">
             Berikut merupakan daftar logbook mahasiswa bimbingan
         </p>
@@ -58,24 +57,25 @@
                 @endforeach
             </table>
         </div>
+
         {{ $logbook->links() }}
         {{-- <nav aria-label="pageNavigationLogbook">
-            <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-regular fa-chevron-left"></i></a>
-                </li>
-                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                <li class="page-item"><a class="page-link" href="#">40</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#"><i class="fas fa-regular fa-chevron-right"></i></a>
-                </li>
-            </ul>
-        </nav> --}}
+        <ul class="pagination justify-content-end">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1"><i class="fas fa-regular fa-chevron-left"></i></a>
+            </li>
+            <li class="page-item"><a class="page-link active" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">40</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#"><i class="fas fa-regular fa-chevron-right"></i></a>
+            </li>
+        </ul>
+    </nav> --}}
     </div>
-    <footer class="py-4 bg-light mt-auto">
+    <footer class="py-4 mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
                 <div class="text-muted">Copyright &copy; Bimbingan Online</div>
@@ -85,7 +85,5 @@
                     <a href="#" class="text-secondary">Terms &amp; Conditions</a>
                 </div>
             </div>
-        </div>
     </footer>
-    <script></script>
 @endsection
