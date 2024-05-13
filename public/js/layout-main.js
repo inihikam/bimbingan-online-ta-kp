@@ -69,12 +69,12 @@ $('#dialogTambahLogbook').on('shown.bs.modal', function () {
 });*/
 
 // Pengajuan TA
-$(document).ready(function(){
+/*$(document).ready(function(){
   $('.nav-pills a').on('click', function (e) {
       e.preventDefault();
       $(this).tab('show');
   });
-});
+});*/
 
 
 // scroller
