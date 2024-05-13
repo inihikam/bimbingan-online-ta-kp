@@ -24,10 +24,6 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(Mahasiswa::class, 'email', 'email');
     }
-    public function dosen()
-    {
-        return $this->belongsTo(Dosen::class, 'dosen_pembimbing', 'nip');
-    }
     public function statusMahasiswa()
     {
         return $this->hasOne(StatusMahasiswa::class, 'nim', 'nim');

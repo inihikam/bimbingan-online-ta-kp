@@ -17,7 +17,9 @@ class MahasiswaBimbinganController extends Controller
     {
         $user = auth()->user();
         $dosen = Dosen::where('email', $user->email)->first();
-        $pengajuan = Pengajuan::where('id_dosen', $dosen->id_dospem)->paginate(10);
+        // $pengajuan = Pengajuan::where('id_dosen', $dosen->id_dospem)->paginate(10);
+        // Cara mengambil data pengajuan yang belum di tolak
+        $pengajuan = Pengajuan::where('id_dosen', $dosen->id_dospem)->where('status', '!=', 'TOLAK')->paginate(10);
         $mahasiswa = StatusMahasiswa::all();
         $bimbingan = Mahasiswa::all();
 

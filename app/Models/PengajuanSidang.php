@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengajuan extends Model
+class PengajuanSidang extends Model
 {
     use HasFactory;
-
-    protected $table = 'pengajuan';
-
+    protected $table = 'pengajuan_sidang';
     protected $fillable = [
-        'id_mhs',
+        'judul',
         'topik',
         'judul',
         'bidang_kajian',
@@ -22,13 +20,4 @@ class Pengajuan extends Model
         'id_dosen',
         'status',
     ];
-
-    public function dosen()
-    {
-        return $this->belongsTo(Dosen::class, 'id_dosen', 'id_dospem');
-    }
-    public function mahasiswa()
-    {
-        return $this->belongsTo(StatusMahasiswa::class, 'id_mhs', 'id_mhs');
-    }
 }

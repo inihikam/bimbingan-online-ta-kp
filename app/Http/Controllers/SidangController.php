@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\JadwalSidang;
 
 class SidangController extends Controller
 {
@@ -11,7 +12,8 @@ class SidangController extends Controller
      */
     public function index()
     {
-        return view('mahasiswa.pengajuan_sidang_ta.jadwal_sidang_ta');
+        $jadwal = JadwalSidang::all();
+        return view('mahasiswa.pengajuan_sidang_ta.jadwal_sidang_ta', compact('jadwal'));
     }
 
     /**
@@ -27,7 +29,7 @@ class SidangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
     }
 
     /**
