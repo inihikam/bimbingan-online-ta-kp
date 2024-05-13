@@ -17,8 +17,8 @@ class Mahasiswa extends Model
         'ipk',
         'transkrip_nilai',
         'telp_mhs',
-        'email_mhs',
-        'dosen_pembimbing',
+        'email',
+        'dosen_wali',
     ];
     public function user()
     {

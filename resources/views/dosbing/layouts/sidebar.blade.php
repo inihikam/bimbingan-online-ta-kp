@@ -35,7 +35,7 @@
             </li>
         </ul>
         <div class="sidebar-footer">
-            <a href="/about" class="sidebar-link">
+            <a href="{{ route('dosbing-about') }}" class="sidebar-link">
                 <i class="lni lni-cog"></i>
                 <span>About Us</span>
             </a>

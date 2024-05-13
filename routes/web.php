@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DetailLogbookController;
 use App\Http\Controllers\DospemBimbinganController;
@@ -9,7 +9,7 @@ use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\MahasiswaBimbinganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PengajuanController;
-
+use App\Http\Controllers\SidangController;
 use App\Http\Controllers\SidebarDosbingController;
 
 use App\Http\Controllers\SidebarMahasiswaController;
@@ -43,6 +43,9 @@ Route::middleware([CheckRole::class . ':mahasiswa'])->group(function () {
     Route::get('/logbook/{id}', [DetailLogbookController::class, 'show'])->name('mahasiswa-logbook-detail');
     Route::post('/logbook/{id}', [DetailLogbookController::class, 'update'])->name('mahasiswa-logbook-update');
     Route::post('/logbook', [LogbookController::class, 'store'])->name('mahasiswa-logbook-create');
+    Route::get('/sidang', [SidangController::class, 'index'])->name('mahasiswa-sidang');
+    Route::get('/tentang', [AboutController::class, 'mahasiswa'])->name('mahasiswa-tentang');
+    Route::get('/profile', [AboutController::class, 'profile'])->name('mahasiswa-profile');
 });
 
 Route::middleware([CheckRole::class . ':dosen'])->group(function () {
@@ -55,5 +58,5 @@ Route::middleware([CheckRole::class . ':dosen'])->group(function () {
     Route::get('/detailMahasiswaBimbingan', [SidebarDosbingController::class, 'detail_mahasiswa_bimbingan']);
     Route::get('/daftarMahasiswaSidang', [SidebarDosbingController::class, 'daftar_mahasiswa_sidang']);
     Route::get('/detailMahasiswaSidang', [SidebarDosbingController::class, 'detail_mahasiswa_sidang']);
-    Route::get('/about', [SidebarDosbingController::class, 'about']);
+    Route::get('/about', [AboutController::class, 'dosen'])->name('dosbing-about');
 });

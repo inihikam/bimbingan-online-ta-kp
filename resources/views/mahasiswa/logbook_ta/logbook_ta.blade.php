@@ -48,9 +48,11 @@
                             <button type="info" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#dialogDetailLogbook" data-id="{{ $lb->id_logbook }}"><i
                                     class="fas fa-info-circle"></i></button>
-                            <button type="submit" class="btn btn-warning" data-bs-toggle="modal"
-                                data-bs-target="#dialogEditLogbook" data-id="{{ $lb->id_logbook }}"><i
-                                    class="far fa-edit"></i></button>
+                            @if ($lb->status_logbook != 'ACC')
+                                <button type="submit" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#dialogEditLogbook" data-id="{{ $lb->id_logbook }}"><i
+                                        class="far fa-edit"></i></button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
