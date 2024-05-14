@@ -17,8 +17,8 @@ return new class extends Migration
             $table->double('ipk');
             $table->longText('transkrip_nilai');
             $table->string('telp_mhs')->unique();
-            $table->string('email_mhs')->unique();
-            $table->string('dosen_pembimbing')->nullable();
+            $table->string('email')->unique();
+            $table->string('dosen_wali')->nullable();
             $table->timestamps();
         });
     }

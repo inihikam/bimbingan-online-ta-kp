@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_mhs');
             $table->string('topik');
             $table->string('judul');
-            $table->string('bidang_kajian');
+            $table->enum('bidang_kajian', ['SC', 'RPLD', 'SKKKD']);
             $table->string('keyword');
             $table->longText('deskripsi');
             $table->string('catatan');
+            $table->integer('id_dospem');
+            $table->enum('status', ['ACC', 'TOLAK', 'PENDING'])->default('PENDING');
             $table->timestamps();
         });
     }

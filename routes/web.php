@@ -35,7 +35,7 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('post-login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware([CheckRole::class . ':mahasiswa'])->group(function () {
+Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/home', [SidebarMahasiswaController::class, 'index'])->name('mahasiswa-dashboard');
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('mahasiswa-pengajuan');
     Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('mahasiswa-pengajuan');
@@ -48,7 +48,7 @@ Route::middleware([CheckRole::class . ':mahasiswa'])->group(function () {
     Route::get('/profile', [AboutController::class, 'profile'])->name('mahasiswa-profile');
 });
 
-Route::middleware([CheckRole::class . ':dosen'])->group(function () {
+Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/dosbing', [SidebarDosbingController::class, 'index'])->name('dosen-dashboard');
     Route::get('/logbookBimbingan', [DospemBimbinganController::class, 'index'])->name('dosbing-logbook');
     Route::post('/accLogbook', [DospemBimbinganController::class, 'update'])->name('update-dosbing-logbook');

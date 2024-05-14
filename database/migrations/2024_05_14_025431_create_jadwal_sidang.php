@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengajuan_sidang', function (Blueprint $table) {
+        Schema::create('jadwal_sidang', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_mhs');
-            $table->integer('id_dospem');
-            $table->string('judul');
-            $table->enum('bidang_kajian', ['SC', 'RPLD', 'SKKKD']);
-            $table->longText('dokumen');
+            $table->string('periode');
+            $table->string('tanggal');
+            $table->integer('kuota');
+            $table->enum('status', ['TERSEDIA', 'TIDAK TERSEDIA'])->default('TIDAK TERSEDIA');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pengajuan_sidang');
+        Schema::dropIfExists('jadwal_sidang');
     }
 };

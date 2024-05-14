@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Menambahkan Foreign Key pada tabel status_mahasiswa
         Schema::table('status_mahasiswa', function (Blueprint $table) {
-            $table->string('periode_sidang')->after('sidang_ta_2');
+            $table->foreign('nim')->references('nim')->on('mahasiswa')->onDelete('cascade');
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Menghapus Foreign Key pada tabel status_mahasiswa
         Schema::table('status_mahasiswa', function (Blueprint $table) {
-            $table->dropColumn('periode_sidang');
+            $table->dropForeign(['nim']);
         });
     }
 };

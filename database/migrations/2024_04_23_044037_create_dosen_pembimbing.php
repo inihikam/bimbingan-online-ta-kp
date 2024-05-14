@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dosen_pembimbing', function (Blueprint $table) {
-            $table->integer('id_dospem')->primary();
+            $table->integer('id_dospem')->primary()->autoIncrement();
+            $table->string('nama');
             $table->string('npp')->unique();
             $table->enum('bidang_kajian', ['SC', 'RPLD', 'SKKKD']);
             $table->integer('kuota_mhs_ta');
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->integer('acc_ajuan');
             $table->integer('sisa_kuota');
             $table->enum('status_dospem', ['AVAILABLE', 'FULL']);
-            $table->string('email_dosen')->unique();
+            $table->string('email')->unique();
             $table->string('telp_dosen')->unique();
             $table->timestamps();
         });

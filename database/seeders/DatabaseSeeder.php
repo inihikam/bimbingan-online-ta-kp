@@ -29,13 +29,11 @@ class DatabaseSeeder extends Seeder
         User::create([
             'email' => '111202113550@mhs.dinus.ac.id',
             'password' => bcrypt('123456'),
-            'role' => 'mahasiswa',
         ]);
 
         User::create([
             'email' => 'ardytha.luthfiarta@dsn.dinus.ac.id',
             'password' => bcrypt('123456'),
-            'role' => 'dosen',
         ]);
 
         // Seed data Mahasiswa
@@ -60,7 +58,7 @@ class DatabaseSeeder extends Seeder
             'sisa_kuota' => 3,
             'status_dospem' => 'AVAILABLE',
             'email' => 'ardytha.luthfiarta@dsn.dinus.ac.id',
-            'telp_dsn' => '081325105905',
+            'telp_dosen' => '081325105905',
         ]);
 
         Dosen::create([
@@ -73,7 +71,7 @@ class DatabaseSeeder extends Seeder
             'sisa_kuota' => 2,
             'status_dospem' => 'AVAILABLE',
             'email' => 'adhitya@dsn.dinus.ac.id',
-            'telp_dsn' => '085640577111',
+            'telp_dosen' => '085640577111',
         ]);
     }
 }

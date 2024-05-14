@@ -12,19 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('status_mahasiswa', function (Blueprint $table) {
-            $table->integer('id_mhs')->primary();
+            $table->integer('id_mhs')->primary()->autoIncrement();
             $table->integer('id_dospem');
             $table->string('nim')->unique();
-            $table->enum('ta_1', ['PASS', 'FAIL'])->default('FAIL');
-            $table->enum('ta_2', ['PASS', 'FAIL'])->default('FAIL');
+            $table->enum('ta_1', ['ACC', 'REVISI', 'NOT_TAKEN', 'PENDING'])->default('NOT_TAKEN');
+            $table->enum('ta_2', ['ACC', 'REVISI', 'NOT_TAKEN', 'PENDING'])->default('NOT_TAKEN');
             $table->integer('bab_terakhir')->nullable();
             $table->integer('jml_bimbingan')->nullable();
             $table->enum('status', ['ACC', 'REVISI'])->nullable();
-            $table->enum('sidang_ta_1', ['PASS', 'FAIL'])->default('FAIL');
-            $table->enum('sidang_ta_2', ['PASS', 'FAIL'])->default('FAIL');
+            $table->enum('sidang_ta_1', ['PASS', 'FAIL', 'NOT_TAKEN'])->default('NOT_TAKEN');
+            $table->enum('sidang_ta_2', ['PASS', 'FAIL', 'NOT_TAKEN'])->default('NOT_TAKEN');
+            $table->integer('jadwal_sidang_ta_1')->nullable();
+            $table->integer('jadwal_sidang_ta_2')->nullable();
             $table->timestamps();
-
-            $table->foreign('nim')->references('nim')->on('mahasiswa')->cascadeOnDelete();
         });
     }
 

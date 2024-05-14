@@ -12,12 +12,13 @@ class LoginController extends Controller
 {
     public function index()
     {
-        if (auth()->check()) {
-            $user = auth()->user();
-            if ($user->roles == 'mahasiswa') {
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            if ($user->hasRole('mahasiswa')) {
                 return redirect()->route('mahasiswa-dashboard');
             }
-            if ($user->roles == 'dosen') {
+            if ($user->hasRole('mahasiswa')) {
                 return redirect()->route('dosen-dashboard');
             }
         }
@@ -27,11 +28,14 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (auth()->attempt($credentials)) {
-            $user = auth()->user();
-            if ($user->roles == 'mahasiswa') {
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            if ($user->hasRole('mahasiswa')) {
                 return redirect()->route('mahasiswa-dashboard');
-            } elseif ($user->roles == 'dosen') {
+            } elseif ($user->hasRole('dosen')) {
                 return redirect()->route('dosen-dashboard');
             }
         }

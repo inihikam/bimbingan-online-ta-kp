@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Drop kolom nama, nim, dan ipk pada tabel pengajuan
+        // Menambahkan Foreign Key pada tabel pengajuan
         Schema::table('pengajuan', function (Blueprint $table) {
-            $table->dropColumn('nama');
-            $table->dropColumn('nim');
-            $table->dropColumn('ipk');
+            $table->foreign('id_mhs')->references('id_mhs')->on('status_mahasiswa')->onDelete('cascade');
+            $table->foreign('id_dospem')->references('id_dospem')->on('dosen_pembimbing')->onDelete('cascade');
         });
     }
 
@@ -24,11 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        // Menghapus Foreign Key pada tabel pengajuan
         Schema::table('pengajuan', function (Blueprint $table) {
-            $table->string('nama')->after('id');
-            $table->string('nim')->after('nama');
-            $table->string('ipk')->after('nim');
+            $table->dropForeign(['id_mhs']);
+            $table->dropForeign(['id_dospem']);
         });
     }
 };
