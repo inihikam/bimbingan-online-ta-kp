@@ -48,12 +48,23 @@ Untuk menjalankan Bimbingan Online di lokal Anda, ikuti langkah-langkah berikut:
     DB_USERNAME=root
     DB_PASSWORD=your_password
     ```
-6. **Migrasi Database**
+5. **Migrasi Database**
    Pastikan database kosong tanpa tabel, lebih baik jika belum ada databasenya. Kemudian, jalankan:
     ```
     php artisan migrate
     ```
+6. **Seed Roles**
+   ```
+   php artisan tinker
+   ```
+   Setelah itu ketikkan pada console nya
+   ```
+   use Spatie\Permission\Models\Role;
 
+   Role::create(['name' => 'mahasiswa']);
+   Role::create(['name' => 'dosen']);
+   Role::create(['name' => 'koordinator']);
+   ```
 7. **Seed Database**
    Seed database dengan data awal:
     ```
