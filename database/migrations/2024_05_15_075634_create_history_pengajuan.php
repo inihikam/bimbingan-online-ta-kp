@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('logbook_bimbingan', function (Blueprint $table) {
-            $table->increments('id_logbook');
+        Schema::create('history_pengajuan', function (Blueprint $table) {
+            $table->id();
             $table->integer('id_mhs');
+            $table->string('topik');
+            $table->string('judul');
+            $table->enum('bidang_kajian', ['SC', 'RPLD', 'SKKKD']);
+            $table->string('keyword');
+            $table->longText('deskripsi');
+            $table->longText('catatan');
             $table->integer('id_dospem');
-            $table->date('tanggal_bimbingan');
-            $table->longText('uraian_bimbingan');
-            $table->integer('bab_terakhir_bimbingan');
-            $table->enum('status_logbook', ['ACC', 'REVISI', 'PENDING'])->default('PENDING');
-            $table->longText('dokumen');
+            $table->enum('status', ['ACC', 'TOLAK', 'PENDING']);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('logbook_bimbingan');
+        Schema::dropIfExists('history_pengajuan');
     }
 };

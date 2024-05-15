@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\Pengajuan;
 use App\Models\StatusMahasiswa;
+use App\Models\HistoryPengajuan;
 use Illuminate\Http\Request;
 
 class MahasiswaBimbinganController extends Controller
@@ -32,11 +33,11 @@ class MahasiswaBimbinganController extends Controller
         $mahasiswa = Mahasiswa::where('nim', $status->nim)->first();
         return view('dosbing.daftar_mahasiswa_bimbingan.detail_mahasiswa_bimbingan', compact('pengajuan', 'mahasiswa'));
     }
-
     public function update(Request $request, string $id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
         $pengajuan->status = $request->status;
+
         $pengajuan->save();
 
         return redirect()->route('mahasiswa-bimbingan');

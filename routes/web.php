@@ -38,7 +38,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/home', [SidebarMahasiswaController::class, 'index'])->name('mahasiswa-dashboard');
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('mahasiswa-pengajuan');
-    Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('mahasiswa-pengajuan');
+    Route::get('/pengajuan-form', [PengajuanController::class, 'form'])->name('mahasiswa-pengajuan-form');
+    Route::get('/pengajuan-draft', [PengajuanController::class, 'draft'])->name('mahasiswa-pengajuan-draft');
+    Route::post('/pengajuan-submit', [PengajuanController::class, 'store'])->name('mahasiswa-pengajuan-submit');
     Route::get('/logbook', [LogbookController::class, 'index'])->name('mahasiswa-logbook');
     Route::get('/logbook/{id}', [DetailLogbookController::class, 'show'])->name('mahasiswa-logbook-detail');
     Route::post('/logbook/{id}', [DetailLogbookController::class, 'update'])->name('mahasiswa-logbook-update');
