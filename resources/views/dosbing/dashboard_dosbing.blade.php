@@ -37,7 +37,8 @@
                     <div class="card text-white mb-4" id="card-view">
                         <div class="card-body"><b>Mahasiswa Bimbingan</b></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/daftarMahasiswaBimbingan">See Details</a>
+                            <a class="small text-white stretched-link" href="{{ route('mahasiswa-bimbingan') }}">See
+                                Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -46,7 +47,8 @@
                     <div class="card text-white mb-4" id="card-view">
                         <div class="card-body"><b>Logbook Mahasiswa</b></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/daftarLogbookMahasiswa">See Details</a>
+                            <a class="small text-white stretched-link" href="{{ route('dosbing-logbook') }}">See
+                                Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>
@@ -55,7 +57,9 @@
                     <div class="card text-white mb-4" id="card-view">
                         <div class="card-body"><b>Mahasiswa Sidang</b></div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="/daftarMahasiswaSidang">See Details</a>
+                            <a class="small text-white stretched-link"
+                                href="{{ route('dosbing-daftar-mahasiswa-sidang') }}">See
+                                Details</a>
                             <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                         </div>
                     </div>

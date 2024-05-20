@@ -25,10 +25,10 @@ class SidangController extends Controller
                 ->where('status_logbook', 'ACC')
                 ->get();
 
-            return redirect()->route('sidang.create', compact('logbook'));
+            $jadwal = JadwalSidang::all();
+            return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal', compact('logbook', 'jadwal'));
         }
-        $jadwal = JadwalSidang::all();
-        return view('mahasiswa.pengajuan_sidang_ta.jadwal_sidang_ta', compact('jadwal', 'logbook'));
+        return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal');
     }
 
     /**
