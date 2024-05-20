@@ -69,7 +69,7 @@ Untuk menjalankan Bimbingan Online di lokal Anda, ikuti langkah-langkah berikut:
    Seed database dengan data awal:
     ```
     php artisan db:seed --class=DatabaseSeeder
-    php artisan db:seed --class=SeedUserRoles
+    php artisan db:seed --class=SeedUserRols
     php artisan db:seed --class=SeedStatusMahasiswa
     ```
 8. **Tinggal Jalankan Server lewat Laragon**

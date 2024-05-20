@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('status_mahasiswa', function (Blueprint $table) {
-            $table->integer('id_mhs')->primary()->autoIncrement();
+            $table->increments('id_mhs');
             $table->integer('id_dospem');
             $table->string('nim')->unique();
             $table->enum('ta_1', ['ACC', 'REVISI', 'NOT_TAKEN', 'PENDING'])->default('NOT_TAKEN');

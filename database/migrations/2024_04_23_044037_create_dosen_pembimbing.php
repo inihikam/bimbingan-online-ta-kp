@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dosen_pembimbing', function (Blueprint $table) {
-            $table->integer('id_dospem')->primary()->autoIncrement();
+            $table->increments('id_dospem');
             $table->string('nama');
             $table->string('npp')->unique();
             $table->enum('bidang_kajian', ['SC', 'RPLD', 'SKKKD']);
