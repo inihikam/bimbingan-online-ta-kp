@@ -14,8 +14,6 @@ class SidebarMahasiswaController extends Controller
      */
     public function index()
     {
-        // Mengambil nama mahasiswa dan logbook dari tabel logbook yang berelasi dengan tabel mahasiswa
-
         // Mengambil data dari tabel mahasiswa tetapi berdasarkan user yang login karena user tidak ada nama dan tabel user berelasi dengan tabel mahasiswa
         $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
         $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();

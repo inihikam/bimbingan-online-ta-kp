@@ -6,6 +6,7 @@ use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\Pengajuan;
 use App\Models\StatusMahasiswa;
+use App\Models\HistoryPengajuan;
 use Illuminate\Http\Request;
 
 class MahasiswaBimbinganController extends Controller
@@ -32,12 +33,29 @@ class MahasiswaBimbinganController extends Controller
         $mahasiswa = Mahasiswa::where('nim', $status->nim)->first();
         return view('dosbing.daftar_mahasiswa_bimbingan.detail_mahasiswa_bimbingan', compact('pengajuan', 'mahasiswa'));
     }
-
     public function update(Request $request, string $id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
-        $pengajuan->status = $request->status;
-        $pengajuan->save();
+        if ($request->status == 'TOLAK') {
+            $history = new HistoryPengajuan();
+            $history->id_mhs = $pengajuan->id_mhs;
+            $history->topik = $pengajuan->topik;
+            $history->judul = $pengajuan->judul;
+            $history->bidang_kajian = $pengajuan->bidang_kajian;
+            $history->keyword = $pengajuan->keyword;
+            $history->deskripsi = $pengajuan->deskripsi;
+            $history->catatan = $pengajuan->catatan;
+            $history->id_dospem = $pengajuan->id_dospem;
+            $history->status = $pengajuan->status;
+            $history->alasan_penolakan = "Pengajuan Ditolak karena topik tidak relevan";
+            $history->save();
+        } else {
+            $status = StatusMahasiswa::findOrFail($pengajuan->id_mhs);
+            $status->id_dospem = $pengajuan->id_dospem;
+            $status->save();
+            $pengajuan->status = $request->status;
+            $pengajuan->save();
+        }
 
         return redirect()->route('mahasiswa-bimbingan');
     }

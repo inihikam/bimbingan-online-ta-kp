@@ -10,14 +10,11 @@ class PengajuanSidang extends Model
     use HasFactory;
     protected $table = 'pengajuan_sidang';
     protected $fillable = [
-        'judul',
-        'topik',
+        'id_mhs',
+        'id_dospem',
         'judul',
         'bidang_kajian',
-        'keyword',
-        'deskripsi',
-        'catatan',
-        'id_dosen',
-        'status',
+        'dokumen',
+        'jadwal_sidang',
     ];
 }

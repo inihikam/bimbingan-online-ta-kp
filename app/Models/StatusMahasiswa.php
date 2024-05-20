@@ -10,6 +10,7 @@ class StatusMahasiswa extends Model
     use HasFactory;
 
     protected $table = 'status_mahasiswa';
+    protected $primaryKey = 'id_mhs';
     protected $fillable = [
         'id_mhs',
         'id_dospem',
