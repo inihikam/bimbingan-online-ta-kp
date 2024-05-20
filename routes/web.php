@@ -58,7 +58,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/mahasiswa/{id}', [MahasiswaBimbinganController::class, 'detail'])->name('detail-mahasiswa-bimbingan');
     Route::post('/updatePengajuan/{id}', [MahasiswaBimbinganController::class, 'update'])->name('update-mahasiswa-bimbingan');
     Route::get('/detailMahasiswaBimbingan', [SidebarDosbingController::class, 'detail_mahasiswa_bimbingan']);
-    Route::get('/daftarMahasiswaSidang', [SidebarDosbingController::class, 'daftar_mahasiswa_sidang']);
+    Route::get('/daftarMahasiswaSidang', [SidebarDosbingController::class, 'daftar_mahasiswa_sidang'])->name('dosbing-daftar-mahasiswa-sidang');
     Route::get('/detailMahasiswaSidang', [SidebarDosbingController::class, 'detail_mahasiswa_sidang']);
     Route::get('/about', [AboutController::class, 'dosen'])->name('dosbing-about');
 });

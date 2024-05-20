@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,5 +45,22 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof UnauthorizedException) {
+            $user = auth()->user();
+
+            if ($user->hasRole('mahasiswa')) {
+                return redirect()->route('mahasiswa-dashboard');
+            } elseif ($user->hasRole('dosen')) {
+                return redirect()->route('dosen-dashboard');
+            }
+
+            auth()->logout();
+            return redirect('/login')->withErrors(['email' => 'Unauthorized access.']);
+        }
+
+        return parent::render($request, $exception);
     }
 }
