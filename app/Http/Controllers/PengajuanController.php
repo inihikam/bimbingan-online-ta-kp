@@ -57,11 +57,6 @@ class PengajuanController extends Controller
             'history'
         ));
     }
-    public function backFromDraft(Request $request)
-    {
-        $data = $request->all();
-        return view('mahasiswa.pengajuan_ta.form_pengajuan', compact('data'));
-    }
     public function pengajuan()
     {
         // Mengambil semua data dosen pembimbing dari tabel dosen pembimbing untuk ditampilkan

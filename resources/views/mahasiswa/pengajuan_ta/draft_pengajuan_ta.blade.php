@@ -67,9 +67,8 @@
                     @else
                         @if ($pengajuan->status == 'PENDING')
                             <blockquote class="blockquote-pengajuan">
-                                <p class="mb-3"><b>Status: Pengajuan</b> - Proposal telah diajukan pada tanggal [24 April
-                                    2024
-                                    10:47 WIB] </p>
+                                <p class="mb-3"><b>Status: Pengajuan</b> - Proposal telah diajukan pada tanggal
+                                    [{{ $pengajuan->created_at }} WIB] </p>
                             </blockquote>
                         @else
                             <blockquote class="blockquote-primary">
@@ -112,8 +111,7 @@
                         </table>
                     @endif
 
-                    @if ($data)
-                    @else
+                    @if (count($history) > 0)
                         <p class="mb-2">Histori Penolakan Pengajuan Tugas Akhir</p>
                         <div class="table-container table-tolak">
                             <table class="table table-bordered">
@@ -129,6 +127,7 @@
                                 @endforeach
                             </table>
                         </div>
+                    @else
                     @endif
 
                     @if ($data)

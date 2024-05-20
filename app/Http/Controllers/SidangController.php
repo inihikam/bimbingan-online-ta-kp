@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LogbookBimbingan;
+use App\Models\StatusMahasiswa;
+use App\Models\Mahasiswa;
+use App\Models\Pengajuan;
+use App\Models\PengajuanSidang;
 use Illuminate\Http\Request;
 use App\Models\JadwalSidang;
 
@@ -12,8 +17,18 @@ class SidangController extends Controller
      */
     public function index()
     {
+        $mhs = Mahasiswa::where('email', auth()->user()->email)->first();
+        $detailmhs = StatusMahasiswa::where('nim', $mhs->nim)->first();
+        if ($detailmhs->sidang_ta_1 == 'NOT_TAKEN') {
+            $logbook = LogbookBimbingan::where('id_mhs', $detailmhs->id_mhs)
+                ->where('bab_terakhir_bimbingan', '5')
+                ->where('status_logbook', 'ACC')
+                ->get();
+
+            return redirect()->route('sidang.create', compact('logbook'));
+        }
         $jadwal = JadwalSidang::all();
-        return view('mahasiswa.pengajuan_sidang_ta.jadwal_sidang_ta', compact('jadwal'));
+        return view('mahasiswa.pengajuan_sidang_ta.jadwal_sidang_ta', compact('jadwal', 'logbook'));
     }
 
     /**
@@ -30,6 +45,19 @@ class SidangController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        $mhs = Mahasiswa::where('email', auth()->user()->email)->first();
+        $detailmhs = StatusMahasiswa::where('nim', $mhs->nim)->first();
+        $ta = Pengajuan::where('id_mhs', $detailmhs->id_mhs)->first();
+        PengajuanSidang::create([
+            'id_mhs' => $ta->id_mhs,
+            'id_dospem' => $ta->id_dospem,
+            'judul' => $ta->judul,
+            'bidang_kajian' => $ta->bidang_kajian,
+            'dokumen' => $data['dokumen'],
+            'jadwal_sidang' => $data['jadwal_sidang'],
+        ]);
+
+        return redirect()->route('sidang.index');
     }
 
     /**
