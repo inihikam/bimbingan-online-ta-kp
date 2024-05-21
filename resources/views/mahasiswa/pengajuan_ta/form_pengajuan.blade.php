@@ -70,6 +70,11 @@
                                         <option value="SC">SC</option>
                                         <option value="RPLD">RPLD</option>
                                         <option selected value="SKKKD">SKKKD</option>
+                                    @else
+                                        <option disabled selected>Pilih Bidang Kajian</option>
+                                        <option value="SC">SC</option>
+                                        <option value="RPLD">RPLD</option>
+                                        <option value="SKKKD">SKKKD</option>
                                     @endif
                                 </select>
                             </div>

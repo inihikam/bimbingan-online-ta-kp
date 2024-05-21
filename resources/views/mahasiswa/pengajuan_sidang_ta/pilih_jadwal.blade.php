@@ -27,60 +27,66 @@
             <div id="nav-tab-jadwal" class="tab-pane fade show active">
                 <div class="container">
                     <h4 class="mb-4">Pemilihan Jadwal Sidang</h4>
-                    <p class="mb-2">Berikut ini adalah daftar sidang yang tersedia</p>
-                    <blockquote class="blockquote-primary">
-                        <p class="mb-3">Klik tombol panah <button type="button" class="btn btn-warning"><i
-                                    class="fas fa-chevron-circle-right"></i></button> untuk memilih jadwal sidang</p>
-                    </blockquote>
-                    <div class="input-group justify-content-end mb-3">
-                        <input type="text" class="form-control" placeholder="Cari Jadwal">
-                        <div class="input-group-append"><button class="btn btn-primary"><i
-                                    class="fas fa-search"></i></button></div>
-                    </div>
-                    <div class="table-container table-jadwal">
-                        <table class="table table-bordered mb-1">
-                            <thead class="table-header">
-                                <th>No</th>
-                                <th>Periode</th>
-                                <th>Pendaftaran Sidang</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </thead>
-                            <tr>
-                                <td class="centered-column">1</td>
-                                <td class="centered-column">April</td>
-                                <td class="centered-column">1 April 2024 - 30 April 2024</td>
-                                <td class="centered-column">Tersedia</td>
-                                <td class="centered-column"><button type="button" class="btn btn-warning"
-                                        data-bs-toggle="modal" data-bs-target="#pilihJadwalModal"><i
-                                            class="fas fa-chevron-circle-right"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td class="centered-column">1</td>
-                                <td class="centered-column">Mei</td>
-                                <td class="centered-column">1 Mei 2024 - 30 Mei 2024</td>
-                                <td class="centered-column">Belum Tersedia</td>
-                                <td class="centered-column"><button type="button" class="btn btn-warning"
-                                        data-bs-toggle="modal" data-bs-target="#pilihJadwalModal"><i
-                                            class="fas fa-chevron-circle-right"></i></button></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <nav aria-label="pageNavigationJadwal">
-                        <ul class="pagination justify-content-end">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    @if ($logbook->isempty())
+                        <div class="alert alert-danger" role="alert">
+                            Anda belum menyelesaikan bab 3, silahkan selesaikan terlebih dahulu lalu update logbook terbaru
+                            anda.
+                        </div>
+                    @else
+                        <p class="mb-2">Berikut ini adalah daftar sidang yang tersedia</p>
+                        <blockquote class="blockquote-primary">
+                            <p class="mb-3">Klik tombol panah <button type="button" class="btn btn-warning"><i
+                                        class="fas fa-chevron-circle-right"></i></button> untuk memilih jadwal sidang</p>
+                        </blockquote>
+                        <div class="input-group justify-content-end mb-3">
+                            <input type="text" class="form-control" placeholder="Cari Jadwal">
+                            <div class="input-group-append"><button class="btn btn-primary"><i
+                                        class="fas fa-search"></i></button></div>
+                        </div>
+                        <div class="table-container table-jadwal">
+                            <table class="table table-bordered mb-1">
+                                <thead class="table-header">
+                                    <th>No</th>
+                                    <th>Periode</th>
+                                    <th>Pendaftaran Sidang</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </thead>
+                                <tr>
+                                    <td class="centered-column">1</td>
+                                    <td class="centered-column">April</td>
+                                    <td class="centered-column">1 April 2024 - 30 April 2024</td>
+                                    <td class="centered-column">Tersedia</td>
+                                    <td class="centered-column"><button type="button" class="btn btn-warning"
+                                            data-bs-toggle="modal" data-bs-target="#pilihJadwalModal"><i
+                                                class="fas fa-chevron-circle-right"></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td class="centered-column">1</td>
+                                    <td class="centered-column">Mei</td>
+                                    <td class="centered-column">1 Mei 2024 - 30 Mei 2024</td>
+                                    <td class="centered-column">Belum Tersedia</td>
+                                    <td class="centered-column"><button type="button" class="btn btn-warning"
+                                            data-bs-toggle="modal" data-bs-target="#pilihJadwalModal"><i
+                                                class="fas fa-chevron-circle-right"></i></button></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <nav aria-label="pageNavigationJadwal">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
 
-                    {{-- <h4 class="mb-4">Jadwal yang Dipilih</h4>
+                        {{-- <h4 class="mb-4">Jadwal yang Dipilih</h4>
                     <div class="table-container">
                         <table class="table table-bordered">
                             <thead class="table-header">
@@ -107,6 +113,7 @@
                         </div>
                     </div> --}}
                 </div>
+                @endif
 
                 <!-- Modal Pilih Dosbing -->
                 <div class="modal fade" id="pilihJadwalModal" tabindex="-1" aria-labelledby="pilihJadwalModalLabel"

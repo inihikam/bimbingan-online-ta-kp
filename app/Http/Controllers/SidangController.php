@@ -21,6 +21,14 @@ class SidangController extends Controller
         $detailmhs = StatusMahasiswa::where('nim', $mhs->nim)->first();
         if ($detailmhs->sidang_ta_1 == 'NOT_TAKEN') {
             $logbook = LogbookBimbingan::where('id_mhs', $detailmhs->id_mhs)
+                ->where('bab_terakhir_bimbingan', '3')
+                ->where('status_logbook', 'ACC')
+                ->get();
+
+            $jadwal = JadwalSidang::all();
+            return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal', compact('logbook', 'jadwal'));
+        } elseif ($detailmhs->sidang_ta_2 == 'NOT_TAKEN') {
+            $logbook = LogbookBimbingan::where('id_mhs', $detailmhs->id_mhs)
                 ->where('bab_terakhir_bimbingan', '5')
                 ->where('status_logbook', 'ACC')
                 ->get();

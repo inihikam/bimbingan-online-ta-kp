@@ -86,7 +86,7 @@ class PengajuanController extends Controller
         $pengajuan->keyword = $data['keyword'];
         $pengajuan->deskripsi = $data['deskripsi'];
         $pengajuan->catatan = $data['catatan'];
-        $pengajuan->id_dospem = $data['catatan'];
+        $pengajuan->id_dospem = $data['id_dospem'];
 
         $pengajuan->save();
 
