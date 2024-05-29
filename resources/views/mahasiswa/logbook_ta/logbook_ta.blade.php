@@ -43,6 +43,10 @@
                                     <i class="fas fa-times icon-dark-no"></i>
                                 </button>
                             @endif
+                            <!-- status pending -->
+                            <button type="status" class="btn btn-warning rounded-5">PEND
+                                <i class="far fa-clock"></i>
+                            </button>
                         </td>
                         <td class="centered-column">
                             <button type="info" class="btn btn-primary" data-bs-toggle="modal"
@@ -53,12 +57,6 @@
                                     data-bs-target="#dialogEditLogbook" data-id="{{ $lb->id_logbook }}"><i
                                         class="far fa-edit"></i></button>
                             @endif
-                        </td>
-                        <!-- Status Pending -->
-                        <td class="centered-column">
-                            <button type="status" class="btn btn-warning rounded-5">PEND
-                                <i class="far fa-clock"></i>
-                            </button>
                         </td>
                     </tr>
                 @endforeach
