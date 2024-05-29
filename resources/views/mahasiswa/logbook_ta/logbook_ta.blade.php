@@ -54,6 +54,12 @@
                                         class="far fa-edit"></i></button>
                             @endif
                         </td>
+                        <!-- Status Pending -->
+                        <td class="centered-column">
+                            <button type="status" class="btn btn-warning rounded-5">PEND
+                                <i class="far fa-clock"></i>
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
             </table>
