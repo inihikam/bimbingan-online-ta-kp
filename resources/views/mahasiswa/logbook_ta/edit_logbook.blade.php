@@ -16,9 +16,10 @@
                             @csrf
                             <input type="hidden" name="id_logbook" id="logbook_id" value="">
                             <div class="form-group row mb-3">
-                                <label for="inputTanggal" class="col-sm-2 col-form-label">Tanggal</label>
+                                <label for="inputTanggal" class="col-sm-2 col-form-label">Tanggal <span
+                                    class="required">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="topik" class="form-control" id="inputTanggal">
+                                    <input type="date" class="form-control" id="inputTanggal">
                                 </div>
                             </div>
                             <div class="form-group row mb-3">

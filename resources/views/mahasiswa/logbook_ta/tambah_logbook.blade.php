@@ -14,10 +14,11 @@
                     <form action="{{ route('mahasiswa-logbook-create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row mb-3">
-                            <label for="inputTanggal" class="col-sm-2 col-form-label">Tanggal</label>
-                            <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputTanggal">
-                            </div>
+                                <label for="inputTanggal" class="col-sm-2 col-form-label">Tanggal <span
+                                        class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" id="inputTanggal">
+                                </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label for="inputUraian" class="col-sm-2 col-form-label">Uraian Bimbingan <span
