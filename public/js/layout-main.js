@@ -54,14 +54,14 @@ function is_touch_device() {
 }
 
 // Tanggal Logbook
-function setCurrentDate() {
+/*function setCurrentDate() {
   var currentDate = new Date().toISOString().slice(0,10);
   document.getElementById('inputTanggal').value = currentDate;
 }
 
 $('#dialogTambahLogbook').on('shown.bs.modal', function () {
   setCurrentDate();
-});
+});*/
 
 // table
 /*$(document).ready(function() {

@@ -16,7 +16,7 @@
                         <div class="form-group row mb-3">
                             <label for="inputTanggal" class="col-sm-2 col-form-label">Tanggal</label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputTanggal" readonly>
+                                <input type="topik" class="form-control" id="inputTanggal">
                             </div>
                         </div>
                         <div class="form-group row mb-3">
