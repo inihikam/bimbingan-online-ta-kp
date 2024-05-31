@@ -33,6 +33,20 @@
                     <form action="{{ route('mahasiswa-pengajuan-draft') }}" method="GET">
                         @csrf
                         <input type="hidden" name="id_dospem" value="{{ $data['id_dospem'] }}">
+                        <!-- jalur TA -->
+                        <div class="form-group row mb-3">
+                            <label for="inputTopik" class="col-sm-2 col-form-label">Jalur <span class="required">*</span></label>
+                            <div class="col-sm-10 mt-2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jalur" id="reguler" value="reguler">
+                                    <label class="form-check-label" for="reguler">Reguler</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="jalur" id="publikasi" value="publikasi">
+                                    <label class="form-check-label" for="publikasi">Publikasi</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group row mb-3">
                             <label for="inputTopik" class="col-sm-2 col-form-label">Topik<span
                                     class="required">*</span></label>
@@ -42,8 +56,7 @@
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputJudul" class="col-sm-2 col-form-label">Judul <span
-                                    class="required">*</span></label>
+                            <label for="inputJudul" class="col-sm-2 col-form-label">Judul</label>
                             <div class="col-sm-10">
                                 <input type="judul" name="judul" class="form-control" id="inputJudul"
                                     placeholder="Masukkan Judul TA" value="{{ $data['judul'] }}">
@@ -80,13 +93,13 @@
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputKeyword" class="col-sm-2 col-form-label">Keyword<span
+                            <label for="inputKeyword" class="col-sm-2 col-form-label">Minat<span
                                     class="required">*</span></label>
                             <div class="col-sm-10">
                                 <input type="keyword" name="keyword" class="form-control" id="inputKeyword"
-                                    placeholder="Masukkan Keyword TA" value="{{ $data['keyword'] }}">
+                                    placeholder="Masukkan minat anda untuk TA" value="{{ $data['keyword'] }}">
                                 <div id="keywordHelp" class="form-text">
-                                    Pisahkan antar keyword dengan tanda semikolon ( ; ).
+                                    Pisahkan antar kata dengan tanda semikolon ( ; ).
                                 </div>
                             </div>
                         </div>

@@ -41,6 +41,10 @@
                                 <button type="status" class="btn btn-danger rounded-5">REVISI
                                 </button>
                             @endif
+                            <!-- status pending -->
+                            <button type="status" class="btn btn-warning rounded-5">PEND
+                                <i class="far fa-clock"></i>
+                            </button>
                         </td>
                         <td class="centered-column">
                             <button type="info" class="btn btn-primary" data-bs-toggle="modal"

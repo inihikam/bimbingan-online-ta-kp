@@ -34,6 +34,11 @@
                         </blockquote>
                         <table class="table table-bordered mb-5">
                             <tbody>
+                                <!-- jalur ta -->
+                                <tr>
+                                    <td>Jalur</td>
+                                    <td>Reguler/Publikasi</td>
+                                </tr>
                                 <tr>
                                     <td>Topik</td>
                                     <td>{{ $data['topik'] }}</td>

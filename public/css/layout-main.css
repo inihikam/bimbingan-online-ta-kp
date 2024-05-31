@@ -182,7 +182,8 @@ th {
     margin-left: 5px; 
 }
 
-.btn i.fa-times {
+.btn i.fa-times,
+.btn i.fa-clock {
     background-color: rgb(240, 245, 255);
     padding-right: 6px;
     padding-left: 6px;
