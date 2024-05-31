@@ -21,6 +21,9 @@ class LoginController extends Controller
             if ($user->hasRole('dosen')) {
                 return redirect()->route('dosen-dashboard');
             }
+            if ($user->hasRole('koordinator')) {
+                return redirect()->route('koor-dashboard');
+            }
         }
         return view('login');
     }

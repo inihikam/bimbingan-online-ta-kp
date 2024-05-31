@@ -16,11 +16,9 @@ class DetailLogbookController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request->id_logbook);
-        // Mengupdate data logbook dari form yang ada di halaman logbook_ta
         $data = $request->all();
         $logbook = LogbookBimbingan::findOrFail($data['id_logbook']);
-        $logbook->update($data);
+        $logbook->save($data);
 
         return redirect()->route('mahasiswa-logbook');
     }

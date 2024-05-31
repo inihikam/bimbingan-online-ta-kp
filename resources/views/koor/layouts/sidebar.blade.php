@@ -10,19 +10,19 @@
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="/koordinator" class="sidebar-link">
+                <a href="{{route('koor-dashboard')}}" class="sidebar-link">
                     <i class="lni lni-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/data-mhs" class="sidebar-link">
+                <a href="{{route('koor-data-mahasiswa')}}" class="sidebar-link">
                     <i class="lni lni-network"></i>
                     <span>Data Mahasiswa</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/data-dospem" class="sidebar-link">
+                <a href="{{route('koor-data-dospem')}}" class="sidebar-link">
                     <i class="lni lni-briefcase"></i>
                     <span>Data Dosen Pembimbing</span>
                 </a>
@@ -41,7 +41,7 @@
             </a>
         </div>
         <div class="sidebar-footer">
-            <a href="#" class="sidebar-link">
+            <a href="{{route('logout')}}" class="sidebar-link">
                 <i class="lni lni-exit"></i>
                 <span>Logout</span>
             </a>

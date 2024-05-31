@@ -2,9 +2,14 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Koor\DashboardKoordinator;
+use App\Http\Controllers\Koor\DataMhsKoor;
+use App\Http\Controllers\Koor\DataDsnKoor;
 use App\Http\Controllers\DetailLogbookController;
 use App\Http\Controllers\DospemBimbinganController;
 use App\Http\Controllers\DospemController;
+use App\Http\Controllers\Koor\ImportDosen;
+use App\Http\Controllers\Koor\ImportMahasiswa;
 use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\MahasiswaBimbinganController;
 use App\Http\Controllers\MahasiswaController;
@@ -61,4 +66,12 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/daftarMahasiswaSidang', [SidebarDosbingController::class, 'daftar_mahasiswa_sidang'])->name('dosbing-daftar-mahasiswa-sidang');
     Route::get('/detailMahasiswaSidang', [SidebarDosbingController::class, 'detail_mahasiswa_sidang']);
     Route::get('/about', [AboutController::class, 'dosen'])->name('dosbing-about');
+});
+
+Route::middleware(['auth', 'role:koordinator'])->group(function () {
+    Route::get('/koor', [DashboardKoordinator::class, 'index'])->name('koor-dashboard');
+    Route::get('/dataMhs', [DataMhsKoor::class, 'index'])->name('koor-data-mahasiswa');
+    Route::get('/dataDsn', [DataDsnKoor::class, 'index'])->name('koor-data-dospem');
+    Route::post('/import', [ImportMahasiswa::class, 'import'])->name('import-mahasiswa');
+    Route::post('/importDosen', [ImportDosen::class, 'import'])->name('import-dosen');
 });
