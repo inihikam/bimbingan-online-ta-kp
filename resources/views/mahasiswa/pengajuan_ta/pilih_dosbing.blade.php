@@ -144,7 +144,7 @@
                     <div class="form-group row">
                         <label for="scholar" class="col-sm-2 col-form-label mb-3">Scholar</label>
                         <div class="col-sm-10">
-                            <input type="text" id="scholar" value="https://scholar.google.com/" class="form-control" disabled>
+                            <a href="https://scholar.google.com/" class="btn btn-primary" role="button" id="scholar" aria-disabled="true">Go to Scholar</a>
                         </div>
                     </div>
                 </div>
