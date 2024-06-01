@@ -32,16 +32,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                @foreach($dosen as $ds)
                     <tr>
-                        <td>1</td>
-                        <td class="centered-column">0686.11.0000.000</td>
-                        <td>John Doe, M.Kom</td>
-                        <td class="centered-column">RPLD/SC</td>
-                        <td class="centered-column">3</td>
-                        <td class="centered-column">3</td>
-                        <td class="centered-column">2</td>
-                        <td class="centered-column">1</td>
-                        <td class="centered-column">Penuh/Tersedia</td>
+                        <td>{{$loop->iteration}}</td>
+                        <td class="centered-column">{{$ds->npp}}</td>
+                        <td>{{$ds->nama}}</td>
+                        <td class="centered-column">{{$ds->bidang_kajian}}</td>
+                        <td class="centered-column">{{$ds->kuota_mhs_ta}}</td>
+                        <td class="centered-column">{{$ds->jml_ajuan}}</td>
+                        <td class="centered-column">{{$ds->acc_ajuan}}</td>
+                        <td class="centered-column">{{$ds->sisa_kuota}}</td>
+                        <td class="centered-column">{{$ds->status_dospem}}</td>
                         <td class="text-center align-middle">
                             <div class="d-flex justify-content-center">
                                 <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#dialogDetail">
@@ -56,6 +57,7 @@
                             </div>
                         </td>
                     </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>

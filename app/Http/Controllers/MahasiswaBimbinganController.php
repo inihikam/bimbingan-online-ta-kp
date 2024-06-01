@@ -46,9 +46,10 @@ class MahasiswaBimbinganController extends Controller
             $history->deskripsi = $pengajuan->deskripsi;
             $history->catatan = $pengajuan->catatan;
             $history->id_dospem = $pengajuan->id_dospem;
-            $history->status = $pengajuan->status;
+            $history->status = $request->status;
             $history->alasan_penolakan = "Pengajuan Ditolak karena topik tidak relevan";
             $history->save();
+            $pengajuan->delete();
         } else {
             $status = StatusMahasiswa::findOrFail($pengajuan->id_mhs);
             $status->id_dospem = $pengajuan->id_dospem;

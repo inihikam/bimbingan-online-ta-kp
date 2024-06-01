@@ -36,11 +36,9 @@
                         <td class="centered-column">
                             @if ($lb->status_logbook == 'ACC')
                                 <button type="status" class="btn btn-success rounded-5">ACC
-                                    <i class="fas fa-check icon-dark-acc"></i>
                                 </button>
                             @elseif ($lb->status_logbook == 'REVISI')
-                                <button type="status" class="btn btn-danger rounded-5">Belum ACC
-                                    <i class="fas fa-times icon-dark-no"></i>
+                                <button type="status" class="btn btn-danger rounded-5">REVISI
                                 </button>
                             @endif
                             <!-- status pending -->
@@ -52,7 +50,7 @@
                             <button type="info" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#dialogDetailLogbook" data-id="{{ $lb->id_logbook }}"><i
                                     class="fas fa-info-circle"></i></button>
-                            @if ($lb->status_logbook != 'ACC')
+                            @if ($lb->status_logbook == 'PENDING')
                                 <button type="submit" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#dialogEditLogbook" data-id="{{ $lb->id_logbook }}"><i
                                         class="far fa-edit"></i></button>
