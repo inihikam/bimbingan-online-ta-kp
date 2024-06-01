@@ -10,6 +10,7 @@ use App\Http\Controllers\MahasiswaBimbinganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\SidangController;
+use App\Http\Controllers\KoorController;
 use App\Http\Controllers\SidebarDosbingController;
 
 use App\Http\Controllers\SidebarMahasiswaController;
@@ -18,6 +19,8 @@ use App\Models\LogbookBimbingan;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +51,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/sidang', [SidangController::class, 'index'])->name('mahasiswa-sidang');
     Route::get('/tentang', [AboutController::class, 'mahasiswa'])->name('mahasiswa-tentang');
     Route::get('/profile', [AboutController::class, 'profile'])->name('mahasiswa-profile');
+    Route::post('/mahasiswa/upload-foto', [MahasiswaController::class, 'uploadFoto'])->name('mahasiswa.upload_foto');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
@@ -62,3 +66,8 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/detailMahasiswaSidang', [SidebarDosbingController::class, 'detail_mahasiswa_sidang']);
     Route::get('/about', [AboutController::class, 'dosen'])->name('dosbing-about');
 });
+
+Route::get('/koor', [KoorController::class, 'index'])->name('koor-dashboard');
+Route::get('/data-mhs', [KoorController::class, 'dataMahasiswa'])->name('koor-data-mhs');
+Route::get('/data-dospem', [KoorController::class, 'dataDospem'])->name('koor-data-dospem');
+

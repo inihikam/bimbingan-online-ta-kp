@@ -16,17 +16,18 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/data-mhs" class="sidebar-link">
+                <a href="{{ route('koor-data-mhs') }}" class="sidebar-link">
                     <i class="lni lni-network"></i>
                     <span>Data Mahasiswa</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/data-dospem" class="sidebar-link">
+                <a href="{{ route('koor-data-dospem') }}" class="sidebar-link">
                     <i class="lni lni-briefcase"></i>
                     <span>Data Dosen Pembimbing</span>
                 </a>
             </li>
+
             <!--<li class="sidebar-item">
                 <a href="/data-sidang" class="sidebar-link">
                     <i class="lni lni-agenda"></i>
