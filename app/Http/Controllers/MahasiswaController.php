@@ -32,4 +32,31 @@ class MahasiswaController extends Controller
 
         return redirect()->back()->with('success', 'Foto profil berhasil diunggah.');
     }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nim' => 'required|unique:mahasiswa  ',
+            'nama' => 'required',
+            'ipk' => 'required',
+            'transkrip_nilai' => 'required',
+            'telp_mhs' => 'required',
+            'email' => 'required|email|unique:mahasiswa',
+            'dosen_wali' => 'required',
+        ]);
+
+        Mahasiswa::create($request->all());
+        
+
+        return redirect()->route('koor-data-mahasiswa')->with('success', 'Mahasiswa berhasil ditambahkan.');
+
+    }
+
+    public function destroy($id)
+{
+    $mahasiswa = Mahasiswa::findOrFail($id);
+    $mahasiswa->delete();
+
+    return redirect()->route('koor-data-mahasiswa')->with('success', 'Data mahasiswa berhasil dihapus.');
+}
+
 }

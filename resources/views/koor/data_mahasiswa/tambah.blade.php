@@ -10,54 +10,55 @@
                     <blockquote class="blockquote-primary">
                         <p class="mb-3">Form dengan tanda asterik (<span class="required">*</span>) wajib diisi.</p>
                     </blockquote>
-                    <form>
+                    <form method="POST" action="{{ route('mahasiswa.store') }}">
+                        @csrf
                         <div class="form-group row mb-3">
                             <label for="inputNIM" class="col-sm-2 col-form-label">NIM <span class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputNIM">
+                                <input type="text" class="form-control" id="inputNIM" name="nim" required>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputNama" class="col-sm-2 col-form-label">Nama <span class="required">*</span></label>
+                            <label for="inputNama" class="col-sm-2 col-form-label">Nama Mahasiswa <span class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputNama">
+                                <input type="text" class="form-control" id="inputNama" name="nama" required>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label for="inputIPK" class="col-sm-2 col-form-label">IPK <span class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputIPK">
+                                <input type="text" class="form-control" id="inputIPK" name="ipk" required>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputTranskrip" class="col-sm-2 col-form-label">Transkrip Nilai <span class="required">*</span></label>
+                            <label for="inputTranskripNilai" class="col-sm-2 col-form-label">Transkrip Nilai <span class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="file" class="form-control" id="customFile" />
+                                <input type="text" class="form-control" id="inputTranskripNilai" name="transkrip_nilai" required>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputTelp" class="col-sm-2 col-form-label">Telp Mhs <span class="required">*</span></label>
+                            <label for="inputTelpMhs" class="col-sm-2 col-form-label">Telp Mahasiswa <span class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputTelp">
+                                <input type="text" class="form-control" id="inputTelpMhs" name="telp_mhs" required>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email <span class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputEmail">
+                                <input type="email" class="form-control" id="inputEmail" name="email" required>
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputDoswal" class="col-sm-2 col-form-label">Dosen Wali <span class="required">*</span></label>
+                            <label for="inputDosenWali" class="col-sm-2 col-form-label">Dosen Wali <span class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputDoswal">
+                                <input type="text" class="form-control" id="inputDosenWali" name="dosen_wali" required>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tambah</button>
                 </div>
             </div>
         </div>

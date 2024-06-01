@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 
-
 class KoorController extends Controller
 {
     /**
@@ -19,6 +18,18 @@ class KoorController extends Controller
 
         // Mengirimkan data dospem ke view dengan variabel 'dospem'
         return view('koor.dashboard', ['dospem' => $dospem]);
+    }
+
+    /**
+     * Display dashboard with charts.
+     */
+    public function dashboard() {
+        $dosenNames = ['Dosen 1', 'Dosen 2', 'Dosen 3']; // Ganti dengan data dari database
+        $mahasiswaPerDosen = [10, 15, 5]; // Ganti dengan data dari database
+        $statusPengajuanLabels = ['Accepted', 'Pending', 'Rejected']; // Ganti dengan data dari database
+        $statusPengajuanData = [5, 10, 3]; // Ganti dengan data dari database
+
+        return view('koor.dashboard', compact('dosenNames', 'mahasiswaPerDosen', 'statusPengajuanLabels', 'statusPengajuanData'));
     }
 
     /**

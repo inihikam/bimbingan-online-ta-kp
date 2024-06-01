@@ -1,3 +1,4 @@
+
 @extends('koor.layouts.main')
 @section('title', 'Dashboard Koor')
 @section('content')
@@ -32,33 +33,95 @@
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        <div class="row">
-            <div class="col-xl-3 col-md-6">
-                <div class="card text-white bg-primary mb-4">
-                    <div class="card-body"><b>Mahasiswa Bimbingan</b></div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('mahasiswa-bimbingan') }}">See Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card text-white bg-primary mb-4">
-                    <div class="card-body"><b>Logbook Mahasiswa</b></div>
-                    <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="{{ route('dosbing-logbook') }}">See Details</a>
-                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Data Mahasiswa Table -->
         <div class="card mb-4">
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                Log Bimbingan
+                Data Mahasiswa
             </div>
             <div class="card-body">
-                <!-- Tabel log bimbingan akan ditampilkan di sini -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="dataTableMahasiswa" width="100%" cellspacing="0">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>NIM</th>
+                                <th>Nama</th>
+                                <th>Dosen Wali</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($mahasiswa as $mhs)
+                            <tr>
+                                <td>{{ $mhs->nim }}</td>
+                                <td>{{ $mhs->nama }}</td>
+                                <td>{{ $mhs->dosen_wali }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Dosen Pembimbing Table -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Data Dosen Pembimbing
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="dataTableDosen" width="100%" cellspacing="0">
+                        <thead class="table-success">
+                            <tr>
+                                <th>NPP</th>
+                                <th>Nama</th>
+                                <th>Bidang Kajian</th>
+                                <th>Kuota Mhs TA (Baru)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($dosen as $ds)
+                            <tr>
+                                <td>{{ $ds->npp }}</td>
+                                <td>{{ $ds->nama }}</td>
+                                <td>{{ $ds->bidang_kajian }}</td>
+                                <td>{{ $ds->kuota_mhs_ta }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Logbook Bimbingan Table -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Data Logbook Bimbingan
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="dataTableLogbook" width="100%" cellspacing="0">
+                        <thead class="table-info">
+                            <tr>
+                                <th>Nama Mahasiswa</th>
+                                <th>Tanggal Bimbingan</th>
+                                <th>Uraian Bimbingan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($logbookBimbingan as $logbook)
+                            <tr>
+                                <td>{{ $logbook->id_mhs }}</td>
+                                <td>{{ $logbook->tanggal_bimbingan }}</td>
+                                <td>{{ $logbook->uraian_bimbingan }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -78,3 +141,14 @@
 </footer>
 
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#dataTableMahasiswa').DataTable();
+        $('#dataTableDosen').DataTable();
+        $('#dataTableLogbook').DataTable();
+    });
+</script>
