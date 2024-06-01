@@ -64,8 +64,8 @@
                                         <input type="hidden" name="catatan">
                                         <td class="centered-column">
                                             <!-- button info dosbing -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#infoDosbingModal"><i
+                                            <button type="button" value="{{ $dos->id_dospem }}" class="btn btn-primary"
+                                                data-bs-toggle="modal" data-bs-target="#infoDosbingModal"><i
                                                     class="fas fa-info-circle"></i></button>
                                             <button type="submit" class="btn btn-warning" value="{{ $dos->id_dospem }}"><i
                                                     class="fas fa-chevron-circle-right"></i></button>
@@ -147,16 +147,15 @@
                         <div class="form-group row">
                             <label for="scholar" class="col-sm-2 col-form-label mb-3">Scholar</label>
                             <div class="col-sm-10">
-                                <input type="text" id="scholar" value="https://scholar.google.com/"
-                                    class="form-control" disabled>
+                                <a href="https://scholar.google.com/" class="btn btn-primary" role="button"
+                                    id="scholar" aria-disabled="true" target="_blank">Go to Scholar</a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection
