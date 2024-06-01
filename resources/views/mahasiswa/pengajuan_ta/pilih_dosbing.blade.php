@@ -55,6 +55,7 @@
                                     <form action="{{ route('mahasiswa-pengajuan-form') }}" method="GET">
                                         @csrf
                                         <input type="hidden" name="id_dospem" value="{{ $dos->id_dospem }}">
+                                        <input type="hidden" name="jalur">
                                         <input type="hidden" name="topik">
                                         <input type="hidden" name="judul">
                                         <input type="hidden" name="bidang_kajian">
@@ -63,7 +64,9 @@
                                         <input type="hidden" name="catatan">
                                         <td class="centered-column">
                                             <!-- button info dosbing -->
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#infoDosbingModal"><i class="fas fa-info-circle"></i></button>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#infoDosbingModal"><i
+                                                    class="fas fa-info-circle"></i></button>
                                             <button type="submit" class="btn btn-warning" value="{{ $dos->id_dospem }}"><i
                                                     class="fas fa-chevron-circle-right"></i></button>
                                         </td>
@@ -110,49 +113,50 @@
         </div>
     </div>
 
-<!-- Modal Info Dosbing -->
-<div class="modal fade" id="infoDosbingModal" tabindex="-1" aria-labelledby="infoDosbingModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="infoDosbingModalLabel">Info Dosen Pembimbing</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="col-sm-12 d-flex justify-content-center">
-                        <img src="https://via.placeholder.com/200x300" alt="scholar" class="image mb-3">
-                    </div>
-                    <div class="form-group row">
-                        <label for="nama" class="col-sm-2 col-form-label mb-3">Nama</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="nama" value="" class="form-control" disabled>
+    <!-- Modal Info Dosbing -->
+    <div class="modal fade" id="infoDosbingModal" tabindex="-1" aria-labelledby="infoDosbingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoDosbingModalLabel">Info Dosen Pembimbing</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <img src="https://via.placeholder.com/200x300" alt="scholar" class="image mb-3">
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="nidn" class="col-sm-2 col-form-label mb-3">NIDN</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="nidn" value="" class="form-control" disabled>
+                        <div class="form-group row">
+                            <label for="nama" class="col-sm-2 col-form-label mb-3">Nama</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="nama" value="" class="form-control" disabled>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="npp" class="col-sm-2 col-form-label mb-3">NPP</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="npp" value="" class="form-control" disabled>
+                        <div class="form-group row">
+                            <label for="nidn" class="col-sm-2 col-form-label mb-3">NIDN</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="nidn" value="" class="form-control" disabled>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="scholar" class="col-sm-2 col-form-label mb-3">Scholar</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="scholar" value="https://scholar.google.com/" class="form-control" disabled>
+                        <div class="form-group row">
+                            <label for="npp" class="col-sm-2 col-form-label mb-3">NPP</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="npp" value="" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="scholar" class="col-sm-2 col-form-label mb-3">Scholar</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="scholar" value="https://scholar.google.com/"
+                                    class="form-control" disabled>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

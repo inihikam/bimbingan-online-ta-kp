@@ -23,6 +23,8 @@ class Dosen extends Model
         'status_dospem',
         'email_dosen',
         'telp_dosen',
+        'photo',
+        'scholar'
     ];
 
     public function logbook()
