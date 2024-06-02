@@ -27,23 +27,31 @@ class LoginController extends Controller
         }
         return view('login');
     }
+
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        try {
+            $credentials = $request->only('email', 'password');
+//            dd($credentials);
+            if (Auth::attempt($credentials)) {
+//                dd(Auth::check());
+                $request->session()->regenerate();
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+                $user = Auth::user();
 
-            $user = Auth::user();
-
-            if ($user->hasRole('mahasiswa')) {
-                return redirect()->route('mahasiswa-dashboard');
-            } elseif ($user->hasRole('dosen')) {
-                return redirect()->route('dosen-dashboard');
+                if ($user->hasRole('mahasiswa')) {
+                    return redirect()->route('mahasiswa-dashboard');
+                } elseif ($user->hasRole('dosen')) {
+                    return redirect()->route('dosen-dashboard');
+                } elseif ($user->hasRole('koordinator')) {
+                    return redirect()->route('koor-dashboard');
+                }
             }
+        } catch (\Exception $e) {
+            dd($e);
         }
 
-        return back()->withErrors(['email' => 'Email atau password salah.']);
+//        return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
     public function logout()

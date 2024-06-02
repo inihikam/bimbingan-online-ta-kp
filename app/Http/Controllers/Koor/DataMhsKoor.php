@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dosen;
 use App\Models\Mahasiswa;
 use App\Models\StatusMahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DataMhsKoor extends Controller
@@ -15,6 +16,7 @@ class DataMhsKoor extends Controller
         $mahasiswa = Mahasiswa::with('statusMahasiswa')->get();
         return view('koor.data_mahasiswa.crud_mhs', compact('mahasiswa'));
     }
+
     public function show($id)
     {
         $status = StatusMahasiswa::where('id_mhs', $id)->first();
@@ -24,6 +26,7 @@ class DataMhsKoor extends Controller
             'mahasiswa' => $mahasiswa,
         ]);
     }
+
     public function update(Request $request)
     {
         $data = $request->all();
@@ -34,6 +37,17 @@ class DataMhsKoor extends Controller
         $mahasiswa->ipk = $data['ipk'];
         $mahasiswa->transkrip_nilai = $data['transkrip_nilai'];
         $mahasiswa->telp_mhs = $data['telp_mhs'];
+
+        if ($mahasiswa->email != $data['email']) {
+            $clean = str_replace(['A', '.'], ['1', ''], $data['email']);
+            $fix = explode('@', $clean)[0];
+            $user = User::where('email', $mahasiswa->email)->first();
+            $user->email = $data['email'];
+            $user->password = bcrypt($fix);
+
+            $user->update();
+        }
+
         $mahasiswa->email = $data['email'];
         $mahasiswa->dosen_wali = $data['dosen_wali'];
 
@@ -41,6 +55,7 @@ class DataMhsKoor extends Controller
 
         return redirect()->route('koor-data-mahasiswa');
     }
+
     public function store(Request $request)
     {
         $mahasiswa = new Mahasiswa();
@@ -57,11 +72,25 @@ class DataMhsKoor extends Controller
         $status->nim = $request->nim;
         $status->save();
 
+        if ($request->email) {
+            $clean = str_replace(['A', '.'], ['1', ''], $request->email);
+            $fix = explode('@', $clean)[0];
+            $user = User::create([
+                'email' => $request->email,
+                'password' => bcrypt($fix),
+            ]);
+
+            $user->assignRole('mahasiswa');
+        }
+
         return redirect()->route('koor-data-mahasiswa');
     }
+
     public function destroy(Request $request)
     {
         $mahasiswa = Mahasiswa::where('nim', $request->nim)->first();
+        $user = User::where('email', $mahasiswa->email)->first();
+        $user->delete();
         $mahasiswa->delete();
 
         return redirect()->route('koor-data-mahasiswa');

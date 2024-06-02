@@ -11,14 +11,21 @@ class AboutController extends Controller
     {
         return view('mahasiswa.tentang');
     }
+
     public function profile()
     {
         $user = auth()->user();
         $mahasiswa = Mahasiswa::where('email', $user->email)->first();
         return view('mahasiswa.profile', compact('mahasiswa'));
     }
+
     public function dosen()
     {
         return view('dosbing.about');
+    }
+
+    public function tentang()
+    {
+        return view('mahasiswa.tentang');
     }
 }
