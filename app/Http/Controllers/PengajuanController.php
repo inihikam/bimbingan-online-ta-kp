@@ -37,18 +37,20 @@ class PengajuanController extends Controller
 
         return view('mahasiswa.pengajuan_ta.pilih_dosbing', compact('dosens', 'status'));
     }
+
     public function form(Request $request)
     {
         $data = $request->all();
         return view('mahasiswa.pengajuan_ta.form_pengajuan', compact('data'));
     }
+
     public function draft(Request $request)
     {
         $data = $request->all();
         $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
         $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
         $dospil = Dosen::where('id_dospem', $data['id_dospem'])->first();
-        $history = HistoryPengajuan::where('id_mhs', $status->id_mhs)->get();
+        $history = HistoryPengajuan::with('dosen')->where('id_mhs', $status->id_mhs)->get();
         return view('mahasiswa.pengajuan_ta.draft_pengajuan_ta', compact(
             'data',
             'mahasiswa',
@@ -57,10 +59,12 @@ class PengajuanController extends Controller
             'history'
         ));
     }
+
     public function pengajuan()
     {
         // Mengambil semua data dosen pembimbing dari tabel dosen pembimbing untuk ditampilkan
     }
+
     /**
      * Show the form for creating a new resource.
      */

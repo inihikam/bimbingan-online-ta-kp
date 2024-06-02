@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,9 +54,9 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::post('/logbook/{id}', [DetailLogbookController::class, 'update'])->name('mahasiswa-logbook-update');
     Route::post('/logbook', [LogbookController::class, 'store'])->name('mahasiswa-logbook-create');
     Route::get('/sidang', [SidangController::class, 'index'])->name('mahasiswa-sidang');
-    Route::get('/tentang', [AboutController::class, 'mahasiswa'])->name('mahasiswa-tentang');
+    Route::get('/tentangMhs', [AboutController::class, 'tentang'])->name('mahasiswa-tentang');
     Route::get('/profile', [AboutController::class, 'profile'])->name('mahasiswa-profile');
-    Route::post('/mahasiswa/upload-foto', [MahasiswaController::class, 'uploadFoto'])->name('mahasiswa.upload_foto');
+    Route::post('/mahasiswa/upload-foto', 'MahasiswaController@uploadFoto')->name('mahasiswa.upload_foto');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
@@ -73,7 +72,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/about', [AboutController::class, 'dosen'])->name('dosbing-about');
 });
 
-// Route::middleware(['auth', 'role:koordinator'])->group(function () {
+Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koor', [DashboardKoordinator::class, 'index'])->name('koor-dashboard');
     Route::get('/dataMhs', [DataMhsKoor::class, 'index'])->name('koor-data-mahasiswa');
     Route::get('/dataMhs/{id}', [DataMhsKoor::class, 'show'])->name('koor-data-mahasiswa-detail');
@@ -89,7 +88,9 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::post('/importDosen', [ImportDosen::class, 'import'])->name('import-dosen');
     Route::post('/addmahasiswa', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
     Route::delete('/deletemahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
-// });
+    Route::get('/tentang', [DashboardKoordinator::class, 'tentang'])->name('tentang');
+});
+
 
 
 

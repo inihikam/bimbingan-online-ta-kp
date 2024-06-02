@@ -18,7 +18,7 @@ class DetailLogbookController extends Controller
     {
         $data = $request->all();
         $logbook = LogbookBimbingan::findOrFail($data['id_logbook']);
-        $logbook->save($data);
+        $logbook->update($data);
 
         return redirect()->route('mahasiswa-logbook');
     }

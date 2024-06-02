@@ -36,13 +36,13 @@
             </li>-->
         </ul>
         <div class="sidebar-footer">
-            <a href="/tentang" class="sidebar-link">
+            <a href="{{ route('tentang') }}" class="sidebar-link">
                 <i class="lni lni-code-alt"></i>
                 <span>Tentang</span>
             </a>
         </div>
         <div class="sidebar-footer">
-            <a href="{{route('logout')}}" class="sidebar-link">
+            <a href="{{ route('logout') }}" class="sidebar-link">
                 <i class="lni lni-exit"></i>
                 <span>Logout</span>
             </a>

@@ -24,6 +24,10 @@ class MahasiswaImport implements ToCollection
                     'email' => $row[2],
                 ]);
 
+                StatusMahasiswa::create([
+                    'nim' => $row[1],
+                ]);
+
                 $user = User::create([
                     'email' => $row[2],
                     'password' => bcrypt(str_replace(['A', '.'], ['1', ''], $row[1])),
