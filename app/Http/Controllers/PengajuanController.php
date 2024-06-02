@@ -80,6 +80,7 @@ class PengajuanController extends Controller
 
         $pengajuan = new Pengajuan();
         $pengajuan->id_mhs = $status->id_mhs;
+        $pengajuan->jalur = $data['jalur'];
         $pengajuan->topik = $data['topik'];
         $pengajuan->judul = $data['judul'];
         $pengajuan->bidang_kajian = $data['bidang_kajian'];
@@ -96,10 +97,10 @@ class PengajuanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id_dospem)
     {
-        //
-
+        $dosen = Dosen::find($id_dospem);
+        return response()->json($dosen);
     }
 
     /**

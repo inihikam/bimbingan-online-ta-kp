@@ -14,6 +14,7 @@ class DosenImport implements ToCollection
      */
     public function collection(Collection $collection)
     {
+        // dd($collection);
         foreach ($collection as $row) {
             try {
                 Dosen::create([

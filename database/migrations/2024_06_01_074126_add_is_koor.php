@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('mahasiswa', function (Blueprint $table) {
-            $table->id()->first();
+        Schema::table('dosen_pembimbing', function (Blueprint $table) {
+            $table->longText('photo')->nullable()->after('telp_dosen');
+            $table->longText('scholar')->nullable()->after('telp_dosen');
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('mahasiswa', function (Blueprint $table) {
-            $table->dropColumn('id');
+        Schema::table('dosen_pembimbing', function (Blueprint $table) {
+            $table->dropColumn('photo');
+            $table->dropColumn('scholar');
         });
     }
 };

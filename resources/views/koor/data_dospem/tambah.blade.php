@@ -10,23 +10,28 @@
                     <blockquote class="blockquote-primary">
                         <p class="mb-3">Form dengan tanda asterik (<span class="required">*</span>) wajib diisi.</p>
                     </blockquote>
-                    <form>
+                    <form method="POST" action="{{ route('koor-data-dospem-add') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group row mb-3">
-                            <label for="inputNPP" class="col-sm-2 col-form-label">NPP <span class="required">*</span></label>
+                            <label for="inputNPP" class="col-sm-2 col-form-label">NPP <span
+                                    class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputNPP">
+                                <input type="topik" name="npp" class="form-control" id="inputNPP">
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputNama" class="col-sm-2 col-form-label">Nama Dosbing <span class="required">*</span></label>
+                            <label for="inputNama" class="col-sm-2 col-form-label">Nama Dosbing <span
+                                    class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputNama">
+                                <input type="topik" name="nama" class="form-control" id="inputNama">
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputBidangKajian" class="col-sm-2 col-form-label">Bidang Kajian <span class="required">*</span></label>
+                            <label for="inputBidangKajian" class="col-sm-2 col-form-label">Bidang Kajian <span
+                                    class="required">*</span></label>
                             <div class="col-sm-4">
-                                <select class="form-select" id="inputBidangKajian" aria-label="Bidang Kajian">
+                                <select class="form-select" name="bidang_kajian" id="inputBidangKajian"
+                                    aria-label="Bidang Kajian">
                                     <option disabled selected hidden>Pilih Bidang Kajian</option>
                                     <option value="SC">SC</option>
                                     <option value="RPLD">RPLD</option>
@@ -34,22 +39,24 @@
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputKuota" class="col-sm-2 col-form-label">Kuota Mhs TA (Baru) <span class="required">*</span></label>
+                            <label for="inputKuota" class="col-sm-2 col-form-label">Kuota Mhs TA (Baru) <span
+                                    class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputKuota">
+                                <input type="topik" name="kuota_mhs_ta" class="form-control" id="inputKuota">
                             </div>
                         </div>
                         <div class="form-group row mb-3">
-                            <label for="inputAjuan" class="col-sm-2 col-form-label">Jumlah Ajuan <span class="required">*</span></label>
+                            <label for="inputEmail" class="col-sm-2 col-form-label">Email<span
+                                    class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="topik" class="form-control" id="inputAjuan">
+                                <input type="email" name="email" class="form-control" id="inputEmail">
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Tambah</button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tambah</button>
                 </div>
             </div>
         </div>

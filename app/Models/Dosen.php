@@ -11,6 +11,8 @@ class Dosen extends Model
 
     protected $table = 'dosen_pembimbing';
 
+    protected $primaryKey = 'id_dospem';
+
     protected $fillable = [
         'id_dospem',
         'nama',
@@ -21,8 +23,10 @@ class Dosen extends Model
         'acc_ajuan',
         'sisa_kuota',
         'status_dospem',
-        'email_dosen',
+        'email',
         'telp_dosen',
+        'photo',
+        'scholar'
     ];
 
     public function logbook()

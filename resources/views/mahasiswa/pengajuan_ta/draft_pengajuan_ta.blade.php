@@ -34,10 +34,9 @@
                         </blockquote>
                         <table class="table table-bordered mb-5">
                             <tbody>
-                                <!-- jalur ta -->
                                 <tr>
                                     <td>Jalur</td>
-                                    <td>Reguler/Publikasi</td>
+                                    <td>{{ $data['jalur'] }}</td>
                                 </tr>
                                 <tr>
                                     <td>Topik</td>
@@ -84,6 +83,10 @@
                         @endif
                         <table class="table table-bordered mb-5">
                             <tbody>
+                                <tr>
+                                    <td>Jalur</td>
+                                    <td>{{ $pengajuan->jalur }}</td>
+                                </tr>
                                 <tr>
                                     <td>Topik</td>
                                     <td>{{ $pengajuan->topik }}</td>
@@ -141,6 +144,7 @@
                             <a href="{{ route('mahasiswa-pengajuan') }}" class="btn btn-danger me-2">Hapus</a>
                             <form action="{{ route('mahasiswa-pengajuan-form') }}" method="GET">
                                 @csrf
+                                <input type="hidden" name="jalur" value="{{ $data['jalur'] }}">
                                 <input type="hidden" name="topik" value="{{ $data['topik'] }}">
                                 <input type="hidden" name="judul" value="{{ $data['judul'] }}">
                                 <input type="hidden" name="bidang_kajian" value="{{ $data['bidang_kajian'] }}">
@@ -152,6 +156,7 @@
                             </form>
                             <form action="{{ route('mahasiswa-pengajuan-submit') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="jalur" value="{{ $data['jalur'] }}">
                                 <input type="hidden" name="topik" value="{{ $data['topik'] }}">
                                 <input type="hidden" name="judul" value="{{ $data['judul'] }}">
                                 <input type="hidden" name="bidang_kajian" value="{{ $data['bidang_kajian'] }}">

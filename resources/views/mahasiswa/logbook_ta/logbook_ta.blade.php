@@ -40,11 +40,10 @@
                             @elseif ($lb->status_logbook == 'REVISI')
                                 <button type="status" class="btn btn-danger rounded-5">REVISI
                                 </button>
+                            @else
+                                <button type="status" class="btn btn-warning rounded-5">PENDING
+                                </button>
                             @endif
-                            <!-- status pending -->
-                            <button type="status" class="btn btn-warning rounded-5">PEND
-                                <i class="far fa-clock"></i>
-                            </button>
                         </td>
                         <td class="centered-column">
                             <button type="info" class="btn btn-primary" data-bs-toggle="modal"
@@ -127,6 +126,7 @@
                 fetch('/logbook/' + logbookId)
                     .then(response => response.json())
                     .then(data => {
+                        editModal.querySelector('#inputTanggal').value = data.tanggal_bimbingan;
                         editModal.querySelector('#inputCatatan').value = data.uraian_bimbingan;
                         editModal.querySelector('#inputBidang').value = data.bab_terakhir_bimbingan;
                         editModal.querySelector('#inputDok').value = data.dokumen;
