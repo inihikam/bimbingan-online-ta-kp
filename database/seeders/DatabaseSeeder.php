@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
         // Seed data User
         User::create([
             'email' => '111202113550@mhs.dinus.ac.id',
