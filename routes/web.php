@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Administrator\AdministratorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Koor\DashboardKoordinator;
 use App\Http\Controllers\Koor\DataMhsKoor;
 use App\Http\Controllers\Koor\DataDsnKoor;
 use App\Http\Controllers\DetailLogbookController;
 use App\Http\Controllers\DospemBimbinganController;
-use App\Http\Controllers\DospemController;
 use App\Http\Controllers\Koor\ImportDosen;
 use App\Http\Controllers\Koor\ImportMahasiswa;
 use App\Http\Controllers\LogbookController;
@@ -91,5 +91,12 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::delete('/deletemahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 });
 
+ // ADMINISTRATOR
+Route::middleware(['auth', 'role:administrator'])->group(function () {
 
+});
 
+Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
+Route::get('/dataKoordinator', [AdministratorController::class, 'data_koordinator'])->name('data-koordinator');
+Route::get('/detailKoordinator', [AdministratorController::class, 'detail_koordinator'])->name('detail-koordinator');
+Route::get('/about', [AdministratorController::class, 'about'])->name('admin-about');

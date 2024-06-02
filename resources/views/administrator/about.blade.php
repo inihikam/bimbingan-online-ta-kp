@@ -1,13 +1,13 @@
-@extends('dosbing.layouts.main')
+@extends('administrator.layouts.main')
 @section('title', 'About Us')
 @section('content')
     <style>
         .container {
-        margin: 20px auto;
-        padding: 20px;
-        background-color: #FFFFFF;
-        border-radius: 10px;
-    }
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+        }
     </style>
 
     <div class="wrapper d-flex flex-column min-vh-100">
