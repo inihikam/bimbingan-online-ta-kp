@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Mahasiswa;
 
@@ -10,6 +11,8 @@ class MahasiswaController extends Controller
 {
     public function uploadFoto(Request $request)
     {
+        Log::info('Mulai proses upload foto profil mahasiswa');
+
         $request->validate([
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
@@ -22,13 +25,17 @@ class MahasiswaController extends Controller
             // Hapus foto lama jika ada
             if ($mahasiswa->foto) {
                 Storage::delete('public/' . $mahasiswa->foto);
+                Log::info('Foto lama berhasil dihapus');
             }
 
             // Simpan foto baru
             $path = $request->file('foto')->store('foto_mahasiswa', 'public');
             $mahasiswa->foto = $path;
             $mahasiswa->save();
+            Log::info('Foto baru berhasil disimpan');
         }
+
+        Log::info('Proses upload foto profil mahasiswa selesai');
 
         return redirect()->back()->with('success', 'Foto profil berhasil diunggah.');
     }

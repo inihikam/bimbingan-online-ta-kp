@@ -73,7 +73,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::get('/about', [AboutController::class, 'dosen'])->name('dosbing-about');
 });
 
-Route::middleware(['auth', 'role:koordinator'])->group(function () {
+// Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koor', [DashboardKoordinator::class, 'index'])->name('koor-dashboard');
     Route::get('/dataMhs', [DataMhsKoor::class, 'index'])->name('koor-data-mahasiswa');
     Route::get('/dataMhs/{id}', [DataMhsKoor::class, 'show'])->name('koor-data-mahasiswa-detail');
@@ -89,7 +89,7 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::post('/importDosen', [ImportDosen::class, 'import'])->name('import-dosen');
     Route::post('/addmahasiswa', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
     Route::delete('/deletemahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
-});
+// });
 
 
 
