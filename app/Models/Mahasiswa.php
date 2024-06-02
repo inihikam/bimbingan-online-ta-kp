@@ -22,6 +22,7 @@ class Mahasiswa extends Model
         'telp_mhs',
         'email',
         'dosen_wali',
+        'foto',
     ];
     public function user()
     {

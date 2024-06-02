@@ -15,6 +15,7 @@ use App\Http\Controllers\MahasiswaBimbinganController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\SidangController;
+use App\Http\Controllers\KoorController;
 use App\Http\Controllers\SidebarDosbingController;
 
 use App\Http\Controllers\SidebarMahasiswaController;
@@ -23,6 +24,8 @@ use App\Models\LogbookBimbingan;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +57,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/sidang', [SidangController::class, 'index'])->name('mahasiswa-sidang');
     Route::get('/tentang', [AboutController::class, 'mahasiswa'])->name('mahasiswa-tentang');
     Route::get('/profile', [AboutController::class, 'profile'])->name('mahasiswa-profile');
+    Route::post('/mahasiswa/upload-foto', [MahasiswaController::class, 'uploadFoto'])->name('mahasiswa.upload_foto');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {
@@ -83,4 +87,9 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::post('/delDsn', [DataDsnKoor::class, 'destroy'])->name('koor-data-dospem-delete');
     Route::post('/import', [ImportMahasiswa::class, 'import'])->name('import-mahasiswa');
     Route::post('/importDosen', [ImportDosen::class, 'import'])->name('import-dosen');
+    Route::post('/addmahasiswa', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
+    Route::delete('/deletemahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
 });
+
+
+
