@@ -56,7 +56,7 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/sidang', [SidangController::class, 'index'])->name('mahasiswa-sidang');
     Route::get('/tentangMhs', [AboutController::class, 'tentang'])->name('mahasiswa-tentang');
     Route::get('/profile', [AboutController::class, 'profile'])->name('mahasiswa-profile');
-    Route::post('/mahasiswa/upload-foto', 'MahasiswaController@uploadFoto')->name('mahasiswa.upload_foto');
+    Route::post('/mahasiswa/upload-foto', [MahasiswaController::class, 'uploadFoto'])->name('mahasiswa.upload_foto');
 });
 
 Route::middleware(['auth', 'role:dosen'])->group(function () {

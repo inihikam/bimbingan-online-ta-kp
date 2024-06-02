@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Models\Mahasiswa; // Jangan lupa untuk mengimpor model yang diperlukan
 use Illuminate\Support\Facades\Storage;
-use App\Models\Mahasiswa;
+use Illuminate\Support\Facades\Log;
 
 class MahasiswaController extends Controller
 {
@@ -37,7 +37,10 @@ class MahasiswaController extends Controller
 
         Log::info('Proses upload foto profil mahasiswa selesai');
 
-        return redirect()->back()->with('success', 'Foto profil berhasil diunggah.');
+        return response()->json([
+            'success' => true,
+            'foto' => asset('storage/' . $mahasiswa->foto)
+        ]);
     }
     public function store(Request $request)
     {

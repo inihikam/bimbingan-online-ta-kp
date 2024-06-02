@@ -2,13 +2,17 @@
 @section('title', 'Profile Mahasiswa')
 @section('content')
 
-<div class="container">
+<div class="container mt-5">
     <h1 class="text-center mb-4">Profil Mahasiswa</h1>
 
     <!-- Tampilkan foto profil di bagian atas jika ada -->
     @if($mahasiswa->foto)
         <div class="text-center mb-4 profile-pic-container">
-            <img src="{{ asset('storage/' . $mahasiswa->foto) }}" alt="Foto Profil" class="profile-pic" id="profile-pic">
+            <img src="{{ asset('storage/' . $mahasiswa->foto) }}" alt="Foto Profil" class="profile-pic" id="profile-pic" onclick="openModal(this)">
+        </div>
+    @else
+        <div class="text-center mb-4 profile-pic-container">
+            <img src="{{ asset('assets/default-profile.jpg') }}" alt="Foto Profil" class="profile-pic" id="profile-pic" onclick="openModal(this)">
         </div>
     @endif
 
@@ -29,11 +33,21 @@
                 </div>
             </div>
 
-            <!-- Tombol untuk membuka pop-up upload foto -->
-            <button type="button" class="btn btn-primary mt-4" onclick="openUploadPopup()">Unggah Foto Profil</button>
+            <!-- Tombol untuk membuka modal upload foto -->
+            <button type="button" class="btn btn-primary mt-4" data-bs-toggle="modal" data-bs-target="#uploadModal">Unggah Foto Profil</button>
+        </div>
+    </div>
+</div>
 
-            <!-- Pop-up upload foto -->
-            <div id="upload-popup" style="display:none;">
+<!-- Modal upload foto -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Unggah Foto Profil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <form id="upload-form" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
@@ -47,10 +61,27 @@
     </div>
 </div>
 
+<!-- Modal untuk memperbesar gambar -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Foto Profil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Foto Profil" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 <script>
-    function openUploadPopup() {
-        $('#upload-popup').show();
+    function openModal(element) {
+        $('#modalImage').attr('src', element.src);
+        $('#imageModal').modal('show');
     }
 
     $(document).ready(function() {
@@ -65,11 +96,15 @@
                 data: formData,
                 contentType: false,
                 processData: false,
-                success: function(data) {
-                    $('#upload-popup').hide();
-                    $('#profile-pic').attr('src', data.foto);
-                    // Automatically refresh the page after successful upload
-                    location.reload();
+                success: function(response) {
+                    if (response.success) {
+                        $('#uploadModal').modal('hide');
+                        $('#profile-pic').attr('src', response.foto);
+                        // Automatically refresh the page after successful upload
+                        location.reload();
+                    } else {
+                        console.error('Error:', response.error);
+                    }
                 },
                 error: function(error) {
                     console.error('Error:', error);
@@ -95,6 +130,7 @@
     .card {
         border: none;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
     }
 
     .card-title {
@@ -118,12 +154,38 @@
         overflow: hidden;
         margin: 0 auto;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .profile-pic-container:hover {
+        transform: scale(1.05);
     }
 
     .profile-pic {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+    }
+
+    .modal-header {
+        border-bottom: none;
+    }
+
+    .modal-title {
+        color: var(--primary-color);
+    }
+
+    .btn-close {
+        background-color: var(--primary-color);
+        color: #fff;
+    }
+
+    .btn-close:hover {
+        background-color: var(--secondary-color);
     }
 </style>
 
