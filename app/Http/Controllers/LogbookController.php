@@ -52,7 +52,7 @@ class LogbookController extends Controller
 
 //        Mengambil data bab_terakhir_bimbingan paling baru untuk dimasukkan ke dalam tabel status mahasiswa
         $status->bab_terakhir = $request->bab_terakhir_bimbingan;
-        $status->total_logbook = LogbookBimbingan::where('id_mhs', $status->id_mhs)->count();
+        $status->jml_bimbingan = LogbookBimbingan::where('id_mhs', $status->id_mhs)->count();
 
         $status->save();
 

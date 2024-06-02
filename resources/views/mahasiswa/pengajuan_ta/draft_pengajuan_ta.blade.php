@@ -29,43 +29,44 @@
                     <h4 class="mb-4">Pengajuan Tugas Akhir Ke-1</h4>
                     @if ($data)
                         <blockquote class="blockquote-primary">
-                            <p class="mb-3"><b>Status: Draft</b> - Untuk mengajukan tugas akhir ke dosen pembimbing, klik
+                            <p class="mb-3"><b>Status: Draft</b> - Untuk mengajukan tugas akhir ke dosen pembimbing,
+                                klik
                                 tombol Ajukan di bawah</p>
                         </blockquote>
                         <table class="table table-bordered mb-5">
                             <tbody>
-                                <tr>
-                                    <td>Jalur</td>
-                                    <td>{{ $data['jalur'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Topik</td>
-                                    <td>{{ $data['topik'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Judul</td>
-                                    <td>{{ $data['judul'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Bidang Kajian</td>
-                                    <td>{{ $data['bidang_kajian'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Keyword</td>
-                                    <td>{{ $data['keyword'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Deskripsi</td>
-                                    <td>{{ $data['deskripsi'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Catatan</td>
-                                    <td>{{ $data['catatan'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Usulan Dosen Pembimbing</td>
-                                    <td>{{ $dospil->nama }}</td>
-                                </tr>
+                            <tr>
+                                <td>Jalur</td>
+                                <td>{{ $data['jalur'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Topik</td>
+                                <td>{{ $data['topik'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Judul</td>
+                                <td>{{ $data['judul'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Bidang Kajian</td>
+                                <td>{{ $data['bidang_kajian'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Keyword</td>
+                                <td>{{ $data['keyword'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Deskripsi</td>
+                                <td>{{ $data['deskripsi'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Catatan</td>
+                                <td>{{ $data['catatan'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Usulan Dosen Pembimbing</td>
+                                <td>{{ $dospil->nama }}</td>
+                            </tr>
                             </tbody>
                         </table>
                     @else
@@ -83,38 +84,38 @@
                         @endif
                         <table class="table table-bordered mb-5">
                             <tbody>
-                                <tr>
-                                    <td>Jalur</td>
-                                    <td>{{ $pengajuan->jalur }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Topik</td>
-                                    <td>{{ $pengajuan->topik }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Judul</td>
-                                    <td>{{ $pengajuan->judul }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Bidang Kajian</td>
-                                    <td>{{ $pengajuan->bidang_kajian }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Keyword</td>
-                                    <td>{{ $pengajuan->keyword }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Deskripsi</td>
-                                    <td>{{ $pengajuan->deskripsi }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Catatan</td>
-                                    <td>{{ $pengajuan->catatan }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Usulan Dosen Pembimbing</td>
-                                    <td>{{ $dospil->nama }}</td>
-                                </tr>
+                            <tr>
+                                <td>Jalur</td>
+                                <td>{{ $pengajuan->jalur }}</td>
+                            </tr>
+                            <tr>
+                                <td>Topik</td>
+                                <td>{{ $pengajuan->topik }}</td>
+                            </tr>
+                            <tr>
+                                <td>Judul</td>
+                                <td>{{ $pengajuan->judul }}</td>
+                            </tr>
+                            <tr>
+                                <td>Bidang Kajian</td>
+                                <td>{{ $pengajuan->bidang_kajian }}</td>
+                            </tr>
+                            <tr>
+                                <td>Keyword</td>
+                                <td>{{ $pengajuan->keyword }}</td>
+                            </tr>
+                            <tr>
+                                <td>Deskripsi</td>
+                                <td>{{ $pengajuan->deskripsi }}</td>
+                            </tr>
+                            <tr>
+                                <td>Catatan</td>
+                                <td>{{ $pengajuan->catatan }}</td>
+                            </tr>
+                            <tr>
+                                <td>Usulan Dosen Pembimbing</td>
+                                <td>{{ $dospil->nama }}</td>
+                            </tr>
                             </tbody>
                         </table>
                     @endif
@@ -124,13 +125,13 @@
                         <div class="table-container table-tolak">
                             <table class="table table-bordered">
                                 <thead class="table-header">
-                                    <th>Tanggal Pengajuan</th>
-                                    <th>Alasan Penolakan</th>
+                                <th>Tanggal Pengajuan</th>
+                                <th>Dosen Ajuan</th>
                                 </thead>
                                 @foreach ($history as $hs)
                                     <tr>
                                         <td class="centered-column">{{ $hs->created_at }}</td>
-                                        <td class="alasan-column">{{ $hs->alasan_penolakan }}</td>
+                                        <td class="alasan-column">{{ $hs->dosen->nama }}</td>
                                     </tr>
                                 @endforeach
                             </table>
