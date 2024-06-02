@@ -19,51 +19,51 @@
         <div class="row my-3">
             <div class="col-md">
                 <table id="data-koor" class="table table-striped table-bordered table-responsive table-hover"
-                    style="width:100%; border-color:black">
+                       style="width:100%; border-color:black">
                     <thead class="table-dark">
-                        <tr>
-                            <th>No.</th>
-                            <th>NPP</th>
-                            <th>Nama Dosen Pembimbing</th>
-                            <th>Bidang Kajian</th>
-                            <th>Kuota Mhs TA (Baru)</th>
-                            <th>Jumlah Ajuan</th>
-                            <th>Ajuan Diterima</th>
-                            <th>Sisa Kuota</th>
-                            <th>Status</th>
-                            <th>Aksi</th>
-                        </tr>
+                    <tr>
+                        <th>No.</th>
+                        <th>NPP</th>
+                        <th>Nama Dosen Pembimbing</th>
+                        <th>Bidang Kajian</th>
+                        <th>Kuota Mhs TA (Baru)</th>
+                        <th>Jumlah Ajuan</th>
+                        <th>Ajuan Diterima</th>
+                        <th>Sisa Kuota</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach ($dosen as $ds)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td class="centered-column">{{ $ds->npp }}</td>
-                                <td>{{ $ds->nama }}</td>
-                                <td class="centered-column">{{ $ds->bidang_kajian }}</td>
-                                <td class="centered-column">{{ $ds->kuota_mhs_ta }}</td>
-                                <td class="centered-column">{{ $ds->jml_ajuan }}</td>
-                                <td class="centered-column">{{ $ds->acc_ajuan }}</td>
-                                <td class="centered-column">{{ $ds->sisa_kuota }}</td>
-                                <td class="centered-column">{{ $ds->status_dospem }}</td>
-                                <td class="text-center align-middle">
-                                    <div class="d-flex justify-content-center">
-                                        <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal"
+                    @foreach ($dosen as $ds)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td class="centered-column">{{ $ds->npp }}</td>
+                            <td>{{ $ds->nama }}</td>
+                            <td class="centered-column">{{ $ds->bidang_kajian }}</td>
+                            <td class="centered-column">{{ $ds->kuota_mhs_ta }}</td>
+                            <td class="centered-column">{{ $ds->jml_ajuan }}</td>
+                            <td class="centered-column">{{ $ds->acc_ajuan }}</td>
+                            <td class="centered-column">{{ $ds->sisa_kuota }}</td>
+                            <td class="centered-column">{{ $ds->status_dospem }}</td>
+                            <td class="text-center align-middle">
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal"
                                             data-bs-target="#dialogDetailDsn" data-id="{{ $ds->id_dospem }}">
-                                            <i class="fas fa-info-circle"></i>
-                                        </button>
-                                        <button class="btn btn-warning btn-sm me-2" data-bs-toggle="modal"
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                    <button class="btn btn-warning btn-sm me-2" data-bs-toggle="modal"
                                             data-bs-target="#dialogEditDosbingKoor" data-id="{{ $ds->id_dospem }}">
-                                            <i class="far fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#dialogHapusKoor" data-id="{{ $ds->id_dospem }}">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -88,8 +88,8 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            $('#dialogDetailDsn').on('show.bs.modal', function(event) {
+        $(document).ready(function () {
+            $('#dialogDetailDsn').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 var dosenId = button.data('id');
                 console.log(dosenId)
@@ -99,14 +99,14 @@
                 $.ajax({
                     url: '/dataDsn/' + dosenId,
                     method: 'GET',
-                    success: function(data) {
+                    success: function (data) {
                         console.log(data)
                         modal.find('.modal-title').text('Daftar Bimbingan dari ' + data.dsn[0]
                             .nama);
                         $('#mahasiswaBimbinganList').html(
                             ''); // Kosongkan tbody sebelum mengisinya
                         if (data.dsn[0].mahasiswa.length > 0) {
-                            data.dsn[0].mahasiswa.forEach(function(mahasiswa, index) {
+                            data.dsn[0].mahasiswa.forEach(function (mahasiswa, index) {
                                 console.log(mahasiswa.mahasiswa.nama)
                                 console.log(mahasiswa.nim)
                                 console.log('Appending Mahasiswa:', mahasiswa);
@@ -131,7 +131,7 @@
                             );
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error('AJAX Error:', error);
                         console.log('XHR:', xhr);
                         console.log('Status:', status);
@@ -141,10 +141,10 @@
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var editModal = document.querySelector('#dialogEditDosbingKoor');
 
-            editModal.addEventListener('show.bs.modal', function(event) {
+            editModal.addEventListener('show.bs.modal', function (event) {
 
                 var button = event.relatedTarget;
 
@@ -169,7 +169,7 @@
 
             var delModal = document.querySelector('#dialogHapusKoor');
 
-            delModal.addEventListener('show.bs.modal', function(event) {
+            delModal.addEventListener('show.bs.modal', function (event) {
 
                 var button = event.relatedTarget;
 

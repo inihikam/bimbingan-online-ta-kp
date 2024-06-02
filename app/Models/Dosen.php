@@ -10,9 +10,7 @@ class Dosen extends Model
     use HasFactory;
 
     protected $table = 'dosen_pembimbing';
-
     protected $primaryKey = 'id_dospem';
-
     protected $fillable = [
         'id_dospem',
         'nama',
@@ -33,14 +31,17 @@ class Dosen extends Model
     {
         return $this->hasMany(LogbookBimbingan::class, 'id_dospem', 'id_dospem');
     }
+
     public function mahasiswa()
     {
         return $this->hasMany(StatusMahasiswa::class, 'id_dospem', 'id_dospem');
     }
+
     public function pengajuan()
     {
         return $this->hasMany(Pengajuan::class, 'id_dospem', 'id_dospem');
     }
+
     public function user()
     {
         return $this->hasOne(Dosen::class, 'email', 'email');
