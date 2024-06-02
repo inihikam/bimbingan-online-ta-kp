@@ -48,15 +48,17 @@
                                 <td class="text-center align-middle">
                                     <div class="d-flex justify-content-center">
                                         <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal"
-                                            data-bs-target="#dialogDetail">
+                                            data-bs-target="#dialogDetailMhsKoor"
+                                            data-id="{{ $mhs->statusMahasiswa->id_mhs }}">
                                             <i class="fas fa-info-circle"></i>
                                         </button>
                                         <button class="btn btn-warning btn-sm me-2" data-bs-toggle="modal"
-                                            data-bs-target="#dialogEditMhs">
+                                            data-bs-target="#dialogEditMhsKoor"
+                                            data-id="{{ $mhs->statusMahasiswa->id_mhs }}">
                                             <i class="far fa-edit"></i>
                                         </button>
                                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#dialogHapus">
+                                            data-bs-target="#dialogHapusMhs" data-id="{{ $mhs->statusMahasiswa->id_mhs }}">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -83,5 +85,90 @@
 
     <!--Data Modal Hapus-->
     @include('koor.data_mahasiswa.hapus')
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var detailModal = document.querySelector('#dialogDetailMhsKoor');
+
+            detailModal.addEventListener('show.bs.modal', function(event) {
+                // Tombol yang memicu modal
+                var button = event.relatedTarget;
+                // Ambil id logbook dari atribut data-id
+                var mhsId = button.getAttribute('data-id');
+                console.log(mhsId);
+
+                // Kirim permintaan ke backend untuk mengambil data logbook berdasarkan id
+                fetch('/dataMhs/' + mhsId)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        console.log(data.mahasiswa.status_mahasiswa.id_dospem)
+                        detailModal.querySelector('#dialogName').textContent += data.mahasiswa.nama;
+                        detailModal.querySelector('#npp').textContent = data.mahasiswa.status_mahasiswa
+                            .dospem.npp;
+                        detailModal.querySelector('#nama').textContent = data.mahasiswa.status_mahasiswa
+                            .dospem.nama;
+                        detailModal.querySelector('#email').textContent = data.mahasiswa
+                            .status_mahasiswa.dospem.email;
+                        detailModal.querySelector('#telp').textContent = data.mahasiswa.status_mahasiswa
+                            .dospem.telp_dosen;
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+
+            // Jika detail modal ditutup maka hapus nilai didalamnya
+            detailModal.addEventListener('hidden.bs.modal', function(event) {
+                detailModal.querySelector('#dialogName').textContent = 'Daftar Dosbing dari ';
+                detailModal.querySelector('#npp').textContent = '';
+                detailModal.querySelector('#nama').textContent = '';
+                detailModal.querySelector('#email').textContent = '';
+                detailModal.querySelector('#telp').textContent = '';
+            });
+
+            var editModal = document.querySelector('#dialogEditMhsKoor');
+
+            editModal.addEventListener('show.bs.modal', function(event) {
+
+                var button = event.relatedTarget;
+
+                var mhsId = button.getAttribute('data-id');
+                console.log(mhsId);
+
+                fetch('/dataMhs/' + mhsId)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        editModal.querySelector('#oldNim').value = data.mahasiswa.nim;
+                        editModal.querySelector('#inputNIM').value = data.mahasiswa.nim;
+                        editModal.querySelector('#inputNama').value = data.mahasiswa.nama;
+                        editModal.querySelector('#inputIPK').value = data.mahasiswa.ipk;
+                        editModal.querySelector('#inputTranskrip').value = data.mahasiswa
+                            .transkrip_nilai;
+                        editModal.querySelector('#inputTelp').value = data.mahasiswa.telp_mhs;
+                        editModal.querySelector('#inputEmail').value = data.mahasiswa.email;
+                        editModal.querySelector('#inputDoswal').value = data.mahasiswa.dosen_wali;
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+
+            var delModal = document.querySelector('#dialogHapusMhs');
+
+            delModal.addEventListener('show.bs.modal', function(event) {
+
+                var button = event.relatedTarget;
+
+                var mhsId = button.getAttribute('data-id');
+                console.log(mhsId);
+
+                fetch('/dataMhs/' + mhsId)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        delModal.querySelector('#nim').value = data.mahasiswa.nim;
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
 
 @endsection

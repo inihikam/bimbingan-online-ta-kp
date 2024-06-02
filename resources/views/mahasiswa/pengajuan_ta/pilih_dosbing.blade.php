@@ -64,8 +64,8 @@
                                         <input type="hidden" name="catatan">
                                         <td class="centered-column">
                                             <!-- button info dosbing -->
-                                            <button type="button" value="{{ $dos->id_dospem }}" class="btn btn-primary"
-                                                data-bs-toggle="modal" data-bs-target="#infoDosbingModal"><i
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#infoDosbingModal" data-id="{{ $dos->id_dospem }}"><i
                                                     class="fas fa-info-circle"></i></button>
                                             <button type="submit" class="btn btn-warning" value="{{ $dos->id_dospem }}"><i
                                                     class="fas fa-chevron-circle-right"></i></button>
@@ -124,24 +124,42 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="col-sm-12 d-flex justify-content-center">
-                            <img src="https://via.placeholder.com/200x300" alt="scholar" class="image mb-3">
+                            <img src="https://via.placeholder.com/200x300" id="profile" alt="scholar"
+                                class="image mb-3">
                         </div>
                         <div class="form-group row">
                             <label for="nama" class="col-sm-2 col-form-label mb-3">Nama</label>
                             <div class="col-sm-10">
-                                <input type="text" id="nama" value="" class="form-control" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="nidn" class="col-sm-2 col-form-label mb-3">NIDN</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="nidn" value="" class="form-control" disabled>
+                                <input type="text" name="nama" id="nama" value="" class="form-control"
+                                    disabled>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="npp" class="col-sm-2 col-form-label mb-3">NPP</label>
                             <div class="col-sm-10">
-                                <input type="text" id="npp" value="" class="form-control" disabled>
+                                <input type="text" name="npp" id="npp" value="" class="form-control"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="npp" class="col-sm-2 col-form-label mb-3">Bidang Kajian</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="bidang_kajian" id="bidang_kajian" value=""
+                                    class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="npp" class="col-sm-2 col-form-label mb-3">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="email" id="email" value="" class="form-control"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="npp" class="col-sm-2 col-form-label mb-3">No Hp</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="telp_dosen" id="telp_dosen" value=""
+                                    class="form-control" disabled>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -158,4 +176,37 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var detailModal = document.querySelector('#infoDosbingModal');
+
+            detailModal.addEventListener('show.bs.modal', function(event) {
+
+                var button = event.relatedTarget;
+
+                var dosenId = button.getAttribute('data-id');
+                console.log(dosenId);
+
+                fetch('/dosen/' + dosenId)
+                    .then(response => response.json())
+                    .then(data => {
+                        detailModal.querySelector('#nama').setAttribute('value', data.nama);
+                        detailModal.querySelector('#npp').setAttribute('value', data.npp);
+                        detailModal.querySelector('#bidang_kajian').setAttribute('value', data
+                            .bidang_kajian);
+                        detailModal.querySelector('#email').setAttribute('value', data.email);
+                        detailModal.querySelector('#telp_dosen').setAttribute('value', data.telp_dosen);
+
+                        var profileLink = detailModal.querySelector('#profile');
+                        profileLink.setAttribute('src', data.photo);
+
+                        var scholarLink = detailModal.querySelector('#scholar');
+                        scholarLink.setAttribute('href', data.scholar);
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+@endsection

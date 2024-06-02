@@ -43,13 +43,11 @@
                         @elseif ($lbmhs->status_logbook == 'ACC')
                             <td class="centered-column">
                                 <button type="status" class="btn btn-success rounded-5">{{ $lbmhs->status_logbook }}
-                                    <i class="fas fa-check icon-dark-acc"></i>
                                 </button>
                             </td>
                         @elseif ($lbmhs->status_logbook == 'REVISI')
                             <td class="centered-column">
                                 <button type="status" class="btn btn-danger rounded-5">{{ $lbmhs->status_logbook }}
-                                    <i class="fas fa-times icon-dark-no"></i>
                                 </button>
                             </td>
                         @endif

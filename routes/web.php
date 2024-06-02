@@ -43,6 +43,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/home', [SidebarMahasiswaController::class, 'index'])->name('mahasiswa-dashboard');
     Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('mahasiswa-pengajuan');
+    Route::get('/dosen/{id}', [PengajuanController::class, 'show'])->name('mahasiswa-pengajuan-detail-dosen');
     Route::get('/pengajuan-form', [PengajuanController::class, 'form'])->name('mahasiswa-pengajuan-form');
     Route::get('/pengajuan-draft', [PengajuanController::class, 'draft'])->name('mahasiswa-pengajuan-draft');
     Route::post('/pengajuan-submit', [PengajuanController::class, 'store'])->name('mahasiswa-pengajuan-submit');
@@ -71,7 +72,15 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
 Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::get('/koor', [DashboardKoordinator::class, 'index'])->name('koor-dashboard');
     Route::get('/dataMhs', [DataMhsKoor::class, 'index'])->name('koor-data-mahasiswa');
+    Route::get('/dataMhs/{id}', [DataMhsKoor::class, 'show'])->name('koor-data-mahasiswa-detail');
+    Route::post('/dataMhs/{id}', [DataMhsKoor::class, 'update'])->name('koor-data-mahasiswa-update');
+    Route::post('/delMhs', [DataMhsKoor::class, 'destroy'])->name('koor-data-mahasiswa-delete');
+    Route::post('/addMhs', [DataMhsKoor::class, 'store'])->name('koor-data-mahasiswa-add');
     Route::get('/dataDsn', [DataDsnKoor::class, 'index'])->name('koor-data-dospem');
+    Route::post('/addDsn', [DataDsnKoor::class, 'store'])->name('koor-data-dospem-add');
+    Route::get('/dataDsn/{id}', [DataDsnKoor::class, 'show'])->name('koor-data-dospem-detail');
+    Route::post('/dataDsn/{id}', [DataDsnKoor::class, 'update'])->name('koor-data-dospem-update');
+    Route::post('/delDsn', [DataDsnKoor::class, 'destroy'])->name('koor-data-dospem-delete');
     Route::post('/import', [ImportMahasiswa::class, 'import'])->name('import-mahasiswa');
     Route::post('/importDosen', [ImportDosen::class, 'import'])->name('import-dosen');
 });

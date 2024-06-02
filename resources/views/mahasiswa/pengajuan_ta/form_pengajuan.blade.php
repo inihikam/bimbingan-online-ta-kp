@@ -40,12 +40,12 @@
                             <div class="col-sm-10 mt-2">
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="jalur" id="reguler"
-                                        value="{{ $data['jalur'] }}">
+                                        value="REGULER" {{ $data['jalur'] == 'REGULER' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="reguler">Reguler</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="jalur" id="publikasi"
-                                        value="{{ $data['jalur'] }}">
+                                        value="PUBLIKASI" {{ $data['jalur'] == 'PUBLIKASI' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="publikasi">Publikasi</label>
                                 </div>
                             </div>

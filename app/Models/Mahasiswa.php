@@ -11,6 +11,9 @@ class Mahasiswa extends Model
     use HasFactory;
 
     protected $table = 'mahasiswa';
+    protected $primaryKey = 'nim';
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $fillable = [
         'nim',
         'nama',
@@ -22,7 +25,7 @@ class Mahasiswa extends Model
     ];
     public function user()
     {
-        return $this->hasOne(Mahasiswa::class, 'email', 'email');
+        return $this->hasOne(User::class, 'email', 'email');
     }
     public function statusMahasiswa()
     {

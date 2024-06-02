@@ -25,6 +25,10 @@
                     <input type="text" id="nim" value="{{ $mahasiswa->nim }}" class="form-control" disabled>
                 </div>
                 <div class="form-group">
+                    <label for="topik">Jalur</label>
+                    <input type="text" id="jalur" value="{{ $pengajuan->jalur }}" class="form-control" disabled>
+                </div>
+                <div class="form-group">
                     <label for="topik">Topik Penelitian</label>
                     <input type="text" id="topik" value="{{ $pengajuan->topik }}" class="form-control" disabled>
                 </div>
