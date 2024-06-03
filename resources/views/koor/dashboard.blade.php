@@ -113,6 +113,7 @@
                                 <th>Nama Mahasiswa</th>
                                 <th>Tanggal Bimbingan</th>
                                 <th>Uraian Bimbingan</th>
+                                <th>Dokumen</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -121,6 +122,7 @@
                                     <td>{{ $logbook->mahasiswa->mahasiswa->nama }}</td>
                                     <td>{{ $logbook->tanggal_bimbingan }}</td>
                                     <td>{{ $logbook->uraian_bimbingan }}</td>
+                                    <td><a href="{{ $logbook->dokumen }}" target="_blank">Dokumen</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

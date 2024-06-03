@@ -3,14 +3,21 @@
 namespace App\Http\Controllers\Administrator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\User;
 
-class AdministratorController extends Controller {
-    public function index() {
+class AdministratorController extends Controller
+{
+    public function index()
+    {
         return view('administrator.dashboard_admin');
     }
 
     public function data_koordinator()
     {
+//        $role = Role::where('name', 'koordinator')->first();
+//        $users = $role->users;
+//        dd($users);
         return view('administrator.daftar_koordinator.data_koordinator');
     }
 

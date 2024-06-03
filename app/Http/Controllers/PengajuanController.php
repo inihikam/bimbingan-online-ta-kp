@@ -95,6 +95,11 @@ class PengajuanController extends Controller
 
         $pengajuan->save();
 
+        $dosen = Dosen::where('id_dospem', $data['id_dospem'])->first();
+        $dosen->jml_ajuan = $dosen->jml_ajuan + 1;
+
+        $dosen->update();
+
         return redirect()->route('mahasiswa-pengajuan');
     }
 

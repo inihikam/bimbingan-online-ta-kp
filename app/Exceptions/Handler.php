@@ -46,6 +46,7 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
     public function render($request, Throwable $exception)
     {
         if ($exception instanceof UnauthorizedException) {
@@ -55,6 +56,10 @@ class Handler extends ExceptionHandler
                 return redirect()->route('mahasiswa-dashboard');
             } elseif ($user->hasRole('dosen')) {
                 return redirect()->route('dosen-dashboard');
+            } elseif ($user->hasRole('koordinator')) {
+                return redirect()->route('koor-dashboard');
+            } elseif ($user->hasRole('administrator')) {
+                return redirect()->route('admin-dashboard');
             }
 
             auth()->logout();
