@@ -170,5 +170,9 @@
             });
         });
     </script>
-
+    <script>
+    $(document).ready(function() {
+        $('#data-koor').DataTable();
+    });
+    </script>
 @endsection
