@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('pengajuan_sidang', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_mhs');
-            $table->integer('id_dospem');
+            $table->unsignedBigInteger('id_mhs');
+            $table->unsignedBigInteger('id_dsn');
             $table->string('judul');
-            $table->enum('bidang_kajian', ['SC', 'RPLD', 'SKKKD']);
+            $table->enum('bidang_kajian', ['RPLD', 'SC']);
             $table->longText('dokumen');
             $table->timestamps();
+
+            $table->foreign('id_mhs')->references('id')->on('mahasiswa')->cascadeOnDelete();
+            $table->foreign('id_dsn')->references('id')->on('dosen')->cascadeOnDelete();
         });
     }
 

@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_mhs');
+            $table->unsignedBigInteger('id_mhs');
+            $table->unsignedBigInteger('id_dsn');
+            $table->enum('jalur', ['REGULER', 'PUBLIKASI']);
             $table->string('topik');
-            $table->string('judul');
-            $table->enum('bidang_kajian', ['SC', 'RPLD', 'SKKKD']);
-            $table->string('keyword');
+            $table->string('judul')->nullable();
+            $table->enum('bidang_kajian', ['RPLD', 'SC']);
+            $table->string('minat');
             $table->longText('deskripsi');
-            $table->string('catatan');
-            $table->integer('id_dospem');
             $table->enum('status', ['ACC', 'TOLAK', 'PENDING'])->default('PENDING');
             $table->timestamps();
+
+            $table->foreign('id_mhs')->references('id')->on('mahasiswa')->cascadeOnDelete();
+            $table->foreign('id_dsn')->references('id')->on('dosen')->cascadeOnDelete();
         });
     }
 
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_pengajuan');
+        Schema::dropIfExists('pengajuan');
     }
 };
