@@ -10,7 +10,8 @@
                 <p class="mb-3 px-3">Tekan tombol <button type="button" class="btn btn-warning" disabled><i class="fas fa-info-circle"></i></button> untuk melihat detail data koordinator</p>
             </blockquote>
             <div class="d-flex justify-content-between mt-4 mb-3">
-                <button type="button" class="btn btn-outline-success"><i class="fa-solid fa-plus"></i>Import Data</button>
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#dialogTambahKoordinator">
+                    <i class="fa-solid fa-plus"></i>Tambah Data</button>
                 <div class="input-group" style="width: auto;">
                     <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
                     <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>

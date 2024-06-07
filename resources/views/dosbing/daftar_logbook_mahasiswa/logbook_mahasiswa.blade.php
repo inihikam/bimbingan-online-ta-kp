@@ -1,61 +1,74 @@
 @extends('dosbing.layouts.main')
 @section('title', 'Logbook Mahasiswa Bimbingan')
 @section('content')
+
+    <!--Dialog Info Logbook-->
+    @include('dosbing.daftar_logbook_mahasiswa.detail_logbook')
+
     <div class="wrapper d-flex flex-column min-vh-100">
         <div class="container flex-grow-1">
-            <h4 class="mb-4">Daftar Logbook Mahasiswa Bimbingan</h4>
-            <p class="mb-3 d-flex justify-content-between align-items-center">
+            <h3 class="mb-3"><b>Daftar Logbook Mahasiswa Bimbingan</b></h3>
+            <p class="mb-5 d-flex justify-content-between align-items-center">
                 Berikut merupakan daftar logbook mahasiswa bimbingan
             </p>
             <div class="table-container table-logbook">
                 <table class="table table-bordered">
                     <thead class="table-header">
-                    <th class="align-middle">No.</th>
-                    <th class="align-middle">Tanggal</th>
+                    <th class="align-middle">No</th>
+                    <th class="align-middle">NIM</th>
                     <th class="align-middle">Nama Mahasiswa</th>
-                    <th class="align-middle">Uraian Bimbingan</th>
+                    <th class="align-middle">Jumlah Bimbingan</th>
                     <th class="align-middle">Bab Terakhir</th>
-                    <th class="align-middle">Dokumen</th>
-                    <th class="align-middle">Status</th>
+                    <th class="align-middle">Logbook</th>
                     </thead>
-                    @foreach ($logbook as $lbmhs)
-                        @php
-                            $statusMhs = $status->where('id_mhs', $lbmhs->id_mhs)->first();
-                            $detailMhs = $mahasiswa->where('nim', $statusMhs->nim)->first();
-                        @endphp
-                        <tr>
-                            <td class="centered-column">{{ $loop->iteration }}</td>
-                            <td class="centered-column">{{ $lbmhs->tanggal_bimbingan }}</td>
-                            <td>{{ $detailMhs->nama }}</td>
-                            <td class="content-column">{{ $lbmhs->uraian_bimbingan }}</td>
-                            <td class="centered-column">Bab {{ $lbmhs->bab_terakhir_bimbingan }}</td>
-                            <td class="centered-column"><a href="{{ $lbmhs->dokumen }}" target="_blank">Dokumen</a></td>
-                            @if ($lbmhs->status_logbook == 'PENDING')
-                                <td class="centered-column">
-                                    <form action="{{ route('update-dosbing-logbook') }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="id_logbook" value="{{ $lbmhs->id_logbook }}">
-                                        <button type="submit" name="status" class="btn btn-success" value="ACC"><i
-                                                class="fa-regular fa-circle-check"></i></button>
-                                        <button type="submit" name="status" class="btn btn-danger" value="REVISI"><i
-                                                class="fa-regular fa-circle-xmark"></i></button>
-                                    </form>
-                                </td>
-                            @elseif ($lbmhs->status_logbook == 'ACC')
-                                <td class="centered-column">
-                                    <button type="status" class="btn btn-success rounded-5">{{ $lbmhs->status_logbook }}
-                                        <i class="fas fa-check icon-dark-acc"></i>
-                                    </button>
-                                </td>
-                            @elseif ($lbmhs->status_logbook == 'REVISI')
-                                <td class="centered-column">
-                                    <button type="status" class="btn btn-danger rounded-5">{{ $lbmhs->status_logbook }}
-                                        <i class="fas fa-times icon-dark-no"></i>
-                                    </button>
-                                </td>
-                            @endif
-                        </tr>
-                    @endforeach
+{{--                    @foreach ($logbook as $lbmhs)--}}
+{{--                        @php--}}
+{{--                            $statusMhs = $status->where('id_mhs', $lbmhs->id_mhs)->first();--}}
+{{--                            $detailMhs = $mahasiswa->where('nim', $statusMhs->nim)->first();--}}
+{{--                        @endphp--}}
+{{--                        <tr>--}}
+{{--                            <td class="centered-column">{{ $loop->iteration }}</td>--}}
+{{--                            <td class="centered-column">{{ $lbmhs->tanggal_bimbingan }}</td>--}}
+{{--                            <td>{{ $detailMhs->nama }}</td>--}}
+{{--                            <td class="content-column">{{ $lbmhs->uraian_bimbingan }}</td>--}}
+{{--                            <td class="centered-column">Bab {{ $lbmhs->bab_terakhir_bimbingan }}</td>--}}
+{{--                            <td class="centered-column"><a href="{{ $lbmhs->dokumen }}" target="_blank">Dokumen</a></td>--}}
+{{--                            @if ($lbmhs->status_logbook == 'PENDING')--}}
+{{--                                <td class="centered-column">--}}
+{{--                                    <form action="{{ route('update-dosbing-logbook') }}" method="post">--}}
+{{--                                        @csrf--}}
+{{--                                        <input type="hidden" name="id_logbook" value="{{ $lbmhs->id_logbook }}">--}}
+{{--                                        <button type="submit" name="status" class="btn btn-success" value="ACC"><i--}}
+{{--                                                class="fa-regular fa-circle-check"></i></button>--}}
+{{--                                        <button type="submit" name="status" class="btn btn-danger" value="REVISI"><i--}}
+{{--                                                class="fa-regular fa-circle-xmark"></i></button>--}}
+{{--                                    </form>--}}
+{{--                                </td>--}}
+{{--                            @elseif ($lbmhs->status_logbook == 'ACC')--}}
+{{--                                <td class="centered-column">--}}
+{{--                                    <button type="status" class="btn btn-success rounded-5">{{ $lbmhs->status_logbook }}--}}
+{{--                                        <i class="fas fa-check icon-dark-acc"></i>--}}
+{{--                                    </button>--}}
+{{--                                </td>--}}
+{{--                            @elseif ($lbmhs->status_logbook == 'REVISI')--}}
+{{--                                <td class="centered-column">--}}
+{{--                                    <button type="status" class="btn btn-danger rounded-5">{{ $lbmhs->status_logbook }}--}}
+{{--                                        <i class="fas fa-times icon-dark-no"></i>--}}
+{{--                                    </button>--}}
+{{--                                </td>--}}
+{{--                            @endif--}}
+{{--                        </tr>--}}
+{{--                    @endforeach--}}
+                    <tr class="centered-column">
+                        <td>1</td>
+                        <td>A11.2021.13550</td>
+                        <td>Muhammad Maulana Hikam</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#dialogDetailLogbook">Dokumen</a>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
