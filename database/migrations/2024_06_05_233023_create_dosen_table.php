@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pengajuan_sidang', function (Blueprint $table) {
-            $table->integer('jadwal_sidang')->nullable()->after('dokumen');
+        Schema::create('dosen', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('npp');
+            $table->string('email');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pengajuan_sidang', function (Blueprint $table) {
-            $table->dropColumn('jadwal_sidang');
-        });
+        Schema::dropIfExists('dosen');
     }
 };

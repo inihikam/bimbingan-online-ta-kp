@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,14 +88,14 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
     Route::post('/importDosen', [ImportDosen::class, 'import'])->name('import-dosen');
     Route::post('/addmahasiswa', [MahasiswaController::class, 'store'])->name('mahasiswa.store');
     Route::delete('/deletemahasiswa/{id}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
+    Route::get('/tentangKoor', [AboutController::class, 'mahasiswa'])->name('koor-tentang');
 });
 
- // ADMINISTRATOR
+// ADMINISTRATOR
 Route::middleware(['auth', 'role:administrator'])->group(function () {
-
+    Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
+    Route::get('/dataKoordinator', [AdministratorController::class, 'data_koordinator'])->name('data-koordinator');
+    Route::get('/detailKoordinator', [AdministratorController::class, 'detail_koordinator'])->name('detail-koordinator');
+    Route::get('/aboutAdmin', [AdministratorController::class, 'about'])->name('admin-about');
 });
 
-Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
-Route::get('/dataKoordinator', [AdministratorController::class, 'data_koordinator'])->name('data-koordinator');
-Route::get('/detailKoordinator', [AdministratorController::class, 'detail_koordinator'])->name('detail-koordinator');
-Route::get('/about', [AdministratorController::class, 'about'])->name('admin-about');

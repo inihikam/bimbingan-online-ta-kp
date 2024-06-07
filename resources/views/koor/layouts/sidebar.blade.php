@@ -36,7 +36,7 @@
             </li>-->
         </ul>
         <div class="sidebar-footer">
-            <a href="{{ route('tentang') }}" class="sidebar-link">
+            <a href="{{ route('koor-tentang') }}" class="sidebar-link">
                 <i class="lni lni-code-alt"></i>
                 <span>Tentang</span>
             </a>

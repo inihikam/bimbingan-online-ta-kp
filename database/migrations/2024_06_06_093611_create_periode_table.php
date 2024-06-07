@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Menambahkan default value dari id_dospem pada tabel status mahasiswa
-        Schema::table('status_mahasiswa', function (Blueprint $table) {
-            $table->integer('id_dospem')->default(0)->change();
+        Schema::create('periode', function (Blueprint $table) {
+            $table->id();
+            $table->string('tahun_ajaran');
+            $table->timestamps();
         });
     }
 
@@ -22,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('status_mahasiswa', function (Blueprint $table) {
-            $table->integer('id_dospem')->change();
-        });
+        Schema::dropIfExists('periode');
     }
 };

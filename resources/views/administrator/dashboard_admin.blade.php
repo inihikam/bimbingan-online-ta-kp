@@ -8,7 +8,7 @@
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..."
-                           aria-describedby="btnNavbarSearch" />
+                           aria-describedby="btnNavbarSearch"/>
                     <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
@@ -21,7 +21,7 @@
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                         <li>
-                            <hr class="dropdown-divider" />
+                            <hr class="dropdown-divider"/>
                         </li>
                         <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                     </ul>
@@ -30,9 +30,9 @@
         </nav>
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4"><b>Welcome, DEFRI KURNIAWAN, M.Kom!</b></h1>
+                <h1 class="mt-4"><b>Dashboard</b></h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item active"></li>
                 </ol>
             </div>
         </main>
