@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('periode', function (Blueprint $table) {
             $table->id();
             $table->string('tahun_ajaran');
+            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('INACTIVE');
             $table->timestamps();
         });
     }

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('nama');
             $table->string('npp');
             $table->string('email');
+            $table->enum('bidang_kajian', ['SC', 'RPLD']);
+            $table->longText('scholar')->nullable();
             $table->timestamps();
         });
     }

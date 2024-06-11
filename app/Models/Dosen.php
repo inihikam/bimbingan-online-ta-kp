@@ -8,22 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Dosen extends Model
 {
     use HasFactory;
-
-    protected $table = 'dosen_pembimbing';
-    protected $primaryKey = 'id_dospem';
+    protected $table = 'dosen';
     protected $fillable = [
-        'id_dospem',
         'nama',
         'npp',
-        'bidang_kajian',
-        'kuota_mhs_ta',
-        'jml_ajuan',
-        'acc_ajuan',
-        'sisa_kuota',
-        'status_dospem',
         'email',
-        'telp_dosen',
-        'photo',
+        'bidang_kajian',
         'scholar'
     ];
 

@@ -25,7 +25,6 @@ class StatusMahasiswa extends Model
         'periode_sidang',
         'jadwal_sidang',
     ];
-
     public function mahasiswa()
     {
         return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');

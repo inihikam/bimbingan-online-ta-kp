@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_mhs');
             $table->unsignedBigInteger('id_dsn');
             $table->date('tanggal');
+            $table->integer('bab');
             $table->longText('uraian');
             $table->longText('dokumen');
             $table->enum('status', ['ACC', 'REVISI', 'PENDING'])->default('PENDING');
