@@ -13,8 +13,7 @@ class StatusMahasiswa extends Model
     protected $primaryKey = 'id_mhs';
     protected $fillable = [
         'id_mhs',
-        'id_dospem',
-        'nim',
+        'id_dsn',
         'ta_1',
         'ta_2',
         'bab_terakhir',
@@ -22,8 +21,6 @@ class StatusMahasiswa extends Model
         'status',
         'sidang_ta_1',
         'sidang_ta_2',
-        'periode_sidang',
-        'jadwal_sidang',
     ];
     public function mahasiswa()
     {
@@ -41,13 +38,5 @@ class StatusMahasiswa extends Model
     public function pengajuan()
     {
         return $this->hasMany(Pengajuan::class, 'id_mhs', 'id_mhs');
-    }
-    public function periodeSidang()
-    {
-        return $this->belongsTo(JadwalSidang::class, 'periode_sidang', 'periode');
-    }
-    public function jadwalSidang()
-    {
-        return $this->belongsTo(DetailSidang::class, 'jadwal_sidang', 'id');
     }
 }
