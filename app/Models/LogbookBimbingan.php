@@ -9,26 +9,22 @@ class LogbookBimbingan extends Model
 {
     use HasFactory;
 
-    protected $table = 'logbook_bimbingan';
+    protected $table = 'logbook';
     protected $fillable = [
-        'id_logbook',
         'id_mhs',
-        'id_dospem',
-        'tanggal_bimbingan',
-        'uraian_bimbingan',
-        'bab_terakhir_bimbingan',
-        'status_logbook',
-        'checklist',
-        'dokumen'
+        'id_dsn',
+        'tanggal',
+        'bab',
+        'uraian',
+        'dokumen',
+        'status',
     ];
-
-    protected $primaryKey = 'id_logbook';
     public function mahasiswa()
     {
-        return $this->belongsTo(StatusMahasiswa::class, 'id_mhs', 'id_mhs');
+        return $this->belongsTo(StatusMahasiswa::class, 'id_mhs', 'id');
     }
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class, 'id_dospem', 'id_dospem');
+        return $this->belongsTo(Dosen::class, 'id_dsn', 'id');
     }
 }
