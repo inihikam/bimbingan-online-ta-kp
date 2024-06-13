@@ -32,13 +32,8 @@
                         <p class="mb-3">Klik tombol panah <button type="button" class="btn btn-warning"><i
                                     class="fas fa-chevron-circle-right"></i></button> untuk memilih dosen pembimbing</p>
                     </blockquote>
-                    <div class="input-group justify-content-end mb-3">
-                        <input type="text" class="form-control" placeholder="Cari Dosen">
-                        <div class="input-group-append"><button class="btn btn-primary"><i
-                                    class="fas fa-search"></i></button></div>
-                    </div>
                     <div class="table-container table-dosbing">
-                        <table class="table table-bordered mb-1">
+                        <table id="data-dosen" class="table table-bordered mb-1">
                             <thead class="table-header">
                                 <th>No</th>
                                 <th>NPP</th>
@@ -210,3 +205,13 @@
         });
     </script>
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#data-dosen').DataTable();
+    });
+</script>
