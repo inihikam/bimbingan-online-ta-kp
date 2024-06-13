@@ -40,3 +40,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#data-detail').DataTable();
+    });
+</script>
