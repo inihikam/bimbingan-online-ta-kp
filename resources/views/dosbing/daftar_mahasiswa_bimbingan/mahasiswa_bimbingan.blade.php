@@ -4,14 +4,14 @@
     <div class="wrapper d-flex flex-column min-vh-100">
         <div class="container flex-grow-1">
             <h3 class="mb-3"><b>Daftar Pengajuan Mahasiswa Bimbingan</b></h3>
-            <p class="mb-2">Berikut ini adalah daftar pengajuan mahasiswa bimbingan</p>
-            <div class="input-group justify-content-end mb-3">
-                <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..."
-                       aria-describedby="btnNavbarSearch" />
-                <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-            </div>
-            <div class="table-container table-dosbing">
-                <table class="table table-bordered mb-1">
+            <p class="mb-5">Berikut ini adalah daftar pengajuan mahasiswa bimbingan</p>
+{{--            <div class="input-group justify-content-end mb-3">--}}
+{{--                <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..."--}}
+{{--                       aria-describedby="btnNavbarSearch" />--}}
+{{--                <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>--}}
+{{--            </div>--}}
+            <div class="table-container table-dosbing" >
+                <table class="table table-bordered mb-1" id="table-log">
                     <thead class="table-header">
                     <th>No</th>
                     <th>NIM</th>
@@ -87,14 +87,54 @@
         </footer>
     </div>
 
+    <!-- Modal Alasan Penolakan -->
+    <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="rejectModalLabel">Alasan Penolakan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="rejectForm">
+                        @csrf
+                        <input type="hidden" name="id" id="rejectId">
+                        <div class="mb-3">
+                            <label for="reason" class="form-label">Keterangan</label>
+                            <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var deleteButtons = document.querySelectorAll('.delete-button');
+            var rejectForm = document.getElementById('rejectForm');
+            var rejectModal = new bootstrap.Modal(document.getElementById('rejectModal'));
+
             deleteButtons.forEach(function(button) {
                 button.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var id = event.target.closest('tr').querySelector('td:first-child').textContent;
+                    document.getElementById('rejectId').value = id;
+                    rejectModal.show();
+                });
+            });
+
+            rejectForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                var reason = document.getElementById('reason').value;
+
+                if (reason) {
                     Swal.fire({
-                        title: 'Pengajuan ingin ditolak?',
-                        text: "Pengajuan ditolak tidak dapat dikembalikan!",
+                        title: 'Apakah Anda yakin?',
+                        text: "Alasan penolakan: " + reason,
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -118,8 +158,24 @@
                             );
                         }
                     });
-                });
+                } else {
+                    Swal.fire(
+                        'Error!',
+                        'Alasan penolakan harus diisi.',
+                        'error'
+                    );
+                }
             });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        // Inisialisasi DataTables
+        $(document).ready(function () {
+            $('#table-log').DataTable();
         });
     </script>
 @endsection

@@ -45,7 +45,7 @@
         deleteButtons.forEach(function(button) {
             button.addEventListener('click', function(event) {
                 Swal.fire({
-                    title: 'Logbook ingin ditolak?',
+                    title: 'Apakah Anda Yakin?',
                     text: "Logbook yang ditolak tidak dapat dikembalikan!",
                     icon: 'warning',
                     showCancelButton: true,

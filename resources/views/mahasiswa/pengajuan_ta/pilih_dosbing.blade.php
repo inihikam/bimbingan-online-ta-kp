@@ -94,8 +94,8 @@
                                     <th>Aksi</th>
                                 </thead>
                                 <tr id="dosen-dipilih">
-                                    <td class="centered-column" id="npp">{{ $dospil->npp }}</td>
-                                    <td id="nama">{{ $dospil->nama }}</td>
+                                    <td class="centered-column" id="npp">{{ $dos->npp }}</td>
+                                    <td id="nama">{{ $dos->nama }}</td>
                                     <td class="centered-column"><button type="button" class="btn btn-danger"
                                             id="hapusDosenBtn"><i class="fas fa-trash" data-bs-toggle="modal"
                                                 data-bs-target="#hapusDosbingModal"></i></button></td>
