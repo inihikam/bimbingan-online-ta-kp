@@ -13,20 +13,20 @@ class Pengajuan extends Model
 
     protected $fillable = [
         'id_mhs',
+        'id_dsn',
         'jalur',
         'topik',
         'judul',
         'bidang_kajian',
-        'keyword',
+        'minat',
         'deskripsi',
-        'catatan',
-        'id_dosen',
         'status',
+        'alasan',
     ];
 
     public function dosen()
     {
-        return $this->belongsTo(Dosen::class, 'id_dosen', 'id_dospem');
+        return $this->belongsTo(Dosen::class, 'id_dsn', 'id');
     }
     public function mahasiswa()
     {

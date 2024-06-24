@@ -14,26 +14,31 @@ class Dosen extends Model
         'npp',
         'email',
         'bidang_kajian',
-        'scholar'
+        'scholar',
+        'telp'
     ];
 
     public function logbook()
     {
-        return $this->hasMany(LogbookBimbingan::class, 'id_dospem', 'id_dospem');
+        return $this->hasMany(LogbookBimbingan::class, 'id_dsn', 'id');
     }
 
     public function mahasiswa()
     {
-        return $this->hasMany(StatusMahasiswa::class, 'id_dospem', 'id_dospem');
+        return $this->hasMany(StatusMahasiswa::class, 'id_dsn', 'id');
     }
 
     public function pengajuan()
     {
-        return $this->hasMany(Pengajuan::class, 'id_dospem', 'id_dospem');
+        return $this->hasMany(Pengajuan::class, 'id_dsn', 'id');
     }
 
     public function user()
     {
         return $this->hasOne(Dosen::class, 'email', 'email');
+    }
+    public function dosenPeriodik()
+    {
+        return $this->hasMany(DosenPeriodik::class, 'id_dsn', 'id');
     }
 }

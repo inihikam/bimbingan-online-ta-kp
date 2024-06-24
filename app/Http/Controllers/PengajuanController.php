@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DosenPeriodik;
+use App\Models\Periode;
+use App\Models\StatusDosen;
 use Illuminate\Http\Request;
 use App\Models\Dosen;
 use App\Models\HistoryPengajuan;
@@ -16,26 +19,28 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        $dosens = Dosen::paginate(10);
+        $periode = Periode::where('status', true)->first();
+        $dsnPeriod = DosenPeriodik::where('id_periode', $periode->id)->with('dosen', 'status')->get();
         $mhs = Mahasiswa::where('email', auth()->user()->email)->first();
-        $status = StatusMahasiswa::where('nim', $mhs->nim)->first();
-        $history = HistoryPengajuan::where('id_mhs', $status->id_mhs)->get();
+        $status = StatusMahasiswa::where('id_mhs', $mhs->id)->first();
+        $history = Pengajuan::where('id_mhs', $status->id_mhs)->where('status', 'TOLAK')->get();
         $data = false;
         if (Pengajuan::where('id_mhs', $status->id_mhs)->first() != null) {
-            $pengajuan = Pengajuan::where('id_mhs', $status->id_mhs)->first();
-            $dospil = Dosen::where('id_dospem', $pengajuan->id_dospem)->first();
+            $pengajuan = Pengajuan::where('id_mhs', $status->id_mhs)
+            ->whereIn('status', ['ACC', 'PENDING'])->first();
+            $dospil = Dosen::where('id', $pengajuan->id_dsn)->first();
             return view('mahasiswa.pengajuan_ta.draft_pengajuan_ta', compact(
-                'dosens',
+                'dsnPeriod',
                 'mhs',
                 'status',
                 'pengajuan',
-                'dospil',
                 'history',
+                'dospil',
                 'data'
             ));
         }
 
-        return view('mahasiswa.pengajuan_ta.pilih_dosbing', compact('dosens', 'status'));
+        return view('mahasiswa.pengajuan_ta.pilih_dosbing', compact('dsnPeriod', 'status'));
     }
 
     public function form(Request $request)
@@ -48,9 +53,9 @@ class PengajuanController extends Controller
     {
         $data = $request->all();
         $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
-        $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
-        $dospil = Dosen::where('id_dospem', $data['id_dospem'])->first();
-        $history = HistoryPengajuan::with('dosen')->where('id_mhs', $status->id_mhs)->get();
+        $status = StatusMahasiswa::where('id_mhs', $mahasiswa->id)->first();
+        $dospil = Dosen::where('id', $data['id_dospem'])->first();
+        $history = Pengajuan::with('dosen')->where('id_mhs', $status->id_mhs)->where('status', 'TOLAK')->get();
         return view('mahasiswa.pengajuan_ta.draft_pengajuan_ta', compact(
             'data',
             'mahasiswa',
@@ -80,7 +85,7 @@ class PengajuanController extends Controller
     {
         $data = $request->all();
         $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
-        $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
+        $status = StatusMahasiswa::where('id_mhs', $mahasiswa->id)->first();
 
         $pengajuan = new Pengajuan();
         $pengajuan->id_mhs = $status->id_mhs;
@@ -88,18 +93,24 @@ class PengajuanController extends Controller
         $pengajuan->topik = $data['topik'];
         $pengajuan->judul = $data['judul'];
         $pengajuan->bidang_kajian = $data['bidang_kajian'];
-        $pengajuan->keyword = $data['keyword'];
+        $pengajuan->minat = $data['minat'];
         $pengajuan->deskripsi = $data['deskripsi'];
-        $pengajuan->catatan = $data['catatan'];
-        $pengajuan->id_dospem = $data['id_dospem'];
+        $pengajuan->id_dsn = $data['id_dsn'];
 
         $pengajuan->save();
 
-        $dosen = Dosen::where('id_dospem', $data['id_dospem'])->first();
-        $dosen->jml_ajuan = $dosen->jml_ajuan + 1;
+        $periode = Periode::where('status', true)->first();
+        $dosenPeriodik = DosenPeriodik::where('id_periode', $periode->id)->where('id_dsn', $data['id_dsn'])->first();
+        $statusDosen = StatusDosen::where('id_period', $dosenPeriodik->id)->first();
+        $statusDosen->ajuan = $statusDosen->ajuan + 1;
 
-        $dosen->update();
+        $statusDosen->update();
 
+        activity()
+            ->inLog('Pengajuan')
+            ->causedBy($mahasiswa)
+            ->subject($pengajuan->id_dsn)
+            ->log('melakukan pengajuan tugas akhir');
         return redirect()->route('mahasiswa-pengajuan');
     }
 

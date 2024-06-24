@@ -53,6 +53,12 @@ class DataMhsKoor extends Controller
 
         $mahasiswa->update();
 
+        activity()
+            ->inLog('Data Mahasiswa')
+            ->causedBy(auth()->user())
+            ->subject($mahasiswa)
+            ->log('Mengubah data mahasiswa');
+
         return redirect()->route('koor-data-mahasiswa');
     }
 
@@ -83,6 +89,12 @@ class DataMhsKoor extends Controller
             $user->assignRole('mahasiswa');
         }
 
+        activity()
+            ->inLog('Data Mahasiswa')
+            ->causedBy(auth()->user())
+            ->subject($mahasiswa)
+            ->log('Menambahkan data mahasiswa');
+
         return redirect()->route('koor-data-mahasiswa');
     }
 
@@ -90,6 +102,12 @@ class DataMhsKoor extends Controller
     {
         $mahasiswa = Mahasiswa::where('nim', $request->nim)->first();
         $user = User::where('email', $mahasiswa->email)->first();
+
+        activity()
+            ->inLog('Data Mahasiswa')
+            ->causedBy(auth()->user())
+            ->log('Menghapus data mahasiswa dengan nama ' . $mahasiswa->nama);
+
         $user->delete();
         $mahasiswa->delete();
 

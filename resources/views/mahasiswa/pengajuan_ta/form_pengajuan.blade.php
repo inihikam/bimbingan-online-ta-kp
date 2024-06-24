@@ -32,7 +32,7 @@
                     </blockquote>
                     <form action="{{ route('mahasiswa-pengajuan-draft') }}" method="GET">
                         @csrf
-                        <input type="hidden" name="id_dospem" value="{{ $data['id_dospem'] }}">
+                        <input type="hidden" name="id_dospem" value="{{ $data['id_dsn'] }}">
                         <!-- jalur TA -->
                         <div class="form-group row mb-3">
                             <label for="inputTopik" class="col-sm-2 col-form-label">Jalur <span
@@ -99,8 +99,8 @@
                             <label for="inputKeyword" class="col-sm-2 col-form-label">Minat<span
                                     class="required">*</span></label>
                             <div class="col-sm-10">
-                                <input type="keyword" name="keyword" class="form-control" id="inputKeyword"
-                                    placeholder="Masukkan minat anda untuk TA" value="{{ $data['keyword'] }}">
+                                <input type="keyword" name="minat" class="form-control" id="inputKeyword"
+                                    placeholder="Masukkan minat anda untuk TA" value="{{ $data['minat'] }}">
                                 <div id="keywordHelp" class="form-text">
                                     Pisahkan antar kata dengan tanda semikolon ( ; ).
                                 </div>
@@ -112,12 +112,6 @@
                             <div class="col-sm-10">
                                 <input type="deskripsi" name="deskripsi" class="form-control" id="inputDeskripsi"
                                     placeholder="Masukkan Deskripsi" value="{{ $data['deskripsi'] }}">
-                            </div>
-                        </div>
-                        <div class="form-group row mb-3">
-                            <label for="inputCatatan" class="col-sm-2 col-form-label">Catatan</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control" name="catatan" id="inputCatatan" rows="3" placeholder="Masukkan Catatan">{{ $data['catatan'] }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row mb-3 justify-content-end">

@@ -39,36 +39,34 @@ class DatabaseSeeder extends Seeder
         Mahasiswa::create([
             'nim' => 'A11.2021.13550',
             'nama' => 'Muhammad Maulana Hikam',
-            'ipk' => 3.84,
-            'transkrip_nilai' => 'https://www.google.com',
-            'telp_mhs' => '082243539209',
+            'ipk' => 3.89,
+            'transkrip' => 'https://www.google.com',
+            'telp' => '082243539209',
             'email' => '111202113550@mhs.dinus.ac.id',
-            'dosen_wali' => 'EKO HARI RACHMAWANTO, M.Kom',
         ]);
 
         // Seed data Dosen
         Dosen::create([
             'nama' => 'ARDYTHA LUTHFIARTA, M.Kom',
             'npp' => '0686.11.2012.460',
-            'bidang_kajian' => 'SC',
-            'kuota_mhs_ta' => 3,
-            'jml_ajuan' => 0,
-            'acc_ajuan' => 0,
-            'status_dospem' => 'AVAILABLE',
             'email' => 'ardytha.luthfiarta@dsn.dinus.ac.id',
-            'telp_dosen' => '081325105905',
+            'bidang_kajian' => 'SC',
+            'scholar' => 'https://scholar.google.com/citations?user=hJuwBL8AAAAJ&hl=id&oi=ao',
+            'telp' => '081325105905',
         ]);
 
-        Dosen::create([
-            'nama' => 'ADHITYA NUGRAHA, S.Kom, M.CS',
-            'npp' => '0686.11.2012.444',
-            'bidang_kajian' => 'RPLD',
-            'kuota_mhs_ta' => 2,
-            'jml_ajuan' => 1,
-            'acc_ajuan' => 0,
-            'status_dospem' => 'AVAILABLE',
-            'email' => 'adhitya@dsn.dinus.ac.id',
-            'telp_dosen' => '085640577111',
+        $this->call([
+            PeriodeSeeder::class,
+            RoleSeeder::class,
+            UserRoles::class,
+            KoordinatorSeeder::class,
+            KoordinatorRoles::class,
+            AdminSeeder::class,
+            AdminSeederRoles::class,
+            StatusMahasiswaSeeder::class,
+            MahasiswaPeriodikSeeder::class,
+            DosenPeriodikSeeder::class,
+            StatusDosenSeeder::class
         ]);
     }
 }

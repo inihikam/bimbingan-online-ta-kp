@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('judul')->nullable();
             $table->enum('bidang_kajian', ['RPLD', 'SC']);
             $table->string('minat');
-            $table->longText('deskripsi');
+            $table->longText('deskripsi')->nullable();
             $table->enum('status', ['ACC', 'TOLAK', 'PENDING'])->default('PENDING');
+            $table->longText('alasan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_mhs')->references('id')->on('mahasiswa')->cascadeOnDelete();

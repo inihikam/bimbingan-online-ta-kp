@@ -47,7 +47,7 @@ class DataDsnKoor extends Controller
     public function update(Request $request)
     {
         $data = $request->all();
-        $dosen = Dosen::where('id_dospem', $data['id_dospem'])->first();
+        $dosen = Dosen::where('id_dsn', $data['id_dsn'])->first();
 
         $dosen->npp = $data['npp'];
         $dosen->nama = $data['nama'];

@@ -11,7 +11,7 @@
                         <p class="mb-3">Form dengan tanda asterik (<span class="required">*</span>) wajib diisi.</p>
                     </blockquote>
                     @isset($ds)
-                        <form method="POST" action="{{ route('koor-data-dospem-update', ['id' => $ds->id_dospem]) }}"
+                        <form method="POST" action="{{ route('koor-data-dospem-update', ['id' => $ds->id_dsn]) }}"
                             enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id_dospem" id="inputDospem" value="">

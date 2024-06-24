@@ -39,30 +39,31 @@
                                 <th>NPP</th>
                                 <th>Nama Dosen</th>
                                 <th>Sisa Kuota</th>
+                                <th>Jumlah Ajuan</th>
                                 <th>Aksi</th>
                             </thead>
-                            @foreach ($dosens as $dos)
+                            @foreach ($dsnPeriod as $dos)
                                 <tr>
                                     <td class="centered-column">{{ $loop->iteration }}</td>
-                                    <td class="centered-column">{{ $dos->npp }}</td>
-                                    <td>{{ $dos->nama }}</td>
-                                    <td class="centered-column">{{ $dos->sisa_kuota }}</td>
+                                    <td class="centered-column">{{ $dos->dosen->npp }}</td>
+                                    <td>{{ $dos->dosen->nama }}</td>
+                                    <td class="centered-column">{{ $dos->status->kuota }}</td>
+                                    <td class="centered-column">{{ $dos->status->ajuan }}</td>
                                     <form action="{{ route('mahasiswa-pengajuan-form') }}" method="GET">
                                         @csrf
-                                        <input type="hidden" name="id_dospem" value="{{ $dos->id_dospem }}">
+                                        <input type="hidden" name="id_dsn" value="{{ $dos->id }}">
                                         <input type="hidden" name="jalur">
                                         <input type="hidden" name="topik">
                                         <input type="hidden" name="judul">
                                         <input type="hidden" name="bidang_kajian">
-                                        <input type="hidden" name="keyword">
+                                        <input type="hidden" name="minat">
                                         <input type="hidden" name="deskripsi">
-                                        <input type="hidden" name="catatan">
                                         <td class="centered-column">
                                             <!-- button info dosbing -->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#infoDosbingModal" data-id="{{ $dos->id_dospem }}"><i
+                                                data-bs-target="#infoDosbingModal" data-id="{{ $dos->dosen->id }}"><i
                                                     class="fas fa-info-circle"></i></button>
-                                            <button type="submit" class="btn btn-warning" value="{{ $dos->id_dospem }}"><i
+                                            <button type="submit" class="btn btn-warning" value="{{ $dos->dosen->id }}"><i
                                                     class="fas fa-chevron-circle-right"></i></button>
                                         </td>
                                     </form>
@@ -70,7 +71,6 @@
                             @endforeach
                         </table>
                     </div>
-                    {{ $dosens->links() }}
                     {{-- <nav aria-label="pageNavigationDosbing">
                     <ul class="pagination justify-content-end">
                         <li class="page-item disabled">
@@ -192,10 +192,11 @@
                         detailModal.querySelector('#bidang_kajian').setAttribute('value', data
                             .bidang_kajian);
                         detailModal.querySelector('#email').setAttribute('value', data.email);
-                        detailModal.querySelector('#telp_dosen').setAttribute('value', data.telp_dosen);
+                        detailModal.querySelector('#telp_dosen').setAttribute('value', data.telp);
 
+                        var photo = "https://simpeg.dinus.ac.id/updir/small_med_" + data.npp + ".jpg";
                         var profileLink = detailModal.querySelector('#profile');
-                        profileLink.setAttribute('src', data.photo);
+                        profileLink.setAttribute('src', photo);
 
                         var scholarLink = detailModal.querySelector('#scholar');
                         scholarLink.setAttribute('href', data.scholar);

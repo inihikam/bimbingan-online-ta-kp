@@ -118,12 +118,12 @@
                             <tbody>
                             @foreach ($logbook as $log)
                                 @php
-                                    $statusMhs = $status->where('id_mhs', $log->id_mhs)->first();
-                                    $detailMhs = $mhs->where('nim', $statusMhs->nim)->first();
+//                                    $statusMhs = $status->where('id_mhs', $log->id_mhs)->first();
+//                                    $detailMhs = $mhs->where('nim', $statusMhs->nim)->first();
                                 @endphp
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $detailMhs->nama }}</td>
+                                    <td>{{ $log->mahasiswa->nama }}</td>
                                     <td>{{ $log->uraian_bimbingan }}</td>
                                     <td>{{ $log->tanggal_bimbingan }}</td>
                                 </tr>

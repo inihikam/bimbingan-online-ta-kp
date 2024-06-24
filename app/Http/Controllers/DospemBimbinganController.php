@@ -12,24 +12,36 @@ class DospemBimbinganController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $dosen = Dosen::where('email', $user->email)->first();
-        $logbook = LogbookBimbingan::where('id_dospem', $dosen->id_dospem)->paginate(10);
-        $status = StatusMahasiswa::all();
-        $mahasiswa = Mahasiswa::all();
+        $dosen = Dosen::where('email', auth()->user()->email)->first();
+        $status = StatusMahasiswa::with('mahasiswa')->where('id_dsn', $dosen->id)->get();
 
         return view(
             'dosbing.daftar_logbook_mahasiswa.logbook_mahasiswa',
-            compact('dosen', 'logbook', 'status', 'mahasiswa')
+            compact('dosen', 'status')
         );
     }
-
+    public function detail($id)
+    {
+        $logbook = LogbookBimbingan::where('id_mhs', $id)->get();
+        return response()->json($logbook);
+    }
     public function update(Request $request)
     {
         $logbook = LogbookBimbingan::findOrFail($request->id_logbook);
         $logbook->status_logbook = $request->status;
         $logbook->save();
 
+        activity()
+            ->inLog('logbook')
+            ->causedBy(auth()->user())
+            ->subject($logbook)
+            ->log('Update status logbook');
+
         return redirect()->back();
+    }
+    public function show($id)
+    {
+        $logbook = LogbookBimbingan::where('id_mhs', $id)->get();
+        return response()->json($logbook);
     }
 }

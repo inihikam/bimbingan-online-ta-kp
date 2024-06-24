@@ -9,14 +9,11 @@ use App\Models\StatusMahasiswa;
 
 class SidebarMahasiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         // Mengambil data dari tabel mahasiswa tetapi berdasarkan user yang login karena user tidak ada nama dan tabel user berelasi dengan tabel mahasiswa
         $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
-        $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
+        $status = StatusMahasiswa::where('id_mhs', $mahasiswa->id)->first();
         // Lalu mengambil logbook dari mahasiswa di session sekarang
         $logbook = LogbookBimbingan::where('id_mhs', $status->id_mhs)->get();
 
@@ -45,53 +42,5 @@ class SidebarMahasiswaController extends Controller
     public function tentang()
     {
         return view('mahasiswa.tentang');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

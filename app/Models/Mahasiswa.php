@@ -11,18 +11,13 @@ class Mahasiswa extends Model
     use HasFactory;
 
     protected $table = 'mahasiswa';
-    protected $primaryKey = 'nim';
-    public $incrementing = false;
-    protected $keyType = 'string';
     protected $fillable = [
-        'nim',
         'nama',
-        'ipk',
-        'transkrip_nilai',
-        'telp_mhs',
+        'nim',
         'email',
-        'dosen_wali',
-        'foto',
+        'ipk',
+        'telp',
+        'transkrip',
     ];
     public function user()
     {
@@ -31,5 +26,9 @@ class Mahasiswa extends Model
     public function statusMahasiswa()
     {
         return $this->hasOne(StatusMahasiswa::class, 'nim', 'nim');
+    }
+    public function periode()
+    {
+        return $this->hasMany(MahasiswaPeriodik::class, 'id_mhs', 'id');
     }
 }

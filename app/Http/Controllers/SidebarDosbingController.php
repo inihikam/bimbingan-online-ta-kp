@@ -13,9 +13,8 @@ class SidebarDosbingController extends Controller
     public function index()
     {
         // Mengambil id dosen yang sedang login
-        $email = auth()->user()->email;
-        $dosen = Dosen::where('email', $email)->first();
-        $logbook = LogbookBimbingan::where('id_dospem', $dosen->id_dospem)->get();
+        $dosen = Dosen::where('email', auth()->user()->email)->first();
+        $logbook = LogbookBimbingan::with('mahasiswa')->where('id_dsn', $dosen->id)->get();
         $status = StatusMahasiswa::all();
         $mhs = Mahasiswa::all();
 

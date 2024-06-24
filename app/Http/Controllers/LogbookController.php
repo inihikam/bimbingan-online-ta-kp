@@ -16,8 +16,8 @@ class LogbookController extends Controller
     {
         // Menampilkan data logbook dari tabel logbook dan paginate 10 data per halaman. data logbook sesuai dengan user yang login saat ini
         $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
-        $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
-        $logbook = LogbookBimbingan::where('id_mhs', $status->id_mhs)->paginate(10);
+        $status = StatusMahasiswa::where('id_mhs', $mahasiswa->id)->first();
+        $logbook = LogbookBimbingan::where('id_mhs', $status->id_mhs)->get();
 
         return view('mahasiswa.logbook_ta.logbook_ta', compact('logbook', 'status'));
     }
@@ -38,24 +38,29 @@ class LogbookController extends Controller
     {
         // Menyimpan data logbook yang diinputkan dari form ke dalam tabel logbook
         $mahasiswa = Mahasiswa::where('email', auth()->user()->email)->first();
-        $status = StatusMahasiswa::where('nim', $mahasiswa->nim)->first();
+        $status = StatusMahasiswa::where('id_mhs', $mahasiswa->id)->first();
         $logbook = new LogbookBimbingan();
         $logbook->id_mhs = $status->id_mhs;
-        $logbook->id_dospem = $status->id_dospem;
+        $logbook->id_dsn = $status->id_dsn;
         // Aku ingin mengambil tanggal saat request ini dibuat, di database menggunakan tipe data DATE
-        $logbook->tanggal_bimbingan = date('Y-m-d');
-        $logbook->uraian_bimbingan = $request->uraian_bimbingan;
-        $logbook->bab_terakhir_bimbingan = $request->bab_terakhir_bimbingan;
+        $logbook->tanggal = $request->tanggal;
+        $logbook->bab = $request->bab;
+        $logbook->uraian = $request->uraian;
         $logbook->dokumen = $request->dokumen;
 
         $logbook->save();
 
 //        Mengambil data bab_terakhir_bimbingan paling baru untuk dimasukkan ke dalam tabel status mahasiswa
-        $status->bab_terakhir = $request->bab_terakhir_bimbingan;
+        $status->bab_terakhir = $request->bab;
         $status->jml_bimbingan = LogbookBimbingan::where('id_mhs', $status->id_mhs)->count();
-        
+
         $status->save();
 
+        activity()
+            ->inLog('logbook')
+            ->causedBy($mahasiswa)
+            ->subject($logbook)
+            ->log('menambahkan logbook');
         return redirect()->route('mahasiswa-logbook');
     }
 

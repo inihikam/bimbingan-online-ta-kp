@@ -52,16 +52,12 @@
                                 <td>{{ $data['bidang_kajian'] }}</td>
                             </tr>
                             <tr>
-                                <td>Keyword</td>
-                                <td>{{ $data['keyword'] }}</td>
+                                <td>Minat</td>
+                                <td>{{ $data['minat'] }}</td>
                             </tr>
                             <tr>
                                 <td>Deskripsi</td>
                                 <td>{{ $data['deskripsi'] }}</td>
-                            </tr>
-                            <tr>
-                                <td>Catatan</td>
-                                <td>{{ $data['catatan'] }}</td>
                             </tr>
                             <tr>
                                 <td>Usulan Dosen Pembimbing</td>
@@ -101,16 +97,12 @@
                                 <td>{{ $pengajuan->bidang_kajian }}</td>
                             </tr>
                             <tr>
-                                <td>Keyword</td>
-                                <td>{{ $pengajuan->keyword }}</td>
+                                <td>Minat</td>
+                                <td>{{ $pengajuan->minat }}</td>
                             </tr>
                             <tr>
                                 <td>Deskripsi</td>
                                 <td>{{ $pengajuan->deskripsi }}</td>
-                            </tr>
-                            <tr>
-                                <td>Catatan</td>
-                                <td>{{ $pengajuan->catatan }}</td>
                             </tr>
                             <tr>
                                 <td>Usulan Dosen Pembimbing</td>
@@ -149,10 +141,9 @@
                                 <input type="hidden" name="topik" value="{{ $data['topik'] }}">
                                 <input type="hidden" name="judul" value="{{ $data['judul'] }}">
                                 <input type="hidden" name="bidang_kajian" value="{{ $data['bidang_kajian'] }}">
-                                <input type="hidden" name="keyword" value="{{ $data['keyword'] }}">
+                                <input type="hidden" name="minat" value="{{ $data['minat'] }}">
                                 <input type="hidden" name="deskripsi" value="{{ $data['deskripsi'] }}">
-                                <input type="hidden" name="catatan" value="{{ $data['catatan'] }}">
-                                <input type="hidden" name="id_dospem" value="{{ $data['id_dospem'] }}">
+                                <input type="hidden" name="id_dsn" value="{{ $data['id_dospem'] }}">
                                 <button type="submit" class="btn btn-warning me-2">Edit</button>
                             </form>
                             <form action="{{ route('mahasiswa-pengajuan-submit') }}" method="POST">
@@ -161,10 +152,9 @@
                                 <input type="hidden" name="topik" value="{{ $data['topik'] }}">
                                 <input type="hidden" name="judul" value="{{ $data['judul'] }}">
                                 <input type="hidden" name="bidang_kajian" value="{{ $data['bidang_kajian'] }}">
-                                <input type="hidden" name="keyword" value="{{ $data['keyword'] }}">
+                                <input type="hidden" name="minat" value="{{ $data['minat'] }}">
                                 <input type="hidden" name="deskripsi" value="{{ $data['deskripsi'] }}">
-                                <input type="hidden" name="catatan" value="{{ $data['catatan'] }}">
-                                <input type="hidden" name="id_dospem" value="{{ $data['id_dospem'] }}">
+                                <input type="hidden" name="id_dsn" value="{{ $data['id_dospem'] }}">
                                 <button type="submit" class="btn btn-primary me-2">Ajukan</button>
                             </form>
                         </div>

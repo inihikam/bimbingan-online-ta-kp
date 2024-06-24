@@ -5,7 +5,7 @@
         <h4 class="mb-4">Bimbingan TA</h4>
 
         @php
-            if ($status->id_dospem == 0) {
+            if ($status->id_dsn == 0) {
                 echo '<div class="alert alert-warning" role="alert">
                     Anda belum memiliki dosen pembimbing. Silahkan melakukan pengajuan TA terlebih dahulu.
                 </div>';
@@ -30,14 +30,14 @@
                 @foreach ($logbook as $lb)
                     <tr>
                         <td class="centered-column">{{ $loop->iteration }}</td>
-                        <td class="centered-column">{{ $lb->tanggal_bimbingan }}</td>
-                        <td class="content-column">{{ $lb->uraian_bimbingan }}</td>
-                        <td class="centered-column">{{ $lb->bab_terakhir_bimbingan }}</td>
+                        <td class="centered-column">{{ $lb->tanggal }}</td>
+                        <td class="content-column">{{ $lb->uraian }}</td>
+                        <td class="centered-column">{{ $lb->bab }}</td>
                         <td class="centered-column">
-                            @if ($lb->status_logbook == 'ACC')
+                            @if ($lb->status == 'ACC')
                                 <button type="status" class="btn btn-success rounded-5">ACC
                                 </button>
-                            @elseif ($lb->status_logbook == 'REVISI')
+                            @elseif ($lb->status == 'REVISI')
                                 <button type="status" class="btn btn-danger rounded-5">REVISI
                                 </button>
                             @else
@@ -47,11 +47,11 @@
                         </td>
                         <td class="centered-column">
                             <button type="info" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#dialogDetailLogbook" data-id="{{ $lb->id_logbook }}"><i
+                                data-bs-target="#dialogDetailLogbook" data-id="{{ $lb->id }}"><i
                                     class="fas fa-info-circle"></i></button>
-                            @if ($lb->status_logbook == 'PENDING')
+                            @if ($lb->status == 'PENDING')
                                 <button type="submit" class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#dialogEditLogbook" data-id="{{ $lb->id_logbook }}"><i
+                                    data-bs-target="#dialogEditLogbook" data-id="{{ $lb->id }}"><i
                                         class="far fa-edit"></i></button>
                             @endif
                         </td>
@@ -59,7 +59,6 @@
                 @endforeach
             </table>
         </div>
-        {{ $logbook->links() }}
         {{-- <nav aria-label="pageNavigationLogbook">
             <ul class="pagination justify-content-end">
                 <li class="page-item disabled">
@@ -100,10 +99,10 @@
                     .then(response => response.json())
                     .then(data => {
                         // Update konten modal dengan data yang diterima dari backend
-                        detailModal.querySelector('.date').textContent = data.tanggal_bimbingan;
-                        detailModal.querySelector('.uraian').textContent = data.uraian_bimbingan;
-                        detailModal.querySelector('.bab').textContent = data.bab_terakhir_bimbingan;
-                        detailModal.querySelector('.status').textContent = data.status_logbook;
+                        detailModal.querySelector('.date').textContent = data.tanggal;
+                        detailModal.querySelector('.uraian').textContent = data.uraian;
+                        detailModal.querySelector('.bab').textContent = data.bab;
+                        detailModal.querySelector('.status').textContent = data.status;
                         detailModal.querySelector('.dokumen').textContent = data.dokumen;
 
                         var linkDokumen = detailModal.querySelector('#linkDokumen');
@@ -126,9 +125,9 @@
                 fetch('/logbook/' + logbookId)
                     .then(response => response.json())
                     .then(data => {
-                        editModal.querySelector('#inputTanggal').value = data.tanggal_bimbingan;
-                        editModal.querySelector('#inputCatatan').value = data.uraian_bimbingan;
-                        editModal.querySelector('#inputBidang').value = data.bab_terakhir_bimbingan;
+                        editModal.querySelector('#inputTanggal').value = data.tanggal;
+                        editModal.querySelector('#inputCatatan').value = data.uraian;
+                        editModal.querySelector('#inputBidang').value = data.bab;
                         editModal.querySelector('#inputDok').value = data.dokumen;
                     })
                     .catch(error => console.error('Error:', error));

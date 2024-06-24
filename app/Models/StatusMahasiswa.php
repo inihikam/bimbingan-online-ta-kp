@@ -24,7 +24,7 @@ class StatusMahasiswa extends Model
     ];
     public function mahasiswa()
     {
-        return $this->belongsTo(Mahasiswa::class, 'nim', 'nim');
+        return $this->belongsTo(Mahasiswa::class, 'id_mhs', 'id');
     }
 
     public function logbook()
@@ -33,7 +33,7 @@ class StatusMahasiswa extends Model
     }
     public function dospem()
     {
-        return $this->belongsTo(Dosen::class, 'id_dospem', 'id_dospem');
+        return $this->belongsTo(Dosen::class, 'id_dsn', 'id');
     }
     public function pengajuan()
     {

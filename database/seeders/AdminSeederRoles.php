@@ -13,7 +13,7 @@ class AdminSeederRoles extends Seeder
      */
     public function run(): void
     {
-        $user = User::find(34);
-        $user->assignRole('administrator');
+        $user = User::find(4);
+        $user->assignRole('admin');
     }
 }

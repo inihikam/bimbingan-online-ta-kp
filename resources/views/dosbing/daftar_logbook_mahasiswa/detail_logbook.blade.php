@@ -12,23 +12,28 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
+                            <th>Bab</th>
                             <th>Uraian Bimbingan</th>
                             <th>Dokumen</th>
                             <th>Status</th>
                         </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td class="centered-column">1</td>
-                                <td class="col-2 centered-column">7 Juni 2024</td>
-                                <td class="col-4">Membahas mengenai arsitektur yang digunakan</td>
-                                <td class="centered-column"><a href="https://github.com/zalllrizalll" target="_blank">https://github.com/zalllrizalll</a></td>
-                                <td class="col-2 centered-column">
-                                    <button type="submit" name="status" class="btn btn-success" value="ACC"><i class="fa-regular fa-circle-check"></i></button>
-                                    <button type="submit" name="status" class="btn btn-danger delete-button" value="REVISI"><i class="fa-regular fa-circle-xmark"></i></button>
-                                </td>
-                            </tr>
+                        <tbody id="mahasiswaLogbookList">
+
                         </tbody>
+{{--                        <tbody>--}}
+{{--                            <tr>--}}
+{{--                                <td class="centered-column">1</td>--}}
+{{--                                <td class="col-2 centered-column" id="">7 Juni 2024</td>--}}
+{{--                                <td class="col-2 centered-column" id="">1</td>--}}
+{{--                                <td class="col-4">Membahas mengenai arsitektur yang digunakan</td>--}}
+{{--                                <td class="centered-column"><a href="https://github.com/zalllrizalll" target="_blank">https://github.com/zalllrizalll</a></td>--}}
+{{--                                <td class="col-2 centered-column">--}}
+{{--                                    <button type="submit" name="status" class="btn btn-success" value="ACC"><i class="fa-regular fa-circle-check"></i></button>--}}
+{{--                                    <button type="submit" name="status" class="btn btn-danger delete-button" value="REVISI"><i class="fa-regular fa-circle-xmark"></i></button>--}}
+{{--                                </td>--}}
+{{--                            </tr>--}}
+{{--                        </tbody>--}}
                     </table>
                 </div>
             </div>

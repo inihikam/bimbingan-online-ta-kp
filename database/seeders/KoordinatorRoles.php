@@ -13,7 +13,7 @@ class KoordinatorRoles extends Seeder
      */
     public function run(): void
     {
-        $user = User::find(9);
+        $user = User::find(3);
         $user->assignRole('koordinator');
     }
 }

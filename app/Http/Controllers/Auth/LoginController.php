@@ -35,13 +35,14 @@ class LoginController extends Controller
     {
         try {
             $credentials = $request->only('email', 'password');
-//            dd($credentials);
             if (Auth::attempt($credentials)) {
-//                dd(Auth::check());
                 $request->session()->regenerate();
 
                 $user = Auth::user();
-//                dd($user->hasRole('dosen'));
+                activity()
+                    ->inLog('login')
+                    ->causedBy($user)
+                    ->log('melakukan login');
                 if ($user->hasRole('mahasiswa')) {
                     return redirect()->route('mahasiswa-dashboard');
                 } elseif ($user->hasRole('dosen')) {
@@ -56,7 +57,7 @@ class LoginController extends Controller
             dd($e);
         }
 
-//        return back()->withErrors(['email' => 'Email atau password salah.']);
+        return back()->withErrors(['email' => 'Email atau password salah.']);
     }
 
     public function logout()

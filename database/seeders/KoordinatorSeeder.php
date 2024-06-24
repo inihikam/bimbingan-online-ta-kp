@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,9 @@ class KoordinatorSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        User::create([
+            'email' => 'koor@bimbingan.online',
+            'password' => bcrypt('123456'),
+        ]);
     }
 }

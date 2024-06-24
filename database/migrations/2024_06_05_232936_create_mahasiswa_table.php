@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('nama');
             $table->string('nim');
             $table->string('email');
+            $table->double('ipk')->nullable();
+            $table->string('telp')->nullable();
+            $table->longText('transkrip')->nullable();
             $table->timestamps();
         });
     }

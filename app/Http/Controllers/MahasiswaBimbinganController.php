@@ -14,13 +14,19 @@ class MahasiswaBimbinganController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public static function student(string $nim): string
+    {
+        $parts = explode(".", $nim);
+        $faculty = substr($parts[0], 0, 1);
+        $department = $parts[0];
+        $entryYear = $parts[1];
+        return "https://mahasiswa.dinus.ac.id/images/foto/$faculty/$department/$entryYear/$nim.jpg";
+    }
     public function index()
     {
-        $user = auth()->user();
-        $dosen = Dosen::where('email', $user->email)->first();
-        // $pengajuan = Pengajuan::where('id_dosen', $dosen->id_dospem)->paginate(10);
+        $dosen = Dosen::where('email', auth()->user()->email)->first();
         // Cara mengambil data pengajuan yang belum di tolak
-        $pengajuan = Pengajuan::where('id_dospem', $dosen->id_dospem)->where('status', '!=', 'TOLAK')->paginate(10);
+        $pengajuan = Pengajuan::where('id_dsn', $dosen->id)->where('status', '!=', 'TOLAK')->get();
         $mahasiswa = StatusMahasiswa::all();
         $bimbingan = Mahasiswa::all();
 
@@ -30,32 +36,36 @@ class MahasiswaBimbinganController extends Controller
     {
         $pengajuan = Pengajuan::findOrFail($id);
         $status = StatusMahasiswa::where('id_mhs', $pengajuan->id_mhs)->first();
-        $mahasiswa = Mahasiswa::where('nim', $status->nim)->first();
-        return view('dosbing.daftar_mahasiswa_bimbingan.detail_mahasiswa_bimbingan', compact('pengajuan', 'mahasiswa'));
+        $mahasiswa = Mahasiswa::where('id', $status->id_mhs)->first();
+        $photo = self::student($mahasiswa->nim);
+        dd($photo);
+        return view('dosbing.daftar_mahasiswa_bimbingan.detail_mahasiswa_bimbingan', compact('pengajuan', 'mahasiswa', 'photo'));
     }
     public function update(Request $request, string $id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
         if ($request->status == 'TOLAK') {
-            $history = new HistoryPengajuan();
-            $history->id_mhs = $pengajuan->id_mhs;
-            $history->topik = $pengajuan->topik;
-            $history->judul = $pengajuan->judul;
-            $history->bidang_kajian = $pengajuan->bidang_kajian;
-            $history->keyword = $pengajuan->keyword;
-            $history->deskripsi = $pengajuan->deskripsi;
-            $history->catatan = $pengajuan->catatan;
-            $history->id_dospem = $pengajuan->id_dospem;
-            $history->status = $request->status;
-            $history->alasan_penolakan = "Pengajuan Ditolak karena topik tidak relevan";
-            $history->save();
-            $pengajuan->delete();
+            $pengajuan->status = $request->status;
+            $pengajuan->alasan = $request->alasan;
+            $pengajuan->save();
+
+            activity()
+                ->inLog('pengajuan')
+                ->causedBy(auth()->user())
+                ->subject($pengajuan)
+                ->log('Menolak pengajuan pengajuan');
         } else {
             $status = StatusMahasiswa::findOrFail($pengajuan->id_mhs);
-            $status->id_dospem = $pengajuan->id_dospem;
+            $status->id_dsn = $pengajuan->id_dsn;
             $status->save();
             $pengajuan->status = $request->status;
             $pengajuan->save();
+
+            activity()
+                ->inLog('pengajuan')
+                ->causedBy(auth()->user())
+                ->subject($pengajuan)
+                ->log('Update status pengajuan');
         }
 
         return redirect()->route('mahasiswa-bimbingan');

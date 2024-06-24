@@ -25,7 +25,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('id_mhs')->references('id')->on('mahasiswa')->cascadeOnDelete();
-            $table->foreign('id_dsn')->references('id')->on('dosen')->cascadeOnDelete();
         });
     }
 

@@ -11,10 +11,17 @@ class PengajuanSidang extends Model
     protected $table = 'pengajuan_sidang';
     protected $fillable = [
         'id_mhs',
-        'id_dospem',
+        'id_dsn',
         'judul',
         'bidang_kajian',
         'dokumen',
-        'jadwal_sidang',
     ];
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class, 'id_mhs', 'id');
+    }
+    public function dosen()
+    {
+        return $this->belongsTo(Dosen::class, 'id_dsn', 'id');
+    }
 }

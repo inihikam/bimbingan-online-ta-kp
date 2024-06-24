@@ -43,9 +43,9 @@
                         <td>{{ $ds->nama }}</td>
                         <td class="centered-column">{{ $ds->bidang_kajian }}</td>
                         <td class="centered-column">
-                            <button class="btn btn-sm btn-secondary decrease-kuota" data-id="{{ $ds->id_dospem }}">-</button>
-                            &nbsp;<span class="kuota-mhs">{{ $ds->kuota_mhs_ta }}</span>&nbsp;
-                            <button class="btn btn-sm btn-success increase-kuota" data-id="{{ $ds->id_dospem }}">+</button>
+                            <button class="btn btn-sm btn-secondary decrease-kuota" data-id="{{ $ds->id_dsn }}">-</button>
+                            &nbsp;<span class="kuota-mhs">{{ $ds->kuota }}</span>&nbsp;
+                            <button class="btn btn-sm btn-success increase-kuota" data-id="{{ $ds->id_dsn }}">+</button>
                         </td>
                         <td class="centered-column">{{ $ds->jml_ajuan }}</td>
                         <td class="centered-column">{{ $ds->acc_ajuan }}</td>
@@ -53,13 +53,13 @@
                         <td class="centered-column">{{ $ds->status_dospem }}</td>
                         <td class="text-center align-middle">
                             <div class="d-flex justify-content-center">
-                                <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#dialogDetailDsn" data-id="{{ $ds->id_dospem }}">
+                                <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#dialogDetailDsn" data-id="{{ $ds->id_dsn }}">
                                     <i class="fas fa-info-circle"></i>
                                 </button>
-                                <button class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#dialogEditDosbingKoor" data-id="{{ $ds->id_dospem }}">
+                                <button class="btn btn-warning btn-sm me-2" data-bs-toggle="modal" data-bs-target="#dialogEditDosbingKoor" data-id="{{ $ds->id_dsn }}">
                                     <i class="far fa-edit"></i>
                                 </button>
-                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#dialogHapusKoor" data-id="{{ $ds->id_dospem }}">
+                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#dialogHapusKoor" data-id="{{ $ds->id_dsn }}">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -217,12 +217,12 @@
                 .then(data => {
                     console.log(data);
                     console.log(data.dsn[0].nama);
-                    console.log(data.dsn[0].id_dospem);
-                    editModal.querySelector('#inputDospem').value = data.dsn[0].id_dospem;
+                    console.log(data.dsn[0].id_dsn);
+                    editModal.querySelector('#inputDospem').value = data.dsn[0].id_dsn;
                     editModal.querySelector('#inputNPP').value = data.dsn[0].npp;
                     editModal.querySelector('#inputNama').value = data.dsn[0].nama;
                     editModal.querySelector('#inputBidangKajian').value = data.dsn[0].bidang_kajian;
-                    editModal.querySelector('#inputKuota').value = data.dsn[0].kuota_mhs_ta;
+                    editModal.querySelector('#inputKuota').value = data.dsn[0].kuota;
                     editModal.querySelector('#inputEmail').value = data.dsn[0].email;
                 })
                 .catch(error => console.error('Error:', error));
@@ -241,7 +241,7 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    delModal.querySelector('#inputId').value = data.dsn[0].id_dospem;
+                    delModal.querySelector('#inputId').value = data.dsn[0].id_dsn;
                 })
                 .catch(error => console.error('Error:', error));
         });

@@ -23,7 +23,7 @@ Untuk menjalankan Bimbingan Online di lokal Anda, ikuti langkah-langkah berikut:
 
 1. **Clone Repository**
     ```
-    git clone -b dev-new https://github.com/inihikam/bimbingan-online-ta-kp.git
+    git clone -b front-end https://github.com/inihikam/bimbingan-online-ta-kp.git
     cd bimbingan-online-ta-kp
     ```
 2. **Install Dependencies**
@@ -53,25 +53,11 @@ Untuk menjalankan Bimbingan Online di lokal Anda, ikuti langkah-langkah berikut:
     ```
     php artisan migrate
     ```
-6. **Seed Roles**
-   ```
-   php artisan tinker
-   ```
-   Setelah itu ketikkan pada console nya
-   ```
-   use Spatie\Permission\Models\Role;
-
-   Role::create(['name' => 'mahasiswa']);
-   Role::create(['name' => 'dosen']);
-   Role::create(['name' => 'koordinator']);
-   ```
-7. **Seed Database**
+6. **Seed Database**
    Seed database dengan data awal:
     ```
-    php artisan db:seed --class=DatabaseSeeder
-    php artisan db:seed --class=SeedUserRols
-    php artisan db:seed --class=SeedStatusMahasiswa
+    php artisan db:seed
     ```
-8. **Tinggal Jalankan Server lewat Laragon**
+7. **Tinggal Jalankan Server lewat Laragon**
 
 **Terima kasih telah mengunjungi repository Bimbingan Online!**
