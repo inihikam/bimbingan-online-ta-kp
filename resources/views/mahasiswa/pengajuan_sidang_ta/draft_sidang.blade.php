@@ -5,12 +5,6 @@
     <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
         <li class="nav-item">
             <a data-toggle="pill" class="nav-link rounded-pill">
-                <i class="far fa-calendar-check"></i>
-                Jadwal Sidang
-            </a>
-        </li>
-        <li class="nav-item">
-            <a data-toggle="pill" class="nav-link rounded-pill">
                 <i class="fas fa-edit"></i>
                 Form Pengajuan
             </a>
@@ -30,17 +24,17 @@
                 <blockquote class="blockquote-primary">
                     <p class="mb-3"><b>Status: Draft</b> - Untuk mengajukan sidang, klik tombol Ajukan di bawah</p>
                 </blockquote>
-                <blockquote class="blockquote-primary">
-                    <p class="mb-3"><b>Status: Disetujui</b> - Untuk tahap selanjutnya, silahkan klik tombol <i class="fas fa-info-circle"></i> untuk melihat informasi ujian <button type="info" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dialogDetailSidang"><i class="fas fa-info-circle"></i> Jadwal Sidang</button></p>
-                </blockquote>
                 <!--
-    <blockquote class="blockquote-pengajuan">
-        <p class="mb-3"><b>Status: Pengajuan</b> - Proposal telah diajukan pada tanggal [24 April 2024 10:47 WIB] </p>
-    </blockquote>
-    <blockquote class="blockquote-cancel">
-        <p class="mb-3"><b>Status: Ditolak</b> - Pengajuan sidang dengan tanggal [24 April 2024] dengan alasan ... </p>
-    </blockquote>
-    -->
+                <blockquote class="blockquote-primary">
+                    <p class="mb-3"><b>Status: Disetujui</b> - Untuk tahap selanjutnya, silahkan hubungi koordinator TA untuk melihat jadwal sidang </p>
+                </blockquote>
+                <blockquote class="blockquote-pengajuan">
+                    <p class="mb-3"><b>Status: Pengajuan</b> - Proposal telah diajukan pada tanggal [24 April 2024 10:47 WIB] </p>
+                </blockquote>
+                <blockquote class="blockquote-cancel">
+                    <p class="mb-3"><b>Status: Ditolak</b> - Pengajuan sidang dengan tanggal [24 April 2024] dengan alasan ... </p>
+                </blockquote>
+                -->
                 <table class="table table-bordered mb-5">
                     <tbody>
                         <tr>
@@ -54,10 +48,6 @@
                         <tr>
                             <td>Dokumen Tugas Akhir</td>
                             <td><a href="https://github.com/eiffelputri" target="_blank">https://github.com/eiffelputri</a></td>
-                        </tr>
-                        <tr>
-                            <td>Periode Sidang</td>
-                            <td>April</td>
                         </tr>
                     </tbody>
                 </table>
@@ -81,54 +71,6 @@
                     <button type="delete" class="btn btn-danger me-2">Hapus</button>
                     <button type="edit" class="btn btn-warning me-2">Edit</button>
                     <button type="submit" class="btn btn-primary me-2">Ajukan</button>
-                </div>
-            </div>
-
-            <!-- Modal Detail Sidang -->
-            <div class="modal fade" id="dialogDetailSidang" tabindex="-1" aria-labelledby="dialogDetailSidangLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="dialogDetailSidangLabel">Detail Jadwal Sidang</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <h4 class="mb-4">Jadwal Sidang Periode April</h4>
-                                <table class="table table-bordered mb-5">
-                                    <tbody>
-                                        <tr>
-                                            <td>Tanggal Sidang</td>
-                                            <td>10 April 2024</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Judul Tugas Akhir</td>
-                                            <td>Lorem ipsum</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dokumen Tugas Akhir</td>
-                                            <td href="https://github.com/eiffelputri">https://github.com/eiffelputri</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ruang Sidang</td>
-                                            <td>1</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Penguji 1</td>
-                                            <td>Pak A</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Penguji 2</td>
-                                            <td>Bu A</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -4,12 +4,6 @@
 <div class="container">
     <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
         <li class="nav-item">
-            <a data-toggle="pill" class="nav-link rounded-pill">
-                <i class="far fa-calendar-check"></i>
-                Jadwal Sidang
-            </a>
-        </li>
-        <li class="nav-item">
             <a data-toggle="pill" class="nav-link active rounded-pill">
                 <i class="fas fa-edit"></i>
                 Form Pengajuan
