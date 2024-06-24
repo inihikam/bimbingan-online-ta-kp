@@ -67,7 +67,7 @@ Route::middleware(['auth', 'role:dosen'])->group(function () {
     Route::post('/accLogbook', [DospemBimbinganController::class, 'update'])->name('update-dosbing-logbook');
     Route::get('/mahasiswa', [MahasiswaBimbinganController::class, 'index'])->name('mahasiswa-bimbingan');
     Route::get('/mahasiswa/{id}', [MahasiswaBimbinganController::class, 'detail'])->name('detail-mahasiswa-bimbingan');
-    Route::post('/updatePengajuan/{id}', [MahasiswaBimbinganController::class, 'update'])->name('update-mahasiswa-bimbingan');
+    Route::post('/updatePengajuan', [MahasiswaBimbinganController::class, 'update'])->name('update-mahasiswa-bimbingan');
     Route::get('/detailMahasiswaBimbingan', [SidebarDosbingController::class, 'detail_mahasiswa_bimbingan']);
     Route::get('/daftarMahasiswaSidang', [SidebarDosbingController::class, 'daftar_mahasiswa_sidang'])->name('dosbing-daftar-mahasiswa-sidang');
     Route::get('/detailMahasiswaSidang', [SidebarDosbingController::class, 'detail_mahasiswa_sidang']);
@@ -94,13 +94,10 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
 });
 
 // ADMINISTRATOR
-Route::middleware(['auth', 'role:administrator'])->group(function () {
-
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
+    Route::get('/periodeAjaran', [AdministratorController::class, 'periode_ajaran'])->name('periode-ajaran');
+    Route::get('/logDosbim', [AdministratorController::class, 'log_dosbim'])->name('log-dosbim');
+    Route::get('/logMahasiswa', [AdministratorController::class, 'log_mahasiswa'])->name('log-mahasiswa');
+    Route::get('/aboutAdmin', [AdministratorController::class, 'about'])->name('admin-about');
 });
-
-Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
-Route::get('/periodeAjaran', [AdministratorController::class, 'periode_ajaran'])->name('periode-ajaran');
-Route::get('/logDosbim', [AdministratorController::class, 'log_dosbim'])->name('log-dosbim');
-Route::get('/logMahasiswa', [AdministratorController::class, 'log_mahasiswa'])->name('log-mahasiswa');
-Route::get('/aboutAdmin', [AdministratorController::class, 'about'])->name('admin-about');
-

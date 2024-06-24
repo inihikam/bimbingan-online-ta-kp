@@ -27,7 +27,7 @@ class PengajuanController extends Controller
         $data = false;
         if (Pengajuan::where('id_mhs', $status->id_mhs)->first() != null) {
             $pengajuan = Pengajuan::where('id_mhs', $status->id_mhs)
-            ->whereIn('status', ['ACC', 'PENDING'])->first();
+                ->whereIn('status', ['ACC', 'PENDING'])->first();
             $dospil = Dosen::where('id', $pengajuan->id_dsn)->first();
             return view('mahasiswa.pengajuan_ta.draft_pengajuan_ta', compact(
                 'dsnPeriod',
@@ -101,6 +101,7 @@ class PengajuanController extends Controller
 
         $periode = Periode::where('status', true)->first();
         $dosenPeriodik = DosenPeriodik::where('id_periode', $periode->id)->where('id_dsn', $data['id_dsn'])->first();
+        $dosen = Dosen::where('id', $data['id_dsn'])->first();
         $statusDosen = StatusDosen::where('id_period', $dosenPeriodik->id)->first();
         $statusDosen->ajuan = $statusDosen->ajuan + 1;
 
@@ -109,7 +110,8 @@ class PengajuanController extends Controller
         activity()
             ->inLog('Pengajuan')
             ->causedBy($mahasiswa)
-            ->subject($pengajuan->id_dsn)
+            ->performedOn($pengajuan)
+            ->withProperties(['id_dsn' => $data['id_dsn']])
             ->log('melakukan pengajuan tugas akhir');
         return redirect()->route('mahasiswa-pengajuan');
     }

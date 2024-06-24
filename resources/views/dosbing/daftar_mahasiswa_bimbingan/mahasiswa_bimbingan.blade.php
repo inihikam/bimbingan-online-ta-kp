@@ -5,12 +5,12 @@
         <div class="container flex-grow-1">
             <h3 class="mb-3"><b>Daftar Pengajuan Mahasiswa Bimbingan</b></h3>
             <p class="mb-5">Berikut ini adalah daftar pengajuan mahasiswa bimbingan</p>
-{{--            <div class="input-group justify-content-end mb-3">--}}
-{{--                <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..."--}}
-{{--                       aria-describedby="btnNavbarSearch" />--}}
-{{--                <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>--}}
-{{--            </div>--}}
-            <div class="table-container table-dosbing" >
+            {{--            <div class="input-group justify-content-end mb-3">--}}
+            {{--                <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..."--}}
+            {{--                       aria-describedby="btnNavbarSearch" />--}}
+            {{--                <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>--}}
+            {{--            </div>--}}
+            <div class="table-container table-dosbing">
                 <table class="table table-bordered mb-1" id="table-log">
                     <thead class="table-header">
                     <th>No</th>
@@ -21,39 +21,27 @@
                     <th>Topik Penelitian</th>
                     <th>Status</th>
                     </thead>
-{{--                    @foreach ($pengajuan as $pj)--}}
-{{--                        <tr>--}}
-{{--                            @php--}}
-{{--                                $mhs = $mahasiswa->where('id_mhs', $pj->id_mhs)->first();--}}
-{{--                                $detail = $bimbingan->where('nim', $mhs->nim)->first();--}}
-{{--                            @endphp--}}
-{{--                            <td class="centered-column">{{ $loop->iteration }}</td>--}}
-{{--                            <td class="centered-column">{{ $mhs->nim }}</td>--}}
-{{--                            <td class="centered-column">{{ $detail->nama }}</td>--}}
-{{--                            <td class="centered-column">{{ $detail->ipk }}</td>--}}
-{{--                            <td class="centered-column">--}}
-{{--                                <a href="{{ route('detail-mahasiswa-bimbingan', ['id' => $pj->id]) }}" class="btn btn-warning">--}}
-{{--                                    <i class="fas fa-info-circle"></i>--}}
-{{--                                </a>--}}
-{{--                            </td>--}}
-{{--                        </tr>--}}
-{{--                    @endforeach--}}
-                    <tr class="centered-column">
-                        <td>1</td>
-                        <td>A11.2021.13550</td>
-                        <td>Muhammad Maulana Hikam</td>
-                        <td>
-                            <a href="#" class="btn btn-warning"><i class="fa-solid fa-images"></i></a>
-                        </td>
-                        <td>3.84</td>
-                        <td>Aplikasi Identifikasi Penyakit Kanker</td>
-                        <td class="centered-column">
-                            <button type="submit" name="status" class="btn btn-success" value="ACC"><i
-                                    class="fa-regular fa-circle-check"></i></button>
-                            <button type="submit" name="status" class="btn btn-danger delete-button" value="REVISI"><i
-                                    class="fa-regular fa-circle-xmark"></i></button>
-                        </td>
-                    </tr>
+                    @foreach ($pengajuan as $pj)
+                        <tr class="centered-column">
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $pj->mahasiswa->mahasiswa->nim }}</td>
+                            <td>{{ $pj->mahasiswa->mahasiswa->nama }}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                        data-bs-target="{{ $pj->mahasiswa->mahasiswa->id }}">
+                                    <i class="fa-solid fa-images"></i>
+                            </td>
+                            <td>{{ $pj->mahasiswa->mahasiswa->ipk }}</td>
+                            <td>{{ $pj->topik }}</td>
+                            <td class="centered-column">
+                                <button type="submit" name="status" class="btn btn-success" value="ACC"><i
+                                        class="fa-regular fa-circle-check"></i></button>
+                                <button type="submit" name="status" class="btn btn-danger delete-button" value="REVISI">
+                                    <i
+                                        class="fa-regular fa-circle-xmark"></i></button>
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
         </div>
@@ -80,7 +68,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="rejectForm">
+                    <form action="{{route('update-mahasiswa-bimbingan')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" id="rejectId">
                         <div class="mb-3">
@@ -97,13 +85,13 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var deleteButtons = document.querySelectorAll('.delete-button');
             var rejectForm = document.getElementById('rejectForm');
             var rejectModal = new bootstrap.Modal(document.getElementById('rejectModal'));
 
-            deleteButtons.forEach(function(button) {
-                button.addEventListener('click', function(event) {
+            deleteButtons.forEach(function (button) {
+                button.addEventListener('click', function (event) {
                     event.preventDefault();
                     var id = event.target.closest('tr').querySelector('td:first-child').textContent;
                     document.getElementById('rejectId').value = id;
@@ -111,7 +99,7 @@
                 });
             });
 
-            rejectForm.addEventListener('submit', function(event) {
+            rejectForm.addEventListener('submit', function (event) {
                 event.preventDefault();
                 var reason = document.getElementById('reason').value;
 

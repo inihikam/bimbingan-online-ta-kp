@@ -22,16 +22,19 @@ class MahasiswaBimbinganController extends Controller
         $entryYear = $parts[1];
         return "https://mahasiswa.dinus.ac.id/images/foto/$faculty/$department/$entryYear/$nim.jpg";
     }
+
     public function index()
     {
         $dosen = Dosen::where('email', auth()->user()->email)->first();
         // Cara mengambil data pengajuan yang belum di tolak
-        $pengajuan = Pengajuan::where('id_dsn', $dosen->id)->where('status', '!=', 'TOLAK')->get();
-        $mahasiswa = StatusMahasiswa::all();
-        $bimbingan = Mahasiswa::all();
+        $pengajuan = Pengajuan::with('mahasiswa.mahasiswa')
+            ->where('id_dsn', $dosen->id)
+            ->where('status', '!=', 'TOLAK')
+            ->get();
 
-        return view('dosbing.daftar_mahasiswa_bimbingan.mahasiswa_bimbingan', compact('pengajuan', 'mahasiswa', 'bimbingan'));
+        return view('dosbing.daftar_mahasiswa_bimbingan.mahasiswa_bimbingan', compact('pengajuan'));
     }
+
     public function detail($id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
@@ -41,6 +44,7 @@ class MahasiswaBimbinganController extends Controller
         dd($photo);
         return view('dosbing.daftar_mahasiswa_bimbingan.detail_mahasiswa_bimbingan', compact('pengajuan', 'mahasiswa', 'photo'));
     }
+
     public function update(Request $request, string $id)
     {
         $pengajuan = Pengajuan::findOrFail($id);

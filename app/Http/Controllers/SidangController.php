@@ -18,23 +18,21 @@ class SidangController extends Controller
     public function index()
     {
         $mhs = Mahasiswa::where('email', auth()->user()->email)->first();
-        $detailmhs = StatusMahasiswa::where('nim', $mhs->nim)->first();
-        if ($detailmhs->sidang_ta_1 == 'NOT_TAKEN') {
+        $detailmhs = StatusMahasiswa::where('id_mhs', $mhs->id)->first();
+        if ($detailmhs->sidang_ta_1 == 'BELUM') {
             $logbook = LogbookBimbingan::where('id_mhs', $detailmhs->id_mhs)
-                ->where('bab_terakhir_bimbingan', '3')
-                ->where('status_logbook', 'ACC')
+                ->where('bab', '3')
+                ->where('status', 'ACC')
                 ->get();
 
-            $jadwal = JadwalSidang::all();
-            return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal', compact('logbook', 'jadwal'));
-        } elseif ($detailmhs->sidang_ta_2 == 'NOT_TAKEN') {
+            return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal', compact('logbook'));
+        } elseif ($detailmhs->sidang_ta_2 == 'BELUM') {
             $logbook = LogbookBimbingan::where('id_mhs', $detailmhs->id_mhs)
                 ->where('bab_terakhir_bimbingan', '5')
                 ->where('status_logbook', 'ACC')
                 ->get();
 
-            $jadwal = JadwalSidang::all();
-            return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal', compact('logbook', 'jadwal'));
+            return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal', compact('logbook'));
         }
         return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal');
     }
