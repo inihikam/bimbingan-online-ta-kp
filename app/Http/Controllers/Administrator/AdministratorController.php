@@ -13,17 +13,22 @@ class AdministratorController extends Controller
         return view('administrator.dashboard_admin');
     }
 
-    public function data_koordinator()
+    public function periode_ajaran()
+    {
+        return view('administrator.periode.periode_ajaran');
+    }
+
+    public function log_dosbim()
     {
 //        $role = Role::where('name', 'koordinator')->first();
 //        $users = $role->users;
 //        dd($users);
-        return view('administrator.daftar_koordinator.data_koordinator');
+        return view('administrator.log_aplikasi.log_dosbim');
     }
 
-    public function detail_koordinator()
+    public function log_mahasiswa()
     {
-        return view('administrator.daftar_koordinator.detail_koordinator');
+        return view('administrator.log_aplikasi.log_mahasiswa');
     }
 
     public function about()

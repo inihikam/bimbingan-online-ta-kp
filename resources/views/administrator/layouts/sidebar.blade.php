@@ -16,9 +16,21 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('data-koordinator') }}" class="sidebar-link">
+                <a href="{{ route('periode-ajaran') }}" class="sidebar-link">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Periode Ajaran</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('log-dosbim') }}" class="sidebar-link">
                     <i class="lni lni-users"></i>
-                    <span>Data Koordinator</span>
+                    <span>Log Dosen Pembimbing</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('log-mahasiswa') }}" class="sidebar-link">
+                    <i class="lni lni-users"></i>
+                    <span>Log Mahasiswa</span>
                 </a>
             </li>
         </ul>
