@@ -95,9 +95,12 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
 
 // ADMINISTRATOR
 Route::middleware(['auth', 'role:administrator'])->group(function () {
-    Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
-    Route::get('/dataKoordinator', [AdministratorController::class, 'data_koordinator'])->name('data-koordinator');
-    Route::get('/detailKoordinator', [AdministratorController::class, 'detail_koordinator'])->name('detail-koordinator');
-    Route::get('/aboutAdmin', [AdministratorController::class, 'about'])->name('admin-about');
+
 });
+
+Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
+Route::get('/periodeAjaran', [AdministratorController::class, 'periode_ajaran'])->name('periode-ajaran');
+Route::get('/logDosbim', [AdministratorController::class, 'log_dosbim'])->name('log-dosbim');
+Route::get('/logMahasiswa', [AdministratorController::class, 'log_mahasiswa'])->name('log-mahasiswa');
+Route::get('/aboutAdmin', [AdministratorController::class, 'about'])->name('admin-about');
 
