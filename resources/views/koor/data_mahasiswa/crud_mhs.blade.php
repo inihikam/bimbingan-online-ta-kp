@@ -19,52 +19,51 @@
         <div class="row my-3">
             <div class="col-md">
                 <table id="data-koor" class="table table-striped table-bordered table-responsive table-hover"
-                    style="width:100%; border-color:black">
+                       style="width:100%; border-color:black">
                     <thead class="table-dark">
-                        <tr>
-                            <th>No.</th>
-                            <th>NIM</th>
-                            <th>Nama Mahasiswa</th>
-                            <th>IPK</th>
-                            <th>Transkrip Nilai</th>
-                            <th>Telp Mhs</th>
-                            <th>Email</th>
-                            <th>Dosen Wali</th>
-                            <th>Aksi</th>
-                        </tr>
+                    <tr>
+                        <th>No.</th>
+                        <th>NIM</th>
+                        <th>Nama Mahasiswa</th>
+                        <th>IPK</th>
+                        <th>Transkrip Nilai</th>
+                        <th>Telp Mhs</th>
+                        <th>Email</th>
+                        <th>Aksi</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach ($mahasiswa as $mhs)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td class="centered-column">{{ $mhs->nim }}</td>
-                                <td>{{ $mhs->nama }}</td>
-                                <td class="centered-column">{{ $mhs->ipk }}</td>
-                                <td class="centered-column"><a href="{{ $mhs->transkrip_nilai }}"
-                                        target="_blank">Transkrip</a></td>
-                                <td class="centered-column">{{ $mhs->telp_mhs }}</td>
-                                <td class="centered-column">{{ $mhs->email }}</td>
-                                <td>{{ $mhs->dosen_wali }}</td>
-                                <td class="text-center align-middle">
-                                    <div class="d-flex justify-content-center">
-                                        <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal"
+                    @foreach ($mahasiswa as $mhs)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td class="centered-column">{{ $mhs->nim }}</td>
+                            <td>{{ $mhs->nama }}</td>
+                            <td class="centered-column">{{ $mhs->ipk }}</td>
+                            <td class="centered-column"><a href="{{ $mhs->transkrip }}"
+                                                           target="_blank">Transkrip</a></td>
+                            <td class="centered-column">{{ $mhs->telp }}</td>
+                            <td class="centered-column">{{ $mhs->email }}</td>
+                            <td class="text-center align-middle">
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success btn-sm me-2" data-bs-toggle="modal"
                                             data-bs-target="#dialogDetailMhsKoor"
                                             data-id="{{ $mhs->statusMahasiswa->id_mhs }}">
-                                            <i class="fas fa-info-circle"></i>
-                                        </button>
-                                        <button class="btn btn-warning btn-sm me-2" data-bs-toggle="modal"
+                                        <i class="fas fa-info-circle"></i>
+                                    </button>
+                                    <button class="btn btn-warning btn-sm me-2" data-bs-toggle="modal"
                                             data-bs-target="#dialogEditMhsKoor"
                                             data-id="{{ $mhs->statusMahasiswa->id_mhs }}">
-                                            <i class="far fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#dialogHapusMhs" data-id="{{ $mhs->statusMahasiswa->id_mhs }}">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#dialogHapusMhs"
+                                            data-id="{{ $mhs->statusMahasiswa->id_mhs }}">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -87,10 +86,10 @@
     @include('koor.data_mahasiswa.hapus')
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var detailModal = document.querySelector('#dialogDetailMhsKoor');
 
-            detailModal.addEventListener('show.bs.modal', function(event) {
+            detailModal.addEventListener('show.bs.modal', function (event) {
                 // Tombol yang memicu modal
                 var button = event.relatedTarget;
                 // Ambil id logbook dari atribut data-id
@@ -102,7 +101,7 @@
                     .then(response => response.json())
                     .then(data => {
                         console.log(data)
-                        console.log(data.mahasiswa.status_mahasiswa.id_dospem)
+                        console.log(data.mahasiswa.status_mahasiswa.id_dsn)
                         detailModal.querySelector('#dialogName').textContent += data.mahasiswa.nama;
                         detailModal.querySelector('#npp').textContent = data.mahasiswa.status_mahasiswa
                             .dospem.npp;
@@ -111,13 +110,13 @@
                         detailModal.querySelector('#email').textContent = data.mahasiswa
                             .status_mahasiswa.dospem.email;
                         detailModal.querySelector('#telp').textContent = data.mahasiswa.status_mahasiswa
-                            .dospem.telp_dosen;
+                            .dospem.telp;
                     })
                     .catch(error => console.error('Error:', error));
             });
 
             // Jika detail modal ditutup maka hapus nilai didalamnya
-            detailModal.addEventListener('hidden.bs.modal', function(event) {
+            detailModal.addEventListener('hidden.bs.modal', function (event) {
                 detailModal.querySelector('#dialogName').textContent = 'Daftar Dosbing dari ';
                 detailModal.querySelector('#npp').textContent = '';
                 detailModal.querySelector('#nama').textContent = '';
@@ -127,7 +126,7 @@
 
             var editModal = document.querySelector('#dialogEditMhsKoor');
 
-            editModal.addEventListener('show.bs.modal', function(event) {
+            editModal.addEventListener('show.bs.modal', function (event) {
 
                 var button = event.relatedTarget;
 
@@ -144,16 +143,15 @@
                         editModal.querySelector('#inputIPK').value = data.mahasiswa.ipk;
                         editModal.querySelector('#inputTranskrip').value = data.mahasiswa
                             .transkrip_nilai;
-                        editModal.querySelector('#inputTelp').value = data.mahasiswa.telp_mhs;
+                        editModal.querySelector('#inputTelp').value = data.mahasiswa.telp;
                         editModal.querySelector('#inputEmail').value = data.mahasiswa.email;
-                        editModal.querySelector('#inputDoswal').value = data.mahasiswa.dosen_wali;
                     })
                     .catch(error => console.error('Error:', error));
             });
 
             var delModal = document.querySelector('#dialogHapusMhs');
 
-            delModal.addEventListener('show.bs.modal', function(event) {
+            delModal.addEventListener('show.bs.modal', function (event) {
 
                 var button = event.relatedTarget;
 
@@ -171,8 +169,8 @@
         });
     </script>
     <script>
-    $(document).ready(function() {
-        $('#data-koor').DataTable();
-    });
+        $(document).ready(function () {
+            $('#data-koor').DataTable();
+        });
     </script>
 @endsection

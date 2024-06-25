@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dosen extends Model
 {
     use HasFactory;
+
     protected $table = 'dosen';
     protected $fillable = [
         'nama',
@@ -37,6 +38,7 @@ class Dosen extends Model
     {
         return $this->hasOne(Dosen::class, 'email', 'email');
     }
+
     public function dosenPeriodik()
     {
         return $this->hasMany(DosenPeriodik::class, 'id_dsn', 'id');

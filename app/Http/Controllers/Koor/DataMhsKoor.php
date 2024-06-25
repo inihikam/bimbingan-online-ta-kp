@@ -20,7 +20,7 @@ class DataMhsKoor extends Controller
     public function show($id)
     {
         $status = StatusMahasiswa::where('id_mhs', $id)->first();
-        $mahasiswa = Mahasiswa::with('statusMahasiswa.dospem')->where('nim', $status->nim)->first();
+        $mahasiswa = Mahasiswa::with('statusMahasiswa.dospem')->where('id', $status->id_mhs)->first();
         // Mengembalikan 3 data di atas menggunakan json
         return response()->json([
             'mahasiswa' => $mahasiswa,

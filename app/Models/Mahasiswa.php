@@ -19,14 +19,17 @@ class Mahasiswa extends Model
         'telp',
         'transkrip',
     ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'email', 'email');
     }
+
     public function statusMahasiswa()
     {
-        return $this->hasOne(StatusMahasiswa::class, 'nim', 'nim');
+        return $this->hasOne(StatusMahasiswa::class, 'id_mhs', 'id');
     }
+
     public function periode()
     {
         return $this->hasMany(MahasiswaPeriodik::class, 'id_mhs', 'id');

@@ -19,7 +19,6 @@ use App\Http\Controllers\KoorController;
 use App\Http\Controllers\SidebarDosbingController;
 
 use App\Http\Controllers\SidebarMahasiswaController;
-use App\Http\Middleware\CheckRole;
 use App\Models\LogbookBimbingan;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;

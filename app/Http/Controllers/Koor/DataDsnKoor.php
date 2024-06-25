@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Koor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dosen;
+use App\Models\DosenPeriodik;
+use App\Models\Periode;
 use App\Models\StatusMahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,17 +14,20 @@ class DataDsnKoor extends Controller
 {
     public function index()
     {
-        $dosen = Dosen::all();
+        $periode = Periode::where('status', 1)->first();
+        $dosen = DosenPeriodik::with('dosen', 'status')->get();
         return view('koor.data_dospem.crud_dospem', compact('dosen'));
     }
+
     public function show($id)
     {
         // Mengambil data list status mahasiswa dari dosen menurut id_dospem pada tabel status mahasiswa
-        $dsn = Dosen::with('mahasiswa.mahasiswa')->where('id_dospem', $id)->get();
+        $dsn = Dosen::with('mahasiswa.mahasiswa')->where('id', $id)->get();
         return response()->json([
             'dsn' => $dsn,
         ]);
     }
+
     public function store(Request $request)
     {
         $dosen = new Dosen();
@@ -44,6 +49,7 @@ class DataDsnKoor extends Controller
 
         return redirect()->route('koor-data-dospem');
     }
+
     public function update(Request $request)
     {
         $data = $request->all();
@@ -67,6 +73,7 @@ class DataDsnKoor extends Controller
 
         return redirect()->route('koor-data-dospem');
     }
+
     public function destroy(Request $request)
     {
         $dosen = Dosen::where('id_dospem', $request->id_dospem)->first();

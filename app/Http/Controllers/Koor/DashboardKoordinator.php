@@ -15,8 +15,7 @@ class DashboardKoordinator extends Controller
     {
         $mahasiswa = Mahasiswa::all();
         $logbookBimbingan = LogbookBimbingan::with('mahasiswa.mahasiswa')->get();
-//        dd($logbookBimbingan);
-        $dosen = Dosen::all();
+        $dosen = Dosen::with('dosenPeriodik.status')->get();
 
         return view('koor.dashboard', compact('mahasiswa', 'logbookBimbingan', 'dosen'));
     }
