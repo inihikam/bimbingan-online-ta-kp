@@ -12,9 +12,6 @@ use App\Models\JadwalSidang;
 
 class SidangController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $mhs = Mahasiswa::where('email', auth()->user()->email)->first();
@@ -37,64 +34,27 @@ class SidangController extends Controller
         return view('mahasiswa.pengajuan_sidang_ta.pilih_jadwal');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $data = $request->all();
         $mhs = Mahasiswa::where('email', auth()->user()->email)->first();
-        $detailmhs = StatusMahasiswa::where('nim', $mhs->nim)->first();
+        $detailmhs = StatusMahasiswa::where('id_mhs', $mhs->id)->first();
         $ta = Pengajuan::where('id_mhs', $detailmhs->id_mhs)->first();
         PengajuanSidang::create([
             'id_mhs' => $ta->id_mhs,
-            'id_dospem' => $ta->id_dospem,
+            'id_dsn' => $ta->id_dsn,
             'judul' => $ta->judul,
             'bidang_kajian' => $ta->bidang_kajian,
             'dokumen' => $data['dokumen'],
-            'jadwal_sidang' => $data['jadwal_sidang'],
         ]);
 
+        activity()
+            ->inLog('Pengajuan Sidang')
+            ->causedBy($mhs)
+            ->performedOn($ta)
+            ->withProperties(['id_mhs' => $mhs->id])
+            ->log('Pengajuan Sidang TA');
+
         return redirect()->route('sidang.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

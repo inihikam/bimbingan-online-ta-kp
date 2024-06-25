@@ -18,14 +18,14 @@ class MahasiswaImport implements ToCollection
         // dd($collection);
         foreach ($collection as $row) {
             try {
-                Mahasiswa::create([
+                $mhs = Mahasiswa::create([
                     'nama' => $row[0],
                     'nim' => $row[1],
                     'email' => $row[2],
                 ]);
 
                 StatusMahasiswa::create([
-                    'nim' => $row[1],
+                    'id_mhs' => $mhs->id,
                 ]);
 
                 $user = User::create([

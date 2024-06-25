@@ -24,7 +24,7 @@ class LoginController extends Controller
             if ($user->hasRole('koordinator')) {
                 return redirect()->route('koor-dashboard');
             }
-            if ($user->hasRole('administrator')) {
+            if ($user->hasRole('admin')) {
                 return redirect()->route('admin-dashboard');
             }
         }

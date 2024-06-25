@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Administrator\AdministratorController;
+use App\Http\Controllers\Administrator\LogController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Koor\DashboardKoordinator;
 use App\Http\Controllers\Koor\DataMhsKoor;
@@ -99,4 +100,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/logDosbim', [AdministratorController::class, 'log_dosbim'])->name('log-dosbim');
     Route::get('/logMahasiswa', [AdministratorController::class, 'log_mahasiswa'])->name('log-mahasiswa');
     Route::get('/aboutAdmin', [AdministratorController::class, 'about'])->name('admin-about');
+    Route::get('/logDosen', [LogController::class, 'logDosen'])->name('dosen-admin');
 });

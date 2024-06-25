@@ -113,7 +113,7 @@ class PengajuanController extends Controller
             ->inLog('Pengajuan')
             ->causedBy($mahasiswa)
             ->performedOn($pengajuan)
-            ->withProperties(['id_dsn' => $data['id_dsn']])
+            ->withProperties(['id_dsn' => $data['id_dsn'], 'id_mhs' => $data['id_mhs']])
             ->log('melakukan pengajuan tugas akhir');
         return redirect()->route('mahasiswa-pengajuan');
     }

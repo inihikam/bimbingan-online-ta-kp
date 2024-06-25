@@ -21,14 +21,13 @@ class DosenImport implements ToCollection
                     'nama' => $row[0],
                     'npp' => $row[1],
                     'bidang_kajian' => $row[2],
-                    'kuota_mhs_ta' => $row[3],
-                    'email' => $row[4],
-                    'telp_dosen' => $row[5],
+                    'email' => $row[3],
+                    'telp' => $row[4],
                 ]);
 
                 $user = User::create([
-                    'email' => $row[4],
-                    'password' => bcrypt(explode('@', $row[4])[0]),
+                    'email' => $row[3],
+                    'password' => bcrypt(explode('@', $row[3])[0]),
                 ]);
 
                 $user->assignRole('dosen');

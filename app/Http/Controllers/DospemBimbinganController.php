@@ -20,25 +20,31 @@ class DospemBimbinganController extends Controller
             compact('dosen', 'status')
         );
     }
+
     public function detail($id)
     {
         $logbook = LogbookBimbingan::where('id_mhs', $id)->get();
         return response()->json($logbook);
     }
+
     public function update(Request $request)
     {
         $logbook = LogbookBimbingan::findOrFail($request->id_logbook);
         $logbook->status_logbook = $request->status;
         $logbook->save();
 
+        $mahasiswa = Mahasiswa::where('id', $logbook->id_mhs)->first();
+
         activity()
             ->inLog('logbook')
-            ->causedBy(auth()->user())
-            ->subject($logbook)
+            ->causedBy($mahasiswa)
+            ->performedOn($logbook)
+            ->withProperties(['id_mhs' => $logbook->id_mhs])
             ->log('Update status logbook');
 
         return redirect()->back();
     }
+
     public function show($id)
     {
         $logbook = LogbookBimbingan::where('id_mhs', $id)->get();
