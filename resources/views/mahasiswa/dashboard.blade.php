@@ -10,6 +10,35 @@
         <p>Siap untuk lulus cepat hari ini?</p>
     </div>
     <main class="container-border">
+    <div class="container">
+        <form>
+            <h4 class="text-center">Lengkapi Data Diri</h4>
+            <hr>
+            <div class="form-group row mb-3">
+                <label for="inputTelp" class="col-sm-2 col-form-label">Nomor Telepon <span class="required">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputTelp" name="telp" placeholder="Masukkan Nomor Telepon" required>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label for="inputIPK" class="col-sm-2 col-form-label">IPK <span class="required">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputIPK" name="ipk" placeholder="Masukkan IPK" required>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <label for="inputTranskrip" class="col-sm-2 col-form-label">Upload Link Transkrip Nilai <span class="required">*</span></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputTranskrip" name="transkrip" placeholder="Masukkan Link Transkrip" required>
+                </div>
+            </div>
+            <div class="form-group row mb-3">
+                <div class="col-sm-10 offset-sm-2 text-end">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
         <div class="row">
             @if ($status->id_dsn == 0)
                 <div class="alert alert-warning" role="alert">
