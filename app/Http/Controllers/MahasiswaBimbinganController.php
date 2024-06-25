@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\DosenPeriodik;
 use App\Models\Mahasiswa;
 use App\Models\Pengajuan;
+use App\Models\Periode;
+use App\Models\StatusDosen;
 use App\Models\StatusMahasiswa;
-use App\Models\HistoryPengajuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MahasiswaBimbinganController extends Controller
 {
@@ -29,7 +32,7 @@ class MahasiswaBimbinganController extends Controller
         // Cara mengambil data pengajuan yang belum di tolak
         $pengajuan = Pengajuan::with('mahasiswa.mahasiswa')
             ->where('id_dsn', $dosen->id)
-            ->where('status', '!=', 'TOLAK')
+            ->where('status', 'PENDING')
             ->get();
 
         return view('dosbing.daftar_mahasiswa_bimbingan.mahasiswa_bimbingan', compact('pengajuan'));
@@ -45,33 +48,59 @@ class MahasiswaBimbinganController extends Controller
         return view('dosbing.daftar_mahasiswa_bimbingan.detail_mahasiswa_bimbingan', compact('pengajuan', 'mahasiswa', 'photo'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        $pengajuan = Pengajuan::findOrFail($id);
-        if ($request->status == 'TOLAK') {
-            $pengajuan->status = $request->status;
-            $pengajuan->alasan = $request->alasan;
-            $pengajuan->save();
+        try {
+//            dd($request->all());
+            $pengajuan = Pengajuan::findOrFail($request->id);
 
-            activity()
-                ->inLog('pengajuan')
-                ->causedBy(auth()->user())
-                ->subject($pengajuan)
-                ->log('Menolak pengajuan pengajuan');
-        } else {
-            $status = StatusMahasiswa::findOrFail($pengajuan->id_mhs);
-            $status->id_dsn = $pengajuan->id_dsn;
-            $status->save();
-            $pengajuan->status = $request->status;
-            $pengajuan->save();
+            $periode = Periode::where('status', 1)->first();
+            $dsnPeriod = DosenPeriodik::where('id_periode', $periode->id)->where('id_dsn', $pengajuan->id_dsn)->first();
+            $dsnStatus = StatusDosen::where('id_period', $dsnPeriod->id)->first();
 
-            activity()
-                ->inLog('pengajuan')
-                ->causedBy(auth()->user())
-                ->subject($pengajuan)
-                ->log('Update status pengajuan');
+            if ($request->status == 'TOLAK') {
+                $pengajuan->status = $request->status;
+                $pengajuan->alasan = $request->alasan;
+                $pengajuan->save();
+
+                $dsnStatus->ajuan--;
+                $dsnStatus->save();
+
+                activity()
+                    ->inLog('pengajuan')
+                    ->causedBy(auth()->user())
+                    ->performedOn($pengajuan)
+                    ->withProperties(['id_mhs' => $pengajuan->id_mhs])
+                    ->log('Menolak pengajuan pengajuan');
+
+                return response()->json(['status' => 'success', 'message' => 'Pengajuan berhasil ditolak']);
+            } else {
+                $status = StatusMahasiswa::findOrFail($pengajuan->id_mhs);
+                $status->id_dsn = $pengajuan->id_dsn;
+                $status->save();
+                $pengajuan->status = $request->status;
+                $pengajuan->save();
+
+                $dsnStatus->ajuan--;
+                $dsnStatus->diterima++;
+                $dsnStatus->sisa = $dsnStatus->kuota - $dsnStatus->diterima;
+
+                $dsnStatus->save();
+
+                activity()
+                    ->inLog('pengajuan')
+                    ->causedBy(auth()->user())
+                    ->performedOn($pengajuan)
+                    ->withProperties(['id_mhs' => $pengajuan->id_mhs])
+                    ->log('Update status pengajuan');
+
+                return redirect()->route('mahasiswa-bimbingan');
+            }
+        } catch (\Exception $e) {
+            Log::error($e); // Logging error
+            return response()->json(['status' => 'error', 'message' => 'Terjadi kesalahan'], 500);
         }
 
-        return redirect()->route('mahasiswa-bimbingan');
+//        return redirect()->route('mahasiswa-bimbingan');
     }
 }

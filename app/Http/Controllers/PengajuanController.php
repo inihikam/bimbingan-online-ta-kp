@@ -28,16 +28,18 @@ class PengajuanController extends Controller
         if (Pengajuan::where('id_mhs', $status->id_mhs)->first() != null) {
             $pengajuan = Pengajuan::where('id_mhs', $status->id_mhs)
                 ->whereIn('status', ['ACC', 'PENDING'])->first();
-            $dospil = Dosen::where('id', $pengajuan->id_dsn)->first();
-            return view('mahasiswa.pengajuan_ta.draft_pengajuan_ta', compact(
-                'dsnPeriod',
-                'mhs',
-                'status',
-                'pengajuan',
-                'history',
-                'dospil',
-                'data'
-            ));
+            if ($pengajuan) {
+                $dospil = Dosen::where('id', $pengajuan->id_dsn)->first();
+                return view('mahasiswa.pengajuan_ta.draft_pengajuan_ta', compact(
+                    'dsnPeriod',
+                    'mhs',
+                    'status',
+                    'pengajuan',
+                    'history',
+                    'dospil',
+                    'data'
+                ));
+            }
         }
 
         return view('mahasiswa.pengajuan_ta.pilih_dosbing', compact('dsnPeriod', 'status'));

@@ -30,15 +30,22 @@
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                         data-bs-target="{{ $pj->mahasiswa->mahasiswa->id }}">
                                     <i class="fa-solid fa-images"></i>
+                                </button>
                             </td>
                             <td>{{ $pj->mahasiswa->mahasiswa->ipk }}</td>
                             <td>{{ $pj->topik }}</td>
                             <td class="centered-column">
-                                <button type="submit" name="status" class="btn btn-success" value="ACC"><i
-                                        class="fa-regular fa-circle-check"></i></button>
-                                <button type="submit" name="status" class="btn btn-danger delete-button" value="REVISI">
-                                    <i
-                                        class="fa-regular fa-circle-xmark"></i></button>
+                                <form action="{{route('update-mahasiswa-bimbingan')}}" method="post"
+                                      enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $pj->id }}">
+                                    <button type="submit" name="status" class="btn btn-success" value="ACC"><i
+                                            class="fa-regular fa-circle-check"></i></button>
+                                </form>
+                                <button type="button" class="btn btn-danger delete-button" value="TOLAK"
+                                        id="rejectButton_{{ $pj->id }}">
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -68,8 +75,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('update-mahasiswa-bimbingan')}}" method="post" enctype="multipart/form-data">
-                        @csrf
+                    <form method="post" id="rejectForm">
                         <input type="hidden" name="id" id="rejectId">
                         <div class="mb-3">
                             <label for="reason" class="form-label">Keterangan</label>
@@ -87,13 +93,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var deleteButtons = document.querySelectorAll('.delete-button');
-            var rejectForm = document.getElementById('rejectForm');
             var rejectModal = new bootstrap.Modal(document.getElementById('rejectModal'));
+            var rejectForm = document.getElementById('rejectForm');
 
             deleteButtons.forEach(function (button) {
                 button.addEventListener('click', function (event) {
                     event.preventDefault();
-                    var id = event.target.closest('tr').querySelector('td:first-child').textContent;
+                    var id = this.id.split('_')[1]; // Ambil ID pengajuan dari ID tombol
                     document.getElementById('rejectId').value = id;
                     rejectModal.show();
                 });
@@ -101,6 +107,7 @@
 
             rejectForm.addEventListener('submit', function (event) {
                 event.preventDefault();
+                var id = document.getElementById('rejectId').value;
                 var reason = document.getElementById('reason').value;
 
                 if (reason) {
@@ -115,30 +122,34 @@
                         cancelButtonText: 'Batal'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            // Proses penghapusan data di sini
-                            Swal.fire(
-                                'Success!',
-                                'Pengajuan berhasil ditolak',
-                                'success'
-                            );
+                            fetch('/updatePengajuan', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                body: JSON.stringify({id: id, status: 'TOLAK', alasan: reason})
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.status === 'success') {
+                                        Swal.fire('Success!', 'Pengajuan berhasil ditolak', 'success');
+                                        // Lakukan tindakan tambahan setelah berhasil (misalnya, refresh tabel)
+                                        location.reload(); // Contoh: Refresh halaman setelah berhasil
+                                    } else {
+                                        Swal.fire('Error!', 'Terjadi kesalahan saat menolak pengajuan.', 'error');
+                                    }
+                                });
                         } else if (result.dismiss === Swal.DismissReason.cancel) {
-                            // Batalkan penghapusan
-                            Swal.fire(
-                                'Canceled!',
-                                'Pengajuan gagal ditolak',
-                                'error'
-                            );
+                            Swal.fire('Canceled!', 'Pengajuan gagal ditolak', 'error');
                         }
                     });
                 } else {
-                    Swal.fire(
-                        'Error!',
-                        'Alasan penolakan harus diisi.',
-                        'error'
-                    );
+                    Swal.fire('Error!', 'Alasan penolakan harus diisi.', 'error');
                 }
             });
         });
+
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
