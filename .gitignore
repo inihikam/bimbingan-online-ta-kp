@@ -16,9 +16,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/database/migrations
-/database/seeders
-/app/Models
 composer.lock
 package-lock.json
-/routes
