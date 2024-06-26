@@ -96,7 +96,8 @@ Route::middleware(['auth', 'role:koordinator'])->group(function () {
 // ADMINISTRATOR
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', [AdministratorController::class, 'index'])->name('admin-dashboard');
-    Route::get('/periodeAjaran', [AdministratorController::class, 'periode_ajaran'])->name('periode-ajaran');
+    Route::get('/periodeAjaran/{period?}', [AdministratorController::class, 'periode_ajaran'])->name('periode-ajaran');
+    Route::post('/periodeAjaran/update', [AdministratorController::class, 'changePeriod'])->name('periode-ajaran-update');
     Route::get('/logDosbim', [AdministratorController::class, 'log_dosbim'])->name('log-dosbim');
     Route::get('/logMahasiswa', [AdministratorController::class, 'log_mahasiswa'])->name('log-mahasiswa');
     Route::get('/aboutAdmin', [AdministratorController::class, 'about'])->name('admin-about');

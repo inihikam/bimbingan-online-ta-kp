@@ -48,7 +48,7 @@
                             <tr>
                                 <th>NIM</th>
                                 <th>Nama</th>
-                                <th>Dosen Wali</th>
+                                <th>No. Telp</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,7 +56,7 @@
                                 <tr>
                                     <td>{{ $mhs->nim }}</td>
                                     <td>{{ $mhs->nama }}</td>
-                                    <td>{{ $mhs->dosen_wali }}</td>
+                                    <td>{{ $mhs->telp }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -6,20 +6,22 @@
             <h2 class="mb-4">Periode Ajaran</h2>
             <p class="mb-5">Berikut data dosen pembimbing serta mahasiswa berdasarkan tahun ajaran</p>
             <div class="dropdown d-flex justify-content-between mt-3 mb-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
                     <span class="text-start">Pilih Periode Ajaran</span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><button class="dropdown-item" type="button">2020_01</button></li>
-                    <li><button class="dropdown-item" type="button">2020_02</button></li>
-                    <li><button class="dropdown-item" type="button">2021_01</button></li>
-                    <li><button class="dropdown-item" type="button">2021_02</button></li>
-                    <li><button class="dropdown-item" type="button">2022_01</button></li>
-                    <li><button class="dropdown-item" type="button">2022_02</button></li>
-                    <li><button class="dropdown-item" type="button">2023_01</button></li>
-                    <li><button class="dropdown-item" type="button">2023_02</button></li>
+                    @foreach ($periode as $p)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('periode-ajaran', ['period' => $p->id]) }}"
+                               data-period-id="{{ $p->id }}">
+                                {{ $p->tahun_ajaran }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
+
             <h4 class="mt-4 mb-4">Data Dosen Pembimbing</h4>
             <div class="table-container table-admin">
                 <table class="table table-bordered mb-1" id="table-dsn">
@@ -34,41 +36,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="centered-column">1</td>
-                        <td class="centered-column">0686.11.2012.444</td>
-                        <td>ADHITYA NUGRAHA, S.Kom, M.CS</td>
-                        <td class="centered-column">RPLD</td>
-                        <td class="centered-column">adhitya@dsn.dinus.ac.id</td>
-                        <td class="centered-column">081647563846</td>
-                    </tr>
-                    <tr>
-                        <td class="centered-column">2</td>
-                        <td class="centered-column">0686.11.2012.460</td>
-                        <td>ARDYTHA LUTHFIARTA, M.Kom</td>
-                        <td class="centered-column">SC</td>
-                        <td class="centered-column">ardytha.luthfiarta@dsn.dinus.ac.id</td>
-                        <td class="centered-column">081384759756</td>
-                    </tr>
-                    <tr>
-                        <td class="centered-column">3</td>
-                        <td class="centered-column">0686.11.2014.583</td>
-                        <td>DANANG WAHYU UTOMO, M.Kom</td>
-                        <td class="centered-column">RPLD</td>
-                        <td class="centered-column">danang.wu@dsn.dinus.ac.id</td>
-                        <td class="centered-column">081347658476</td>
-                    </tr>
-                    <tr>
-                        <td class="centered-column">4</td>
-                        <td class="centered-column">0686.11.2013.536</td>
-                        <td>DEFRI KURNIAWAN, M.Kom</td>
-                        <td class="centered-column">RPLD</td>
-                        <td class="centered-column">defrikurniawan@gmail.com</td>
-                        <td class="centered-column">081293847564</td>
-                    </tr>
+                    @foreach ($dsnPeriod as $index => $dosen)
+                        <tr>
+                            <td class="centered-column">{{ $index + 1 }}</td>
+                            <td class="centered-column">{{ $dosen->dosen->npp }}</td>
+                            <td>{{ $dosen->dosen->nama }}</td>
+                            <td class="centered-column">{{ $dosen->dosen->bidang_kajian }}</td>
+                            <td class="centered-column">{{ $dosen->dosen->email }}</td>
+                            <td class="centered-column">{{ $dosen->dosen->telp }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
+
             <h4 class="mt-5 mb-4">Data Mahasiswa</h4>
             <div class="table-container table-admin">
                 <table class="table table-bordered mb-1" id="table-mhs">
@@ -79,42 +60,18 @@
                         <th>Nama Mahasiswa</th>
                         <th>Email</th>
                         <th>No. Telp</th>
-                        <th>Dosen Pembimbing</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="centered-column">1</td>
-                        <td class="centered-column">A11.2021.13550</td>
-                        <td>MUHAMMAD MAULANA HIKAM</td>
-                        <td class="centered-column">inihikam@gmail.com</td>
-                        <td class="centered-column">081465784936</td>
-                        <td class="centered-column">DANANG WAHYU UTOMO, M.Kom</td>
-                    </tr>
-                    <tr>
-                        <td class="centered-column">2</td>
-                        <td class="centered-column">A11.2021.13374</td>
-                        <td>CLARA EDREA EVELYNA SONY PUTRI</td>
-                        <td class="centered-column">claraedrea@gmail.com</td>
-                        <td class="centered-column">081475857387</td>
-                        <td class="centered-column">DEFRI KURNIAWAN, M.Kom</td>
-                    </tr>
-                    <tr>
-                        <td class="centered-column">3</td>
-                        <td class="centered-column">A11.2021.13329</td>
-                        <td>MUHAMMAD RIZAL PRATAMA</td>
-                        <td class="centered-column">rizalpratama@gmail.com</td>
-                        <td class="centered-column">081226504875</td>
-                        <td class="centered-column">ARDYTHA LUTHFIARTA, M.Kom</td>
-                    </tr>
-                    <tr>
-                        <td class="centered-column">4</td>
-                        <td class="centered-column">A11.2021.13446</td>
-                        <td>MUH BAGUS SAPUTRO</td>
-                        <td class="centered-column">bagussaputro@gmail.com</td>
-                        <td class="centered-column">081875467389</td>
-                        <td class="centered-column">ADHITYA NUGRAHA, S.Kom, M.CS</td>
-                    </tr>
+                    @foreach ($mhsPeriod as $index => $mahasiswa)
+                        <tr>
+                            <td class="centered-column">{{ $index + 1 }}</td>
+                            <td class="centered-column">{{ $mahasiswa->mahasiswa->nim }}</td>
+                            <td>{{ $mahasiswa->mahasiswa->nama }}</td>
+                            <td class="centered-column">{{ $mahasiswa->mahasiswa->email }}</td>
+                            <td class="centered-column">{{ $mahasiswa->mahasiswa->telp }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
@@ -137,10 +94,31 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
-        // Inisialisasi DataTables
         $(document).ready(function () {
             $('#table-dsn').DataTable();
             $('#table-mhs').DataTable();
+        });
+        $('.dropdown-item').on('click', function (e) {
+            e.preventDefault();
+            var periodId = $(this).data('period-id');
+            filterTablesByPeriod(periodId);
+            window.history.pushState({}, '', $(this).attr('href'));
+
+            // Kirim permintaan AJAX ke controller
+            $.ajax({
+                url: '{{ route("periode-ajaran-update") }}', // Ganti dengan nama route yang sesuai
+                method: 'POST',
+                data: {period_id: periodId, _token: '{{ csrf_token() }}'}, // Sertakan CSRF token
+                success: function (response) {
+                    if (response.success) {
+                        // Update berhasil, lakukan tindakan lain jika diperlukan (misalnya, tampilkan notifikasi)
+                        console.log('Periode berhasil diperbarui');
+                    } else {
+                        // Update gagal, tangani error jika diperlukan
+                        console.error('Gagal memperbarui periode');
+                    }
+                }
+            });
         });
     </script>
 @endsection
